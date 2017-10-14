@@ -20,6 +20,8 @@ contract Immigrant {
 
 	enum ImmigrationStatus { registered, invited, accepted, rejected }
 
+	event LogContribution(address immigrant, uint amount);
+
 	// Current immigrant status in the process
     ImmigrationStatus status;
 
