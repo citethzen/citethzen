@@ -31,7 +31,7 @@ contract Immigrant {
 		age = _age;
 		income = _income;
 		dataHash = _dataHash;
-    status = ImmigrationStatus.registered;
+        status = ImmigrationStatus.registered;
 	}
 
 	function() public payable {
@@ -68,7 +68,7 @@ contract Immigrant {
 
     function emptyAccountToken(address tokenAddress)  public onlyGov returns (bool) {
         ERC20 token = ERC20(tokenAddress);
-				government.transfer(token.balanceOf(this));
+        government.transfer(token.balanceOf(this));
         return true;
 	}
 
