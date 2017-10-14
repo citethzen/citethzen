@@ -16,7 +16,7 @@ contract Immigrant {
 	address public government;
 
 	enum ImmigrationStatus { registered, paying, accepted, rejected }
-	enum Occupation { doctor, lawyer, migrant worker, laborer }
+	enum Occupation { doctor, lawyer, migrantWorker, laborer }
 
 	// Current immigrant status in the process
 	ImmigrationStatus status;
@@ -30,7 +30,7 @@ contract Immigrant {
 		dataHash = _dataHash;
 		government = msg.sender;
 
-        status = ImmigrationStatus.registered;
+		status = ImmigrationStatus.registered;
 	}
 
 	function() payable {
@@ -58,7 +58,7 @@ contract Immigrant {
 
     function emptyAccountToken(address tokenAddress) onlyGov returns (bool) {
         ERC20 token = ERC20(tokenAddress);
-        token.transfer(government, token.balanceOf(this));
+				government.transfer(token.balanceOf(this));
 	}
 
 }

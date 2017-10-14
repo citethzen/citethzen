@@ -22,6 +22,6 @@ contract Wallet{
 
   function withdrawTokens(address tokenAddress, address withdrawTo) onlyOwner {
     ERC20 token = ERC20(tokenAddress);
-    token.transfer(government, token.balanceOf(this));
+    withdrawTo.transfer(token.balanceOf(this));
   }
 }
