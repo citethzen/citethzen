@@ -17,12 +17,14 @@ contract Government {
         acceptedTokens = _acceptedTokens;
     }
 	// register/create new immigrant contract
-	function register (string _occupation, uint _age, uint _income, bytes32 _dataHash) returns (address) {
+	function register (uint _occupation, uint _age, uint _income, bytes32 _dataHash) returns (address) {
         require(immigrantRegistry[msg.sender] == address(0));
 
         immigrantRegistry[msg.sender] = new Immigrant(msg.sender, _occupation, _age, _income, _dataHash);
 		return immigrantRegistry[msg.sender];
 	}
+
+	//write a function for government to empty it's contract
 
 	//EVENTS
 
