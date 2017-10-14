@@ -56,16 +56,26 @@ contract government{
 		return true;
 	}
 
-	function queryImmigrantStatus(address _address) constant returns (ImmigrationStatus status) {
-		return immigrants[_address].status;
-	}
-
 	function contribute() payable returns (uint) {
 		// Make a contribution for msg.sender
 		immigrants[msg.sender].contribution += msg.value;
 	}
 
-	function queryContribution(address _address) constant returns (uint256 balance) {
+	function queryContribution(address _address) constant returns (uint balance) {
 		return immigrants[_address].contribution;
+	}
+
+	function makeDecision(address _address, bool accepted) constant returns (uint status) {
+		if (accepted) {
+			immigrants[_address].status = ImmigrationStatus.accepted;
+		} else {
+			immigrants[_address].status = ImmigrationStatus.rejected;
+		}
+
+		return uint(immigrants[_address].status);
+	}
+
+	function queryImmigrantStatus(address _address) constant returns (uint status) {
+		return uint(immigrants[_address].status);
 	}
 }

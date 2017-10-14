@@ -58,16 +58,27 @@ contract('Government', function(accounts) {
   });
 
   it("Government final decision", function() {
-    return Government.deployed().then(function(instance) {
-      return instance.makeDecision(accounts[0], true);
-    }).then(function(balance) {
-      // Return the total contribution made by that immigrant over time
-      assert.equal(balance.valueOf(), 1, "Accepted immigrant total contribution should be 1");
+    // Contract instance reference
+    let contractInstance = null;
+    let account_one = accounts[0];
+    let account_two = accounts[1];
 
-      return instance.makeDecision(accounts[1], false);
-    }).then(function(balance) {
+    return Government.deployed().then(function(instance) {
+      contractInstance = instance;
+
+      return contractInstance.makeDecision(account_one, true);
+    }).then(function() {
+      return contractInstance.queryImmigrantStatus.call(account_one);
+    }).then(function(status) {
+      // Return the total contribution made by that immigrant over time
+      assert.equal(status.valueOf(), 2, "Accepted immigrant total contribution should be 2 (accepted)");
+
+      return contractInstance.makeDecision(account_two, false);
+    }).then(function() {
+      return contractInstance.queryImmigrantStatus.call(account_two);
+    }).then(function(status) {
       // If the immigrant application was declined, ether should be refunded
-      assert.equal(balance.valueOf(), 0, "Immigrant's total contribution should be empty");
+      assert.equal(status.valueOf(), 3, "Rejected immigrant total contribution should be 3 (rejection)");
 
       // Improvement: Add validation/test for immigrants that were accepted/declined already
     });
