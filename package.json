@@ -16,6 +16,7 @@
   },
   "scripts": {
     "test": "truffle test",
+    "prerelease": "truffle compile",
     "release": "npm-release patch"
   },
   "repository": {
