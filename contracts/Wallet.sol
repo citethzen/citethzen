@@ -23,15 +23,13 @@ contract Wallet {
         return true;
     }
 
-<<<<<<< HEAD
-  function withdrawTokens(address tokenAddress, address withdrawTo) onlyOwner {
-    ERC20 token = ERC20(tokenAddress);
-    withdrawTo.transfer(token.balanceOf(this));
-  }
-=======
+    function withdrawTokens(address tokenAddress, address withdrawTo) onlyOwner {
+        ERC20 token = ERC20(tokenAddress);
+        withdrawTo.transfer(token.balanceOf(this));
+    }
+
     function withdrawTokens(address tokenAddress, address withdrawTo) public onlyOwner {
         ERC20 token = ERC20(tokenAddress);
         token.transfer(withdrawTo, token.balanceOf(this));
     }
->>>>>>> 022868a3785bb3ffe84214941ae8834b6b308497
 }
