@@ -1,17 +1,23 @@
 {
-  "name": "contracts",
-  "version": "0.0.1",
+  "name": "citethzen-contracts",
+  "version": "0.0.2",
   "description": "",
   "main": "truffle.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "js-sha3": "^0.6.1"
+  "files": [
+    "build/"
+  ],
+  "devDependencies": {
+    "js-sha3": "^0.6.1",
+    "npm-release": "^1.0.0",
+    "truffle": "^4.0.0-beta.2"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "truffle test",
+    "prerelease": "truffle compile",
+    "release": "npm-release patch"
   },
   "repository": {
     "type": "git",
