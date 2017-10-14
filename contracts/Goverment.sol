@@ -1,16 +1,6 @@
 pragma solidity ^0.4.4;
-
-// https://github.com/ethereum/EIPs/issues/20
- contract ERC20 {
-      function totalSupply() constant returns (uint totalSupply);
-      function balanceOf(address _owner) constant returns (uint balance);
-      function transfer(address _to, uint _value) returns (bool success);
-      function transferFrom(address _from, address _to, uint _value) returns (bool success);
-      function approve(address _spender, uint _value) returns (bool success);
-      function allowance(address _owner, address _spender) constant returns (uint remaining);
-      event Transfer(address indexed _from, address indexed _to, uint _value);
-     event Approval(address indexed _owner, address indexed _spender, uint _value);
- }
+import "ERC20.sol";
+import "Immigrant.sol";
 
 contract Government {
 	// Government public address that will own the contract and receive the funds at the end of the process
@@ -60,63 +50,6 @@ contract Government {
 		}
 
 		return contribution;
-	}
-
-}
-
-contract Immigrant {
-	// need to generate new contract address
-	// Immigrant's wallet address
-	address immigrantWallet;
-
-	// Additional demographic info
-	uint public age;
-	uint public income;
-	string public occupation;
-	bytes32 public dataHash;
-	address public government;
-
-	enum ImmigrationStatus { registered, paying, accepted, rejected }
-
-	// Current immigrant status in the process
-	ImmigrationStatus status;
-
-	function Immigrant(address _address, string _occupation, uint _age, uint _income, bytes32 _dataHash) {
-		immigrantWallet = _address;
-		occupation = _occupation;
-		age = _age;
-		income = _income;
-		dataHash = _dataHash;
-		government = msg.sender;
-    
-        status = ImmigrationStatus.registered;
-	}
-
-	function() payable {
-		// Make a contribution for msg.sender
-	}
-	
-	modifier onlyGov {
-	    require(msg.sender == government);
-	    _;
-	}
-	
-	function makeDecision(address _address, bool accepted) onlyGov returns (uint _status) {
-		if (accepted) {
-			status = ImmigrationStatus.accepted;
-		} else {
-			status = ImmigrationStatus.rejected;
-		}
-		return uint(status);
-	}
-	
-	function emptyAccountEth() onlyGov returns (bool) {
-	   government.transfer(this.balance);
-	}
-	    
-    function emptyAccountToken(address tokenAddress) onlyGov returns (bool) {
-        ERC20 token = ERC20(tokenAddress);
-        token.transfer(government, token.balanceOf(this));
 	}
 
 }
