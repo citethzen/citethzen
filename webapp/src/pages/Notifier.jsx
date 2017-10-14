@@ -11,14 +11,16 @@ export default class Notifier extends Component {
     window.alert = this.handleAlert;
   }
 
+  _lastId = 0;
+
   handleAlert = alt => {
     if (typeof alt === 'string') {
       this.setState({
-        alerts: [ { message: alt, type: 'info' }, ...this.state.alerts ]
+        alerts: [ { id: this._lastId++, message: alt, type: 'info' }, ...this.state.alerts ]
       });
     } else {
       this.setState({
-        alerts: [ alt, ...this.state.alerts ]
+        alerts: [ { type: 'info', ...alt, id: this._lastId++ }, ...this.state.alerts ]
       });
     }
   };
@@ -32,15 +34,13 @@ export default class Notifier extends Component {
   render() {
     const { alerts } = this.state;
 
-    console.log(alerts);
-
     return (
       <AlertContainer>
         {
           _.map(
             alerts,
             (alt, ix) => (
-              <Alert key={ix} type={alt.type} onDismiss={() => this.handleDismiss(alt)}>{alt.message}</Alert>
+              <Alert key={alt.id} type={alt.type} onDismiss={() => this.handleDismiss(alt)}>{alt.message}</Alert>
             )
           )
         }

@@ -34,9 +34,6 @@ export default class Menu extends Component {
             <NavItem href="/immigrant">
               <Icon name="user-secret"/> Immigrant
             </NavItem>
-            <NavItem href="/immigrant2">
-              <Icon name="user-secret"/> Immigrant2
-            </NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
