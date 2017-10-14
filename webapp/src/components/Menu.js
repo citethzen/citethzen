@@ -4,7 +4,7 @@ import { Link, Route } from 'react-router-dom';
 import cx from 'classnames';
 import Icon from './Icon';
 
-const NavItem = ({ href, ...props }) => (
+const NavItem = ({ href, activeHref, activeKey, ...props }) => (
   <Route path={href} exact>
     {
       ({ match }) => (
