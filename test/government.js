@@ -1,13 +1,22 @@
-var MetaCoin = artifacts.require("./MetaCoin.sol");
+const Government = artifacts.require("./Government.sol");
 
-contract('MetaCoin', function(accounts) {
-  it("should put 10000 MetaCoin in the first account", function() {
-    return MetaCoin.deployed().then(function(instance) {
-      return instance.getBalance.call(accounts[0]);
+contract('Government', function(accounts) {
+
+  it("Successfully register a new immigrant", function() {
+    return Government.deployed().then(function(instance) {
+      const ocupation = 'Solidity Developer';
+      const age = 25;
+      const income = 999;
+
+      // TODO: proper hashing of first name, last name and date of birth
+      let hash = "xxx";
+
+      return instance.immigrantRegistration();
     }).then(function(balance) {
       assert.equal(balance.valueOf(), 10000, "10000 wasn't in the first account");
     });
   });
+
   it("should call a function that depends on a linked library", function() {
     var meta;
     var metaCoinBalance;
@@ -25,6 +34,7 @@ contract('MetaCoin', function(accounts) {
       assert.equal(metaCoinEthBalance, 2 * metaCoinBalance, "Library function returned unexpected function, linkage may be broken");
     });
   });
+
   it("should send coin correctly", function() {
     var meta;
 
@@ -60,4 +70,5 @@ contract('MetaCoin', function(accounts) {
       assert.equal(account_two_ending_balance, account_two_starting_balance + amount, "Amount wasn't correctly sent to the receiver");
     });
   });
+
 });
