@@ -3,7 +3,7 @@ pragma solidity ^0.4.4;
 contract government{
 
 	enum ImmigrationStatus {registered, paying, accepted, rejected}
-	CheckoutState public currentState;
+	/*CheckoutState public currentState;*/
 
 	mapping (address => uint256) public structs;
 
@@ -54,11 +54,11 @@ contract government{
 		return newStruct.contribution;
 	}
 
-	payable function contribute(uint amount) returns (uint) {
+	function contribute(uint amount) payable returns (uint) {
 		// Make a contribution for msg.sender, returns the updated balance (totalContributed)
 	}
 
 	function queryContribution(address _address) constant returns (uint256 balance) {
-		return structs[_address].contribution;
+		/*return structs[_address].contribution;*/
 	}
 }
