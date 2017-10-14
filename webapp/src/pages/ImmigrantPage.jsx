@@ -3,6 +3,7 @@ import { Government } from '../util/contracts';
 import { ZERO_ADDRESS } from '../util/constants';
 import RegistrationForm from '../components/RegistrationForm';
 import { Alert, PageHeader } from 'react-bootstrap';
+import Balance from '../components/Balance';
 
 export default class ImmigrantPage extends Component {
   state = {
@@ -75,6 +76,9 @@ export default class ImmigrantPage extends Component {
         <div>
           <div>
             <label>Your Address: </label> {immigrantContractAddress}
+          </div>
+          <div>
+            <label>Balance: </label> <Balance address={immigrantContractAddress}/>
           </div>
         </div>
       </div>

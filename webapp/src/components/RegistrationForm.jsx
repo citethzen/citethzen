@@ -40,7 +40,7 @@ export default class RegistrationForm extends Component {
                 {
                   _.map(
                     OCCUPATION_CODES,
-                    (occupation, ix) => <option value={`${ix}`}>{occupation}</option>
+                    (occupation, ix) => <option key={ix} value={`${ix}`}>{occupation}</option>
                   )
                 }
               </select>
