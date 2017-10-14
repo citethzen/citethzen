@@ -9,17 +9,11 @@ contract('Government', function (accounts) {
   const age = 25;
   const income = 999;
 
-  before('get the government instance', function (done) {
-    Government.deployed()
-      .then(
-        instance => {
-          government = instance;
-          done();
-        }
-      );
+  before('get the government instance', async () => {
+    government = await Government.deployed();
   });
 
-  it('Registers a new immigrant', function () {
+  it('Registers a new immigrant', async function () {
     // Immigrant sensitive data
     const firstName = 'John';
     const lastName = 'Doe';
@@ -27,22 +21,11 @@ contract('Government', function (accounts) {
     const pin = '9999';
 
     // Immigrant data bytes32 hash
-    let hash = "0x" + keccak256(firstName + lastName + dateOfBirth + pin);
+    let hash = '0x' + keccak256(firstName + lastName + dateOfBirth + pin);
 
-    // Contract instance reference
-    let contractInstance = null;
-
-    return Government.deployed().then(function (instance) {
-      contractInstance = instance;
-
-      return contractInstance.register(occupation, age, income, hash);
-    }).then(function () {
-      return contractInstance.queryImmigrantStatus.call(accounts[ 0 ]);
-    }).then(function (immigrantStatus) {
-      assert.equal(immigrantStatus.valueOf(), 0, 'Could not register immigrant in the contract');
-
-      // Improvement: Add validation/test in case the same publicKey tries to register multiple times.
-    });
+    const registerTx = await government.register(occupation, age, income, hash, { from: accounts[ 0 ] });
+    const immigrantStatus = await government.queryImmigrantStatus(accounts[ 0 ]);
+    assert.equal(immigrantStatus.valueOf(), 0, 'Could not register immigrant in the contract');
   });
 
   it('Makes a contribution', function () {
@@ -105,26 +88,26 @@ contract('Government', function (accounts) {
     const wrongPin = '1234';
 
     // Immigrant data bytes32 hash
-    let hash = "0x" + keccak256(firstName + lastName + dateOfBirth + correctPin);
+    let hash = '0x' + keccak256(firstName + lastName + dateOfBirth + correctPin);
 
     // Contract instance reference
     let contractInstance = null;
-    let account_one = accounts[0];
+    let account_one = accounts[ 0 ];
 
-    return Government.deployed().then(function(instance) {
+    return Government.deployed().then(function (instance) {
       contractInstance = instance;
 
       return contractInstance.collectContribution(account_one, firstName, lastName, dateOfBirth, wrongPin);
-    }).then(function() {
+    }).then(function () {
       return contractInstance.queryContribution.call(account_one);
-    }).then(function(balance) {
-      assert.equal(balance.valueOf(), 10, "collectContribution should fail when sending a wrong PIN or immigrant info");
+    }).then(function (balance) {
+      assert.equal(balance.valueOf(), 10, 'collectContribution should fail when sending a wrong PIN or immigrant info');
 
       return contractInstance.collectContribution(account_one, firstName, lastName, dateOfBirth, correctPin);
-    }).then(function() {
+    }).then(function () {
       return contractInstance.queryContribution.call(account_one);
-    }).then(function(balance) {
-      assert.equal(balance.valueOf(), 0, "collectContribution should succeed when passing the correct info");
+    }).then(function (balance) {
+      assert.equal(balance.valueOf(), 0, 'collectContribution should succeed when passing the correct info');
 
       // Improvement: Add validation/test for immigrants that were accepted/declined already
     });

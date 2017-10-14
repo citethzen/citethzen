@@ -1,6 +1,6 @@
 pragma solidity ^0.4.4;
 
-contract government{
+contract Government {
 	// Government public address that will own the contract and receive the funds at the end of the process
 	address public owner = msg.sender;
 
@@ -45,7 +45,7 @@ contract government{
 	// Log :moneybag: :moneybag: :moneybag:
 	event LogGovernmentCollection(address immigrant, uint totalContributed);
 
-	function register (string occupation, uint age, uint income, bytes32 dataHash) returns (bool success) {
+	function register (string occupation, uint age, uint income, bytes32 dataHash) public returns (bool success) {
 		// New immigrantStruct, saving msg.sender as the publicKey and all the info in the struct instance
 		immigrants[msg.sender].occupation = occupation;
 		immigrants[msg.sender].age = age;
@@ -58,14 +58,14 @@ contract government{
 		return true;
 	}
 
-	function contribute() payable returns (uint) {
+	function contribute() payable public returns (uint) {
 		// Make a contribution for msg.sender
 		immigrants[msg.sender].contribution += msg.value;
 
 		LogImmigrantContribution(msg.sender, msg.value, immigrants[msg.sender].contribution);
 	}
 
-	function makeDecision(address _address, bool accepted) returns (uint status) {
+	function makeDecision(address _address, bool accepted) public returns (uint status) {
 		if (accepted) {
 			immigrants[_address].status = ImmigrationStatus.accepted;
 		} else {
@@ -77,7 +77,7 @@ contract government{
 		return uint(immigrants[_address].status);
 	}
 
-	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string pin) returns (uint contribution) {
+	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string pin) public returns (uint contribution) {
 		// SHA3 MAGIC AND COMPARE WITH IMMIGRANT.DATAHASH
 		// keccak256 == sha3
 		bytes32 immigrantDataHash = keccak256(firstName, lastName, dateOfBirth, pin);
@@ -92,11 +92,11 @@ contract government{
 		return immigrants[_address].contribution;
 	}
 
-	function queryContribution(address _address) constant returns (uint balance) {
+	function queryContribution(address _address) constant public returns (uint balance) {
 		return immigrants[_address].contribution;
 	}
 
-	function queryImmigrantStatus(address _address) constant returns (uint status) {
+	function queryImmigrantStatus(address _address) constant public returns (uint status) {
 		return uint(immigrants[_address].status);
 	}
 }
