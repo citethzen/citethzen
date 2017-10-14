@@ -12,17 +12,13 @@ contract Immigrant {
 	address public government;
 	bytes32 public dataHash;
 
-<<<<<<< HEAD
-	enum ImmigrationStatus { registered, paying, accepted, rejected }
 	enum Occupation { doctor, lawyer, migrantWorker, laborer }
-=======
     // Additional demographic info
     uint64 public age;
     uint64 public occupation;
     uint128 public income;
 
 	enum ImmigrationStatus { registered, invited, accepted, rejected }
->>>>>>> 022868a3785bb3ffe84214941ae8834b6b308497
 
 	// Current immigrant status in the process
     ImmigrationStatus status;
