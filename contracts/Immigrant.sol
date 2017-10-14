@@ -4,10 +4,10 @@ import "./ERC20.sol";
 import "./Government.sol";
 import "./Wallet.sol";
 
-contract Immigrant {
+contract Immigrant is Wallet {
 	// need to generate new contract address
 	// Immigrant's wallet address
-	address public immigrantWallet;
+	address public immigrantAddress;
 
 	address public government;
 	bytes32 public dataHash;
@@ -25,9 +25,9 @@ contract Immigrant {
 	// Current immigrant status in the process
   ImmigrationStatus public status;
 
-	function Immigrant(address _immigrantWallet, uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) public {
+	function Immigrant(address _immigrantAddress, uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) Wallet(_immigrantAddress) public {
         government = msg.sender;
-		immigrantWallet = _immigrantWallet;
+        immigrantAddress = _immigrantAddress;
 
         occupation = _occupation;
 		age = _age;
@@ -46,13 +46,13 @@ contract Immigrant {
 	    _;
 	}
 
-	function invite() public onlyGov returns (bool success) {
+	function receiveGovernmentInvitation() public onlyGov returns (bool success) {
 		require(status == ImmigrationStatus.registered);
 		status = ImmigrationStatus.invited;
 		return true;
 	}
 
-	function makeDecision(address _address, bool accepted) onlyGov returns (uint _status) {
+	function makeDecision(bool accepted) onlyGov public returns (uint _status) {
 		if (accepted) {
 			status = ImmigrationStatus.accepted;
 		} else {

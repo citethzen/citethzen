@@ -1,14 +1,19 @@
 pragma solidity ^0.4.16;
 import "./ERC20.sol";
 import "./Immigrant.sol";
+import "./Wallet.sol";
 
-contract Government {
+contract Government is Wallet {
 	// Government public address that will own the contract and receive the funds at the end of the process
 	address public owner;
 	address[] public acceptedTokens;
-	mapping (address => Immigrant) public immigrantRegistry;
+	mapping(address => Immigrant) public immigrantRegistry;
 
-    function Government(address[] _acceptedTokens) public {
+    function createHash(string firstName, string lastName, string dateOfBirth, string password) public constant returns (bytes32 hash) {
+        return keccak256(firstName, lastName, dateOfBirth, password);
+    }
+
+    function Government(address[] _acceptedTokens) Wallet(msg.sender) public {
         owner = msg.sender;
 
         //limit spending gas when withdrawing
@@ -30,7 +35,7 @@ contract Government {
 	}
 
     function invite(address immigrantWallet) public onlyOwner returns (bool ){
-        require(immigrantRegistry[immigrantWallet].invite());
+        require(immigrantRegistry[immigrantWallet].receiveGovernmentInvitation());
         LogInvitation(immigrantWallet);
     }
 
@@ -38,12 +43,6 @@ contract Government {
 	modifier onlyOwner {
 	    require(msg.sender == owner);
 	    _;
-	}
-
-	//write a function for government to empty it's contract
-	function withdraw(address deliverTo) onlyOwner public returns (bool) {
-			deliverTo.transfer(this.balance);
-			return true;
 	}
 
 	//EVENTS
@@ -57,10 +56,10 @@ contract Government {
 	// Log :moneybag: :moneybag: :moneybag:
 	event LogGovernmentCollection(address indexed immigrant, uint indexed amountCollected);
 
-	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string pin) public returns (uint _contribution) {
+	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string password) public returns (uint _contribution) {
 		// SHA3 MAGIC AND COMPARE WITH IMMIGRANT.DATAHASH
 		// keccak256 == sha3
-		bytes32 immigrantDataHash = keccak256(firstName, lastName, dateOfBirth, pin);
+		bytes32 immigrantDataHash = createHash(firstName, lastName, dateOfBirth, password);
 		bytes32 storedDataHash = immigrantRegistry[_address].dataHash();
 
         uint contribution = immigrantRegistry[_address].balance;

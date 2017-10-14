@@ -1,10 +1,8 @@
 pragma solidity ^0.4.16;
 
-
 import "./ERC20.sol";
 import "./Immigrant.sol";
 import "./Government.sol";
-
 
 contract Wallet {
     address public owner;
