@@ -1,0 +1,4165 @@
+{
+  "contractName": "Immigrant",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dataHash",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "age",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "government",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "emptyAccountEth",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "occupation",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "income",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint128"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "accepted",
+          "type": "bool"
+        }
+      ],
+      "name": "makeDecision",
+      "outputs": [
+        {
+          "name": "_status",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "immigrantWallet",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "invite",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "tokenAddress",
+          "type": "address"
+        }
+      ],
+      "name": "emptyAccountToken",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_immigrantWallet",
+          "type": "address"
+        },
+        {
+          "name": "_occupation",
+          "type": "uint64"
+        },
+        {
+          "name": "_age",
+          "type": "uint64"
+        },
+        {
+          "name": "_income",
+          "type": "uint128"
+        },
+        {
+          "name": "_dataHash",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b60405160a0806105a2833981016040528080519190602001805191906020018051919060200180519190602001805160018054600160a060020a031990811633600160a060020a0390811691909117909255600080549091169890911697909717875560038054604060020a608060020a0319166801000000000000000067ffffffffffffffff988916021767ffffffffffffffff191695909616949094176001608060020a0390811670010000000000000000000000000000000094909116939093029290921790935550600255506004805460ff191690556104a99081906100f990396000f300606060405236156100a15763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631b3012a381146100a3578063262a9dff146100c85780632672f526146100f85780633ea0fbcf146101275780636f5ad9991461014e57806388b4504614610161578063dfa1ba3514610199578063e6704dc4146101b1578063eec30bfd146101c4578063f9da1f25146101d7575b005b34156100ae57600080fd5b6100b66101f6565b60405190815260200160405180910390f35b34156100d357600080fd5b6100db6101fc565b60405167ffffffffffffffff909116815260200160405180910390f35b341561010357600080fd5b61010b61020c565b604051600160a060020a03909116815260200160405180910390f35b341561013257600080fd5b61013a61021b565b604051901515815260200160405180910390f35b341561015957600080fd5b6100db610278565b341561016c57600080fd5b610174610294565b6040516fffffffffffffffffffffffffffffffff909116815260200160405180910390f35b34156101a457600080fd5b6100b660043515156102c0565b34156101bc57600080fd5b61010b610338565b34156101cf57600080fd5b61013a610347565b34156101e257600080fd5b61013a600160a060020a0360043516610396565b60025481565b60035467ffffffffffffffff1681565b600154600160a060020a031681565b60015460009033600160a060020a0390811691161461023957600080fd5b600154600160a060020a039081169030163180156108fc0290604051600060405180830381858888f19350505050151561027257600080fd5b50600190565b60035468010000000000000000900467ffffffffffffffff1681565b60035470010000000000000000000000000000000090046fffffffffffffffffffffffffffffffff1681565b60015460009033600160a060020a039081169116146102de57600080fd5b600160045460ff1660038111156102f157fe5b146102fb57600080fd5b8115610313576004805460ff19166002179055610321565b6004805460ff191660031790555b60045460ff16600381111561033257fe5b92915050565b600054600160a060020a031681565b60015460009033600160a060020a0390811691161461036557600080fd5b600060045460ff16600381111561037857fe5b1461038257600080fd5b506004805460ff1916600190811790915590565b600154600090819033600160a060020a039081169116146103b657600080fd5b506001548290600160a060020a03908116906108fc9083166370a08231306000604051602001526040517c010000000000000000000000000000000000000000000000000000000063ffffffff8416028152600160a060020a039091166004820152602401602060405180830381600087803b151561043457600080fd5b6102c65a03f1151561044557600080fd5b505050604051805190509081150290604051600060405180830381858888f19350505050151561047457600080fd5b506001929150505600a165627a7a723058205e33be2847cd198f22fae90324c7e8752ecf687c4c92fd8466d82a5b1d94325a0029",
+  "deployedBytecode": "0x606060405236156100a15763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631b3012a381146100a3578063262a9dff146100c85780632672f526146100f85780633ea0fbcf146101275780636f5ad9991461014e57806388b4504614610161578063dfa1ba3514610199578063e6704dc4146101b1578063eec30bfd146101c4578063f9da1f25146101d7575b005b34156100ae57600080fd5b6100b66101f6565b60405190815260200160405180910390f35b34156100d357600080fd5b6100db6101fc565b60405167ffffffffffffffff909116815260200160405180910390f35b341561010357600080fd5b61010b61020c565b604051600160a060020a03909116815260200160405180910390f35b341561013257600080fd5b61013a61021b565b604051901515815260200160405180910390f35b341561015957600080fd5b6100db610278565b341561016c57600080fd5b610174610294565b6040516fffffffffffffffffffffffffffffffff909116815260200160405180910390f35b34156101a457600080fd5b6100b660043515156102c0565b34156101bc57600080fd5b61010b610338565b34156101cf57600080fd5b61013a610347565b34156101e257600080fd5b61013a600160a060020a0360043516610396565b60025481565b60035467ffffffffffffffff1681565b600154600160a060020a031681565b60015460009033600160a060020a0390811691161461023957600080fd5b600154600160a060020a039081169030163180156108fc0290604051600060405180830381858888f19350505050151561027257600080fd5b50600190565b60035468010000000000000000900467ffffffffffffffff1681565b60035470010000000000000000000000000000000090046fffffffffffffffffffffffffffffffff1681565b60015460009033600160a060020a039081169116146102de57600080fd5b600160045460ff1660038111156102f157fe5b146102fb57600080fd5b8115610313576004805460ff19166002179055610321565b6004805460ff191660031790555b60045460ff16600381111561033257fe5b92915050565b600054600160a060020a031681565b60015460009033600160a060020a0390811691161461036557600080fd5b600060045460ff16600381111561037857fe5b1461038257600080fd5b506004805460ff1916600190811790915590565b600154600090819033600160a060020a039081169116146103b657600080fd5b506001548290600160a060020a03908116906108fc9083166370a08231306000604051602001526040517c010000000000000000000000000000000000000000000000000000000063ffffffff8416028152600160a060020a039091166004820152602401602060405180830381600087803b151561043457600080fd5b6102c65a03f1151561044557600080fd5b505050604051805190509081150290604051600060405180830381858888f19350505050151561047457600080fd5b506001929150505600a165627a7a723058205e33be2847cd198f22fae90324c7e8752ecf687c4c92fd8466d82a5b1d94325a0029",
+  "sourceMap": "99:1807:2:-;;;603:336;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;734:10;:23;;-1:-1:-1;;;;;;734:23:2;;;747:10;-1:-1:-1;;;;;734:23:2;;;;;;;;;;-1:-1:-1;761:34:2;;;;;;;;;;;;;;;806:10;:24;;-1:-1:-1;;;;;;;;806:24:2;;;;;;;;-1:-1:-1;;834:10:2;;;;;;;;;-1:-1:-1;;;;;848:16:2;;;;;;;;;;;;;;;;;;;-1:-1:-1;868:8:2;:20;-1:-1:-1;898:6:2;:37;;-1:-1:-1;;898:37:2;;;99:1807;;;;;;;;",
+  "deployedSourceMap": "99:1807:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;256:23;;;;;;;;;;;;;;;;;;;;;;;;;;;381:17;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;228:25;;;;;;;;;;;;;;;-1:-1:-1;;;;;228:25:2;;;;;;;;;;;;;;;1576:121;;;;;;;;;;;;;;;;;;;;;;;;;;;;;404:24;;;;;;;;;;;;434:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1301:272;;;;;;;;;;;;;;;;194:30;;;;;;;;;;;;1113:185;;;;;;;;;;;;1703:200;;;;;;;;;;;;-1:-1:-1;;;;;1703:200:2;;;256:23;;;;:::o;381:17::-;;;;;;:::o;228:25::-;;;-1:-1:-1;;;;;228:25:2;;:::o;1576:121::-;1084:10;;1628:4;;1070:10;-1:-1:-1;;;;;1070:24:2;;;1084:10;;1070:24;1062:33;;;;;;1640:10;;-1:-1:-1;;;;;1640:10:2;;;;1660:4;:12;;1640:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1689:4:2;1576:121;:::o;404:24::-;;;;;;;;;:::o;434:21::-;;;;;;;;;:::o;1301:272::-;1084:10;;1363:12;;1070:10;-1:-1:-1;;;;;1070:24:2;;;1084:10;;1070:24;1062:33;;;;;;1405:25;1395:6;;;;:35;;;;;;;;;1387:44;;;;;;1440:8;1436:110;;;1455:6;:35;;-1:-1:-1;;1455:35:2;1464:26;1455:35;;;1436:110;;;1506:6;:35;;-1:-1:-1;;1506:35:2;1515:26;1506:35;;;1436:110;1562:6;;;;1557:12;;;;;;;;1550:19;1301:272;-1:-1:-1;;1301:272:2:o;194:30::-;;;-1:-1:-1;;;;;194:30:2;;:::o;1113:185::-;1084:10;;1155:12;;1070:10;-1:-1:-1;;;;;1070:24:2;;;1084:10;;1070:24;1062:33;;;;;;1197:28;1187:6;;;;:38;;;;;;;;;1179:47;;;;;;-1:-1:-1;1236:6:2;:34;;-1:-1:-1;;1236:34:2;1245:25;1236:34;;;;;;1245:25;1113:185::o;1703:200::-;1084:10;;1777:4;;;;1070:10;-1:-1:-1;;;;;1070:24:2;;;1084:10;;1070:24;1062:33;;;;;;-1:-1:-1;1836:10:2;;1813:12;;-1:-1:-1;;;;;1836:10:2;;;;:42;;1856:15;;;1872:4;1836:10;1856:21;;;;;;;;;;;;;;-1:-1:-1;;;;;1856:21:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1836:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1895:4:2;;1703:200;-1:-1:-1;;1703:200:2:o",
+  "source": "pragma solidity ^0.4.16;\n\nimport \"./ERC20.sol\";\nimport \"./Government.sol\";\nimport \"./Wallet.sol\";\n\ncontract Immigrant {\n\t// need to generate new contract address\n\t// Immigrant's wallet address\n\taddress public immigrantWallet;\n\n\taddress public government;\n\tbytes32 public dataHash;\n\n\tenum Occupation { doctor, lawyer, migrantWorker, laborer }\n    // Additional demographic info\n    uint64 public age;\n    uint64 public occupation;\n    uint128 public income;\n\n\tenum ImmigrationStatus { registered, invited, accepted, rejected }\n\n\t// Current immigrant status in the process\n    ImmigrationStatus status;\n\n\tfunction Immigrant(address _immigrantWallet, uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) public {\n        government = msg.sender;\n\t\timmigrantWallet = _immigrantWallet;\n\n        occupation = _occupation;\n\t\tage = _age;\n\t\tincome = _income;\n\t\tdataHash = _dataHash;\n        status = ImmigrationStatus.registered;\n\t}\n\n\tfunction() public payable {\n\t\t// Make a contribution to the income tax fund for msg.sender\n\t}\n\n\tmodifier onlyGov {\n\t    require(msg.sender == government);\n\t    _;\n\t}\n\n    function invite() public onlyGov returns (bool success) {\n        require(status == ImmigrationStatus.registered);\n        status = ImmigrationStatus.invited;\n        return true;\n    }\n\n\tfunction makeDecision(bool accepted)  public onlyGov returns (uint _status) {\n        require(status == ImmigrationStatus.invited);\n\n\t\tif (accepted) {\n\t\t\tstatus = ImmigrationStatus.accepted;\n\t\t} else {\n\t\t\tstatus = ImmigrationStatus.rejected;\n\t\t}\n\n\t\treturn uint(status);\n\t}\n\n\tfunction emptyAccountEth()  public onlyGov returns (bool) {\n\t   government.transfer(this.balance);\n       return true;\n\t}\n\n    function emptyAccountToken(address tokenAddress)  public onlyGov returns (bool) {\n        ERC20 token = ERC20(tokenAddress);\n        government.transfer(token.balanceOf(this));\n        return true;\n\t}\n\n}\n",
+  "sourcePath": "/Users/salmahmo/projects/citethzen/contracts/Immigrant.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/salmahmo/projects/citethzen/contracts/Immigrant.sol",
+      "exportedSymbols": {
+        "Immigrant": [
+          498
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".16"
+          ]
+        },
+        "id": 310,
+        "name": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 64,
+          "absolutePath": "/Users/salmahmo/projects/citethzen/contracts/ERC20.sol",
+          "file": "./ERC20.sol",
+          "scope": 499,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 311,
+        "name": "ImportDirective",
+        "src": "26:21:2"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 309,
+          "absolutePath": "/Users/salmahmo/projects/citethzen/contracts/Government.sol",
+          "file": "./Government.sol",
+          "scope": 499,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 312,
+        "name": "ImportDirective",
+        "src": "48:26:2"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 573,
+          "absolutePath": "/Users/salmahmo/projects/citethzen/contracts/Wallet.sol",
+          "file": "./Wallet.sol",
+          "scope": 499,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 313,
+        "name": "ImportDirective",
+        "src": "75:22:2"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            498
+          ],
+          "name": "Immigrant",
+          "scope": 499
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "immigrantWallet",
+              "scope": 498,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "type": "address"
+                },
+                "id": 314,
+                "name": "ElementaryTypeName",
+                "src": "194:7:2"
+              }
+            ],
+            "id": 315,
+            "name": "VariableDeclaration",
+            "src": "194:30:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "government",
+              "scope": 498,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "type": "address"
+                },
+                "id": 316,
+                "name": "ElementaryTypeName",
+                "src": "228:7:2"
+              }
+            ],
+            "id": 317,
+            "name": "VariableDeclaration",
+            "src": "228:25:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "dataHash",
+              "scope": 498,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bytes32",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bytes32",
+                  "type": "bytes32"
+                },
+                "id": 318,
+                "name": "ElementaryTypeName",
+                "src": "256:7:2"
+              }
+            ],
+            "id": 319,
+            "name": "VariableDeclaration",
+            "src": "256:23:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "Occupation",
+              "scope": 494,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint64",
+              "value": null,
+              "visibility": "public",
+              "canonicalName": "Immigrant.Occupation"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "doctor",
+                  "type": "uint64"
+                },
+                "id": 320,
+                "name": "EnumValue",
+                "src": "301:6:2"
+              },
+              {
+                "attributes": {
+                  "name": "lawyer"
+                },
+                "id": 321,
+                "name": "EnumValue",
+                "src": "309:6:2"
+              },
+              {
+                "attributes": {
+                  "name": "migrantWorker"
+                },
+                "id": 322,
+                "name": "EnumValue",
+                "src": "317:13:2"
+              },
+              {
+                "attributes": {
+                  "name": "laborer"
+                },
+                "id": 323,
+                "name": "EnumValue",
+                "src": "332:7:2"
+              }
+            ],
+            "id": 324,
+            "name": "EnumDefinition",
+            "src": "283:58:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "age",
+              "scope": 498,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint64",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint64",
+                  "type": "uint64"
+                },
+                "id": 325,
+                "name": "ElementaryTypeName",
+                "src": "381:6:2"
+              }
+            ],
+            "id": 326,
+            "name": "VariableDeclaration",
+            "src": "381:17:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "occupation",
+              "scope": 498,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint64",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint64",
+                  "type": "uint64"
+                },
+                "id": 327,
+                "name": "ElementaryTypeName",
+                "src": "404:6:2"
+              }
+            ],
+            "id": 328,
+            "name": "VariableDeclaration",
+            "src": "404:24:2"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Immigrant.ImmigrationStatus",
+              "name": "income",
+              "constant": false,
+              "scope": 498,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint128",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint128",
+                  "type": "uint128"
+                },
+                "id": 329,
+                "name": "ElementaryTypeName",
+                "src": "434:7:2"
+              },
+              {
+                "attributes": {
+                  "name": "invited"
+                },
+                "id": 327,
+                "name": "EnumValue",
+                "src": "436:7:2"
+              },
+              {
+                "attributes": {
+                  "name": "accepted"
+                },
+                "id": 328,
+                "name": "EnumValue",
+                "src": "445:8:2"
+              },
+              {
+                "attributes": {
+                  "name": "rejected"
+                },
+                "id": 329,
+                "name": "EnumValue",
+                "src": "455:8:2"
+              }
+            ],
+            "id": 330,
+            "name": "VariableDeclaration",
+            "src": "434:21:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "ImmigrationStatus",
+              "scope": 494,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "enum Immigrant.ImmigrationStatus",
+              "value": null,
+              "visibility": "internal",
+              "canonicalName": "Immigrant.ImmigrationStatus"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "registered",
+                  "referencedDeclaration": 330,
+                  "type": "enum Immigrant.ImmigrationStatus"
+                },
+                "id": 331,
+                "name": "EnumValue",
+                "src": "484:10:2"
+              },
+              {
+                "attributes": {
+                  "name": "invited"
+                },
+                "id": 332,
+                "name": "EnumValue",
+                "src": "496:7:2"
+              },
+              {
+                "attributes": {
+                  "name": "accepted"
+                },
+                "id": 333,
+                "name": "EnumValue",
+                "src": "505:8:2"
+              },
+              {
+                "attributes": {
+                  "name": "rejected"
+                },
+                "id": 334,
+                "name": "EnumValue",
+                "src": "515:8:2"
+              }
+            ],
+            "id": 335,
+            "name": "EnumDefinition",
+            "src": "459:66:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "status",
+              "payable": false,
+              "scope": 498,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal",
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "enum Immigrant.ImmigrationStatus",
+              "value": null
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_immigrantWallet",
+                      "scope": 376,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 333,
+                        "name": "ElementaryTypeName",
+                        "src": "562:7:2"
+                      }
+                    ],
+                    "id": 334,
+                    "name": "VariableDeclaration",
+                    "src": "562:24:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_occupation",
+                      "scope": 376,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint64",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint64",
+                          "type": "uint64"
+                        },
+                        "id": 335,
+                        "name": "ElementaryTypeName",
+                        "src": "588:6:2"
+                      }
+                    ],
+                    "id": 336,
+                    "name": "VariableDeclaration",
+                    "src": "588:18:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_age",
+                      "scope": 376,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint64",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint64",
+                          "type": "uint64"
+                        },
+                        "id": 337,
+                        "name": "ElementaryTypeName",
+                        "src": "608:6:2"
+                      }
+                    ],
+                    "id": 338,
+                    "name": "VariableDeclaration",
+                    "src": "608:11:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_income",
+                      "scope": 376,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint128",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint128",
+                          "type": "uint128"
+                        },
+                        "id": 339,
+                        "name": "ElementaryTypeName",
+                        "src": "621:7:2"
+                      }
+                    ],
+                    "id": 340,
+                    "name": "VariableDeclaration",
+                    "src": "621:15:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_dataHash",
+                      "scope": 376,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 341,
+                        "name": "ElementaryTypeName",
+                        "src": "638:7:2"
+                      }
+                    ],
+                    "id": 342,
+                    "name": "VariableDeclaration",
+                    "src": "638:17:2"
+                  }
+                ],
+                "id": 336,
+                "name": "UserDefinedTypeName",
+                "src": "575:17:2",
+                "attributes": {
+                  "contractScope": null,
+                  "name": "ImmigrationStatus",
+                  "referencedDeclaration": 335,
+                  "type": "enum Immigrant.ImmigrationStatus"
+                }
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 344,
+                "name": "ParameterList",
+                "src": "664:0:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 317,
+                              "type": "address",
+                              "value": "government"
+                            },
+                            "id": 345,
+                            "name": "Identifier",
+                            "src": "674:10:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 628,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 346,
+                                "name": "Identifier",
+                                "src": "687:3:2"
+                              }
+                            ],
+                            "id": 347,
+                            "name": "MemberAccess",
+                            "src": "687:10:2"
+                          }
+                        ],
+                        "id": 348,
+                        "name": "Assignment",
+                        "src": "674:23:2"
+                      }
+                    ],
+                    "id": 349,
+                    "name": "ExpressionStatement",
+                    "src": "674:23:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 315,
+                              "type": "address",
+                              "value": "immigrantWallet"
+                            },
+                            "id": 350,
+                            "name": "Identifier",
+                            "src": "701:15:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 334,
+                              "type": "address",
+                              "value": "_immigrantWallet"
+                            },
+                            "id": 351,
+                            "name": "Identifier",
+                            "src": "719:16:2"
+                          }
+                        ],
+                        "id": 352,
+                        "name": "Assignment",
+                        "src": "701:34:2"
+                      }
+                    ],
+                    "id": 353,
+                    "name": "ExpressionStatement",
+                    "src": "701:34:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint64"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 323,
+                              "type": "uint64",
+                              "value": "occupation"
+                            },
+                            "id": 354,
+                            "name": "Identifier",
+                            "src": "746:10:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 336,
+                              "type": "uint64",
+                              "value": "_occupation"
+                            },
+                            "id": 355,
+                            "name": "Identifier",
+                            "src": "759:11:2"
+                          }
+                        ],
+                        "id": 356,
+                        "name": "Assignment",
+                        "src": "746:24:2"
+                      }
+                    ],
+                    "id": 357,
+                    "name": "ExpressionStatement",
+                    "src": "746:24:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint64"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 321,
+                              "type": "uint64",
+                              "value": "age"
+                            },
+                            "id": 358,
+                            "name": "Identifier",
+                            "src": "774:3:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 338,
+                              "type": "uint64",
+                              "value": "_age"
+                            },
+                            "id": 359,
+                            "name": "Identifier",
+                            "src": "780:4:2"
+                          }
+                        ],
+                        "id": 360,
+                        "name": "Assignment",
+                        "src": "774:10:2"
+                      }
+                    ],
+                    "id": 361,
+                    "name": "ExpressionStatement",
+                    "src": "774:10:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint128"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 325,
+                              "type": "uint128",
+                              "value": "income"
+                            },
+                            "id": 362,
+                            "name": "Identifier",
+                            "src": "788:6:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 340,
+                              "type": "uint128",
+                              "value": "_income"
+                            },
+                            "id": 363,
+                            "name": "Identifier",
+                            "src": "797:7:2"
+                          }
+                        ],
+                        "id": 364,
+                        "name": "Assignment",
+                        "src": "788:16:2"
+                      }
+                    ],
+                    "id": 365,
+                    "name": "ExpressionStatement",
+                    "src": "788:16:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bytes32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 319,
+                              "type": "bytes32",
+                              "value": "dataHash"
+                            },
+                            "id": 366,
+                            "name": "Identifier",
+                            "src": "808:8:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 342,
+                              "type": "bytes32",
+                              "value": "_dataHash"
+                            },
+                            "id": 367,
+                            "name": "Identifier",
+                            "src": "819:9:2"
+                          }
+                        ],
+                        "id": 368,
+                        "name": "Assignment",
+                        "src": "808:20:2"
+                      }
+                    ],
+                    "id": 369,
+                    "name": "ExpressionStatement",
+                    "src": "808:20:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "enum Immigrant.ImmigrationStatus"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 332,
+                              "type": "enum Immigrant.ImmigrationStatus",
+                              "value": "status"
+                            },
+                            "id": 370,
+                            "name": "Identifier",
+                            "src": "838:6:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "member_name": "registered",
+                              "referencedDeclaration": null,
+                              "type": "enum Immigrant.ImmigrationStatus"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 330,
+                                  "type": "type(enum Immigrant.ImmigrationStatus)",
+                                  "value": "ImmigrationStatus"
+                                },
+                                "id": 371,
+                                "name": "Identifier",
+                                "src": "847:17:2"
+                              }
+                            ],
+                            "id": 372,
+                            "name": "MemberAccess",
+                            "src": "847:28:2"
+                          }
+                        ],
+                        "id": 373,
+                        "name": "Assignment",
+                        "src": "838:37:2"
+                      }
+                    ],
+                    "id": 374,
+                    "name": "ExpressionStatement",
+                    "src": "838:37:2"
+                  }
+                ],
+                "id": 375,
+                "name": "Block",
+                "src": "664:215:2"
+              }
+            ],
+            "id": 337,
+            "name": "VariableDeclaration",
+            "src": "575:24:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "Immigrant",
+              "payable": false,
+              "scope": 498,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_immigrantWallet",
+                      "scope": 381,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 338,
+                        "name": "ElementaryTypeName",
+                        "src": "622:7:2"
+                      }
+                    ],
+                    "id": 339,
+                    "name": "VariableDeclaration",
+                    "src": "622:24:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_occupation",
+                      "scope": 381,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint64",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint64",
+                          "type": "uint64"
+                        },
+                        "id": 340,
+                        "name": "ElementaryTypeName",
+                        "src": "648:6:2"
+                      }
+                    ],
+                    "id": 341,
+                    "name": "VariableDeclaration",
+                    "src": "648:18:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_age",
+                      "scope": 381,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint64",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint64",
+                          "type": "uint64"
+                        },
+                        "id": 342,
+                        "name": "ElementaryTypeName",
+                        "src": "668:6:2"
+                      }
+                    ],
+                    "id": 343,
+                    "name": "VariableDeclaration",
+                    "src": "668:11:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_income",
+                      "scope": 381,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint128",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint128",
+                          "type": "uint128"
+                        },
+                        "id": 344,
+                        "name": "ElementaryTypeName",
+                        "src": "681:7:2"
+                      }
+                    ],
+                    "id": 345,
+                    "name": "VariableDeclaration",
+                    "src": "681:15:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_dataHash",
+                      "scope": 381,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 346,
+                        "name": "ElementaryTypeName",
+                        "src": "698:7:2"
+                      }
+                    ],
+                    "id": 347,
+                    "name": "VariableDeclaration",
+                    "src": "698:17:2"
+                  }
+                ],
+                "id": 348,
+                "name": "ParameterList",
+                "src": "621:95:2"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 349,
+                "name": "ParameterList",
+                "src": "724:0:2"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 317,
+                              "type": "address",
+                              "value": "government"
+                            },
+                            "id": 350,
+                            "name": "Identifier",
+                            "src": "734:10:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 575,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 351,
+                                "name": "Identifier",
+                                "src": "747:3:2"
+                              }
+                            ],
+                            "id": 352,
+                            "name": "MemberAccess",
+                            "src": "747:10:2"
+                          }
+                        ],
+                        "id": 353,
+                        "name": "Assignment",
+                        "src": "734:23:2"
+                      }
+                    ],
+                    "id": 354,
+                    "name": "ExpressionStatement",
+                    "src": "734:23:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 315,
+                              "type": "address",
+                              "value": "immigrantWallet"
+                            },
+                            "id": 355,
+                            "name": "Identifier",
+                            "src": "761:15:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 339,
+                              "type": "address",
+                              "value": "_immigrantWallet"
+                            },
+                            "id": 356,
+                            "name": "Identifier",
+                            "src": "779:16:2"
+                          }
+                        ],
+                        "id": 357,
+                        "name": "Assignment",
+                        "src": "761:34:2"
+                      }
+                    ],
+                    "id": 358,
+                    "name": "ExpressionStatement",
+                    "src": "761:34:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint64"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 328,
+                              "type": "uint64",
+                              "value": "occupation"
+                            },
+                            "id": 359,
+                            "name": "Identifier",
+                            "src": "806:10:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 341,
+                              "type": "uint64",
+                              "value": "_occupation"
+                            },
+                            "id": 360,
+                            "name": "Identifier",
+                            "src": "819:11:2"
+                          }
+                        ],
+                        "id": 361,
+                        "name": "Assignment",
+                        "src": "806:24:2"
+                      }
+                    ],
+                    "id": 362,
+                    "name": "ExpressionStatement",
+                    "src": "806:24:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint64"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 326,
+                              "type": "uint64",
+                              "value": "age"
+                            },
+                            "id": 363,
+                            "name": "Identifier",
+                            "src": "834:3:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 343,
+                              "type": "uint64",
+                              "value": "_age"
+                            },
+                            "id": 364,
+                            "name": "Identifier",
+                            "src": "840:4:2"
+                          }
+                        ],
+                        "id": 365,
+                        "name": "Assignment",
+                        "src": "834:10:2"
+                      }
+                    ],
+                    "id": 366,
+                    "name": "ExpressionStatement",
+                    "src": "834:10:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint128"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 330,
+                              "type": "uint128",
+                              "value": "income"
+                            },
+                            "id": 367,
+                            "name": "Identifier",
+                            "src": "848:6:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 345,
+                              "type": "uint128",
+                              "value": "_income"
+                            },
+                            "id": 368,
+                            "name": "Identifier",
+                            "src": "857:7:2"
+                          }
+                        ],
+                        "id": 369,
+                        "name": "Assignment",
+                        "src": "848:16:2"
+                      }
+                    ],
+                    "id": 370,
+                    "name": "ExpressionStatement",
+                    "src": "848:16:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bytes32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 319,
+                              "type": "bytes32",
+                              "value": "dataHash"
+                            },
+                            "id": 371,
+                            "name": "Identifier",
+                            "src": "868:8:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 347,
+                              "type": "bytes32",
+                              "value": "_dataHash"
+                            },
+                            "id": 372,
+                            "name": "Identifier",
+                            "src": "879:9:2"
+                          }
+                        ],
+                        "id": 373,
+                        "name": "Assignment",
+                        "src": "868:20:2"
+                      }
+                    ],
+                    "id": 374,
+                    "name": "ExpressionStatement",
+                    "src": "868:20:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "enum Immigrant.ImmigrationStatus"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 337,
+                              "type": "enum Immigrant.ImmigrationStatus",
+                              "value": "status"
+                            },
+                            "id": 375,
+                            "name": "Identifier",
+                            "src": "898:6:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "member_name": "registered",
+                              "referencedDeclaration": null,
+                              "type": "enum Immigrant.ImmigrationStatus"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 335,
+                                  "type": "type(enum Immigrant.ImmigrationStatus)",
+                                  "value": "ImmigrationStatus"
+                                },
+                                "id": 376,
+                                "name": "Identifier",
+                                "src": "907:17:2"
+                              }
+                            ],
+                            "id": 377,
+                            "name": "MemberAccess",
+                            "src": "907:28:2"
+                          }
+                        ],
+                        "id": 378,
+                        "name": "Assignment",
+                        "src": "898:37:2"
+                      }
+                    ],
+                    "id": 379,
+                    "name": "ExpressionStatement",
+                    "src": "898:37:2"
+                  }
+                ],
+                "id": 380,
+                "name": "Block",
+                "src": "724:215:2"
+              }
+            ],
+            "id": 381,
+            "name": "FunctionDefinition",
+            "src": "603:336:2"
+          },
+          {
+            "attributes": {
+              "name": "",
+              "visibility": "public",
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "payable": true,
+              "scope": 498,
+              "stateMutability": "payable",
+              "superFunction": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 382,
+                "name": "ParameterList",
+                "src": "950:2:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 646,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 382,
+                            "name": "Identifier",
+                            "src": "1002:7:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "referencedDeclaration": null,
+                                  "type": "address"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 628,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 383,
+                                    "name": "Identifier",
+                                    "src": "1010:3:2"
+                                  }
+                                ],
+                                "id": 384,
+                                "name": "MemberAccess",
+                                "src": "1010:10:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 317,
+                                  "type": "address",
+                                  "value": "government"
+                                },
+                                "id": 385,
+                                "name": "Identifier",
+                                "src": "1024:10:2"
+                              }
+                            ],
+                            "id": 386,
+                            "name": "BinaryOperation",
+                            "src": "1010:24:2"
+                          }
+                        ],
+                        "id": 387,
+                        "name": "FunctionCall",
+                        "src": "1002:33:2"
+                      }
+                    ],
+                    "id": 388,
+                    "name": "ExpressionStatement",
+                    "src": "1002:33:2"
+                  },
+                  {
+                    "id": 389,
+                    "name": "PlaceholderStatement",
+                    "src": "1042:1:2"
+                  }
+                ],
+                "id": 383,
+                "name": "ParameterList",
+                "src": "968:0:2",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 384,
+                "name": "Block",
+                "src": "968:67:2"
+              }
+            ],
+            "id": 385,
+            "name": "FunctionDefinition",
+            "src": "942:93:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "name": "onlyGov",
+              "payable": false,
+              "scope": 494,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 386,
+                "name": "ParameterList",
+                "src": "1055:0:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "success",
+                      "scope": 413,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "tuple()",
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type_conversion": false
+                        },
+                        "id": 392,
+                        "name": "FunctionCall",
+                        "src": "1062:33:2",
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 593,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 387,
+                            "name": "Identifier",
+                            "src": "1062:7:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "referencedDeclaration": null,
+                                  "type": "address"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 575,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 388,
+                                    "name": "Identifier",
+                                    "src": "1070:3:2"
+                                  }
+                                ],
+                                "id": 389,
+                                "name": "MemberAccess",
+                                "src": "1070:10:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 317,
+                                  "type": "address",
+                                  "value": "government"
+                                },
+                                "id": 390,
+                                "name": "Identifier",
+                                "src": "1084:10:2"
+                              }
+                            ],
+                            "id": 391,
+                            "name": "BinaryOperation",
+                            "src": "1070:24:2"
+                          }
+                        ]
+                      }
+                    ],
+                    "id": 393,
+                    "name": "ExpressionStatement",
+                    "src": "1062:33:2"
+                  },
+                  {
+                    "id": 394,
+                    "name": "PlaceholderStatement",
+                    "src": "1102:1:2"
+                  }
+                ],
+                "id": 395,
+                "name": "Block",
+                "src": "1055:52:2"
+              },
+              {
+                "attributes": {
+                  "arguments": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 391,
+                      "type": "modifier ()",
+                      "value": "onlyGov"
+                    },
+                    "id": 393,
+                    "name": "Identifier",
+                    "src": "1078:7:2"
+                  }
+                ],
+                "id": 394,
+                "name": "ModifierInvocation",
+                "src": "1078:7:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 646,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 398,
+                            "name": "Identifier",
+                            "src": "1119:7:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_enum$_ImmigrationStatus_$330",
+                                "typeString": "enum Immigrant.ImmigrationStatus"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 332,
+                                  "type": "enum Immigrant.ImmigrationStatus",
+                                  "value": "status"
+                                },
+                                "id": 399,
+                                "name": "Identifier",
+                                "src": "1127:6:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "member_name": "registered",
+                                  "referencedDeclaration": null,
+                                  "type": "enum Immigrant.ImmigrationStatus"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 330,
+                                      "type": "type(enum Immigrant.ImmigrationStatus)",
+                                      "value": "ImmigrationStatus"
+                                    },
+                                    "id": 400,
+                                    "name": "Identifier",
+                                    "src": "1137:17:2"
+                                  }
+                                ],
+                                "id": 401,
+                                "name": "MemberAccess",
+                                "src": "1137:28:2"
+                              }
+                            ],
+                            "id": 402,
+                            "name": "BinaryOperation",
+                            "src": "1127:38:2"
+                          }
+                        ],
+                        "id": 403,
+                        "name": "FunctionCall",
+                        "src": "1119:47:2"
+                      }
+                    ],
+                    "id": 404,
+                    "name": "ExpressionStatement",
+                    "src": "1119:47:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "enum Immigrant.ImmigrationStatus"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 332,
+                              "type": "enum Immigrant.ImmigrationStatus",
+                              "value": "status"
+                            },
+                            "id": 405,
+                            "name": "Identifier",
+                            "src": "1176:6:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "member_name": "invited",
+                              "referencedDeclaration": null,
+                              "type": "enum Immigrant.ImmigrationStatus"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 330,
+                                  "type": "type(enum Immigrant.ImmigrationStatus)",
+                                  "value": "ImmigrationStatus"
+                                },
+                                "id": 406,
+                                "name": "Identifier",
+                                "src": "1185:17:2"
+                              }
+                            ],
+                            "id": 407,
+                            "name": "MemberAccess",
+                            "src": "1185:25:2"
+                          }
+                        ],
+                        "id": 408,
+                        "name": "Assignment",
+                        "src": "1176:34:2"
+                      }
+                    ],
+                    "id": 409,
+                    "name": "ExpressionStatement",
+                    "src": "1176:34:2"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 397
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "74727565",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "bool",
+                          "type": "bool",
+                          "value": "true"
+                        },
+                        "id": 410,
+                        "name": "Literal",
+                        "src": "1227:4:2"
+                      }
+                    ],
+                    "id": 411,
+                    "name": "Return",
+                    "src": "1220:11:2"
+                  }
+                ],
+                "id": 412,
+                "name": "Block",
+                "src": "1109:129:2"
+              }
+            ],
+            "id": 396,
+            "name": "ModifierDefinition",
+            "src": "1038:69:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "name": "invite",
+              "payable": false,
+              "scope": 498,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "accepted",
+                      "scope": 448,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 414,
+                        "name": "ElementaryTypeName",
+                        "src": "1263:4:2"
+                      }
+                    ],
+                    "id": 415,
+                    "name": "VariableDeclaration",
+                    "src": "1263:13:2"
+                  }
+                ],
+                "id": 397,
+                "name": "ParameterList",
+                "src": "1128:2:2",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "success",
+                      "scope": 418,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 400,
+                        "name": "ElementaryTypeName",
+                        "src": "1155:4:2"
+                      }
+                    ],
+                    "id": 401,
+                    "name": "VariableDeclaration",
+                    "src": "1155:12:2"
+                  }
+                ],
+                "id": 402,
+                "name": "ParameterList",
+                "src": "1154:14:2"
+              },
+              {
+                "attributes": {
+                  "arguments": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 396,
+                      "type": "modifier ()",
+                      "value": "onlyGov"
+                    },
+                    "id": 398,
+                    "name": "Identifier",
+                    "src": "1138:7:2"
+                  }
+                ],
+                "id": 399,
+                "name": "ModifierInvocation",
+                "src": "1138:7:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 593,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 403,
+                            "name": "Identifier",
+                            "src": "1179:7:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_enum$_ImmigrationStatus_$335",
+                                "typeString": "enum Immigrant.ImmigrationStatus"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 337,
+                                  "type": "enum Immigrant.ImmigrationStatus",
+                                  "value": "status"
+                                },
+                                "id": 404,
+                                "name": "Identifier",
+                                "src": "1187:6:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "member_name": "registered",
+                                  "referencedDeclaration": null,
+                                  "type": "enum Immigrant.ImmigrationStatus"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 335,
+                                      "type": "type(enum Immigrant.ImmigrationStatus)",
+                                      "value": "ImmigrationStatus"
+                                    },
+                                    "id": 405,
+                                    "name": "Identifier",
+                                    "src": "1197:17:2"
+                                  }
+                                ],
+                                "id": 406,
+                                "name": "MemberAccess",
+                                "src": "1197:28:2"
+                              }
+                            ],
+                            "id": 407,
+                            "name": "BinaryOperation",
+                            "src": "1187:38:2"
+                          }
+                        ],
+                        "id": 408,
+                        "name": "FunctionCall",
+                        "src": "1179:47:2"
+                      }
+                    ],
+                    "id": 409,
+                    "name": "ExpressionStatement",
+                    "src": "1179:47:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 415,
+                          "type": "enum Immigrant.ImmigrationStatus",
+                          "value": "accepted",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "="
+                        },
+                        "id": 413,
+                        "name": "Assignment",
+                        "src": "1236:34:2",
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 337,
+                              "type": "enum Immigrant.ImmigrationStatus",
+                              "value": "status"
+                            },
+                            "id": 410,
+                            "name": "Identifier",
+                            "src": "1236:6:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "member_name": "invited",
+                              "referencedDeclaration": null,
+                              "type": "enum Immigrant.ImmigrationStatus"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 335,
+                                  "type": "type(enum Immigrant.ImmigrationStatus)",
+                                  "value": "ImmigrationStatus"
+                                },
+                                "id": 411,
+                                "name": "Identifier",
+                                "src": "1245:17:2"
+                              }
+                            ],
+                            "id": 412,
+                            "name": "MemberAccess",
+                            "src": "1245:25:2"
+                          }
+                        ]
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "enum Immigrant.ImmigrationStatus"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 332,
+                                      "type": "enum Immigrant.ImmigrationStatus",
+                                      "value": "status"
+                                    },
+                                    "id": 430,
+                                    "name": "Identifier",
+                                    "src": "1395:6:2"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "member_name": "accepted",
+                                      "referencedDeclaration": null,
+                                      "type": "enum Immigrant.ImmigrationStatus"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 330,
+                                          "type": "type(enum Immigrant.ImmigrationStatus)",
+                                          "value": "ImmigrationStatus"
+                                        },
+                                        "id": 431,
+                                        "name": "Identifier",
+                                        "src": "1404:17:2"
+                                      }
+                                    ],
+                                    "id": 432,
+                                    "name": "MemberAccess",
+                                    "src": "1404:26:2"
+                                  }
+                                ],
+                                "id": 433,
+                                "name": "Assignment",
+                                "src": "1395:35:2"
+                              }
+                            ],
+                            "id": 434,
+                            "name": "ExpressionStatement",
+                            "src": "1395:35:2"
+                          }
+                        ],
+                        "id": 435,
+                        "name": "Block",
+                        "src": "1390:45:2"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "enum Immigrant.ImmigrationStatus"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 332,
+                                      "type": "enum Immigrant.ImmigrationStatus",
+                                      "value": "status"
+                                    },
+                                    "id": 436,
+                                    "name": "Identifier",
+                                    "src": "1446:6:2"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "member_name": "rejected",
+                                      "referencedDeclaration": null,
+                                      "type": "enum Immigrant.ImmigrationStatus"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 330,
+                                          "type": "type(enum Immigrant.ImmigrationStatus)",
+                                          "value": "ImmigrationStatus"
+                                        },
+                                        "id": 437,
+                                        "name": "Identifier",
+                                        "src": "1455:17:2"
+                                      }
+                                    ],
+                                    "id": 438,
+                                    "name": "MemberAccess",
+                                    "src": "1455:26:2"
+                                  }
+                                ],
+                                "id": 439,
+                                "name": "Assignment",
+                                "src": "1446:35:2"
+                              }
+                            ],
+                            "id": 440,
+                            "name": "ExpressionStatement",
+                            "src": "1446:35:2"
+                          }
+                        ],
+                        "id": 441,
+                        "name": "Block",
+                        "src": "1441:45:2"
+                      }
+                    ],
+                    "id": 414,
+                    "name": "ExpressionStatement",
+                    "src": "1236:34:2"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 402
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": true,
+                          "hexvalue": "74727565",
+                          "subdenomination": null,
+                          "token": "bool",
+                          "value": "true"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_enum$_ImmigrationStatus_$330",
+                                  "typeString": "enum Immigrant.ImmigrationStatus"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "type": "type(uint256)",
+                              "value": "uint"
+                            },
+                            "id": 443,
+                            "name": "ElementaryTypeNameExpression",
+                            "src": "1497:4:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 332,
+                              "type": "enum Immigrant.ImmigrationStatus",
+                              "value": "status"
+                            },
+                            "id": 444,
+                            "name": "Identifier",
+                            "src": "1502:6:2"
+                          }
+                        ],
+                        "id": 415,
+                        "name": "Literal",
+                        "src": "1287:4:2"
+                      }
+                    ],
+                    "id": 416,
+                    "name": "Return",
+                    "src": "1280:11:2"
+                  }
+                ],
+                "id": 417,
+                "name": "Block",
+                "src": "1169:129:2"
+              }
+            ],
+            "id": 418,
+            "name": "FunctionDefinition",
+            "src": "1113:185:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "name": "makeDecision",
+              "payable": false,
+              "scope": 498,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "accepted",
+                      "scope": 453,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 419,
+                        "name": "ElementaryTypeName",
+                        "src": "1323:4:2"
+                      }
+                    ],
+                    "id": 420,
+                    "name": "VariableDeclaration",
+                    "src": "1323:13:2"
+                  }
+                ],
+                "id": 421,
+                "name": "ParameterList",
+                "src": "1322:15:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_status",
+                      "scope": 453,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 424,
+                        "name": "ElementaryTypeName",
+                        "src": "1363:4:2"
+                      }
+                    ],
+                    "id": 425,
+                    "name": "VariableDeclaration",
+                    "src": "1363:12:2"
+                  }
+                ],
+                "id": 426,
+                "name": "ParameterList",
+                "src": "1362:14:2"
+              },
+              {
+                "attributes": {
+                  "arguments": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 396,
+                      "type": "modifier ()",
+                      "value": "onlyGov"
+                    },
+                    "id": 422,
+                    "name": "Identifier",
+                    "src": "1346:7:2"
+                  }
+                ],
+                "id": 423,
+                "name": "ModifierInvocation",
+                "src": "1346:7:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "transfer",
+                              "referencedDeclaration": 593,
+                              "type": "function (bool) pure",
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "value": "require"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 317,
+                                  "type": "address",
+                                  "value": "government"
+                                },
+                                "id": 455,
+                                "name": "Identifier",
+                                "src": "1580:10:2"
+                              }
+                            ],
+                            "id": 427,
+                            "name": "Identifier",
+                            "src": "1387:7:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "balance",
+                              "referencedDeclaration": null,
+                              "type": "bool",
+                              "commonType": {
+                                "typeIdentifier": "t_enum$_ImmigrationStatus_$335",
+                                "typeString": "enum Immigrant.ImmigrationStatus"
+                              },
+                              "operator": "=="
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 337,
+                                  "type": "enum Immigrant.ImmigrationStatus",
+                                  "value": "status"
+                                },
+                                "id": 428,
+                                "name": "Identifier",
+                                "src": "1395:6:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "member_name": "invited",
+                                  "referencedDeclaration": null,
+                                  "type": "enum Immigrant.ImmigrationStatus"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 335,
+                                      "type": "type(enum Immigrant.ImmigrationStatus)",
+                                      "value": "ImmigrationStatus"
+                                    },
+                                    "id": 429,
+                                    "name": "Identifier",
+                                    "src": "1405:17:2"
+                                  }
+                                ],
+                                "id": 430,
+                                "name": "MemberAccess",
+                                "src": "1405:25:2"
+                              }
+                            ],
+                            "id": 431,
+                            "name": "BinaryOperation",
+                            "src": "1395:35:2"
+                          }
+                        ],
+                        "id": 432,
+                        "name": "FunctionCall",
+                        "src": "1387:44:2"
+                      }
+                    ],
+                    "id": 433,
+                    "name": "ExpressionStatement",
+                    "src": "1387:44:2"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 454
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "74727565",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "bool",
+                          "type": "bool",
+                          "value": "accepted",
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 420
+                        },
+                        "id": 434,
+                        "name": "Identifier",
+                        "src": "1440:8:2"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "enum Immigrant.ImmigrationStatus"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 337,
+                                      "type": "enum Immigrant.ImmigrationStatus",
+                                      "value": "status"
+                                    },
+                                    "id": 435,
+                                    "name": "Identifier",
+                                    "src": "1455:6:2"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "member_name": "accepted",
+                                      "referencedDeclaration": null,
+                                      "type": "enum Immigrant.ImmigrationStatus"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 335,
+                                          "type": "type(enum Immigrant.ImmigrationStatus)",
+                                          "value": "ImmigrationStatus"
+                                        },
+                                        "id": 436,
+                                        "name": "Identifier",
+                                        "src": "1464:17:2"
+                                      }
+                                    ],
+                                    "id": 437,
+                                    "name": "MemberAccess",
+                                    "src": "1464:26:2"
+                                  }
+                                ],
+                                "id": 438,
+                                "name": "Assignment",
+                                "src": "1455:35:2"
+                              }
+                            ],
+                            "id": 439,
+                            "name": "ExpressionStatement",
+                            "src": "1455:35:2"
+                          }
+                        ],
+                        "id": 440,
+                        "name": "Block",
+                        "src": "1450:45:2"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "enum Immigrant.ImmigrationStatus"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 337,
+                                      "type": "enum Immigrant.ImmigrationStatus",
+                                      "value": "status"
+                                    },
+                                    "id": 441,
+                                    "name": "Identifier",
+                                    "src": "1506:6:2"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "member_name": "rejected",
+                                      "referencedDeclaration": null,
+                                      "type": "enum Immigrant.ImmigrationStatus"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 335,
+                                          "type": "type(enum Immigrant.ImmigrationStatus)",
+                                          "value": "ImmigrationStatus"
+                                        },
+                                        "id": 442,
+                                        "name": "Identifier",
+                                        "src": "1515:17:2"
+                                      }
+                                    ],
+                                    "id": 443,
+                                    "name": "MemberAccess",
+                                    "src": "1515:26:2"
+                                  }
+                                ],
+                                "id": 444,
+                                "name": "Assignment",
+                                "src": "1506:35:2"
+                              }
+                            ],
+                            "id": 445,
+                            "name": "ExpressionStatement",
+                            "src": "1506:35:2"
+                          }
+                        ],
+                        "id": 446,
+                        "name": "Block",
+                        "src": "1501:45:2"
+                      }
+                    ],
+                    "id": 447,
+                    "name": "IfStatement",
+                    "src": "1436:110:2"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 426
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_enum$_ImmigrationStatus_$335",
+                                  "typeString": "enum Immigrant.ImmigrationStatus"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "type": "type(uint256)",
+                              "value": "uint"
+                            },
+                            "id": 448,
+                            "name": "ElementaryTypeNameExpression",
+                            "src": "1557:4:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 337,
+                              "type": "enum Immigrant.ImmigrationStatus",
+                              "value": "status"
+                            },
+                            "id": 449,
+                            "name": "Identifier",
+                            "src": "1562:6:2"
+                          }
+                        ],
+                        "id": 450,
+                        "name": "FunctionCall",
+                        "src": "1557:12:2"
+                      }
+                    ],
+                    "id": 451,
+                    "name": "Return",
+                    "src": "1550:19:2"
+                  }
+                ],
+                "id": 452,
+                "name": "Block",
+                "src": "1377:196:2"
+              }
+            ],
+            "id": 453,
+            "name": "FunctionDefinition",
+            "src": "1301:272:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "name": "emptyAccountEth",
+              "payable": false,
+              "scope": 498,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "tokenAddress",
+                      "scope": 493,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 466,
+                        "name": "ElementaryTypeName",
+                        "src": "1670:7:2"
+                      }
+                    ],
+                    "id": 467,
+                    "name": "VariableDeclaration",
+                    "src": "1670:20:2"
+                  }
+                ],
+                "id": 454,
+                "name": "ParameterList",
+                "src": "1600:2:2",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 470,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 457,
+                        "name": "ElementaryTypeName",
+                        "src": "1628:4:2"
+                      }
+                    ],
+                    "id": 458,
+                    "name": "VariableDeclaration",
+                    "src": "1628:4:2"
+                  }
+                ],
+                "id": 459,
+                "name": "ParameterList",
+                "src": "1627:6:2"
+              },
+              {
+                "attributes": {
+                  "arguments": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 396,
+                      "type": "modifier ()",
+                      "value": "onlyGov"
+                    },
+                    "id": 455,
+                    "name": "Identifier",
+                    "src": "1611:7:2"
+                  }
+                ],
+                "id": 456,
+                "name": "ModifierInvocation",
+                "src": "1611:7:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        475
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "token",
+                          "scope": 493,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "tuple()",
+                          "value": null,
+                          "visibility": "internal",
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "ERC20",
+                              "referencedDeclaration": null,
+                              "type": "function (uint256)",
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "transfer"
+                            },
+                            "id": 462,
+                            "name": "MemberAccess",
+                            "src": "1640:19:2",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 317,
+                                  "type": "address",
+                                  "value": "government"
+                                },
+                                "id": 460,
+                                "name": "Identifier",
+                                "src": "1640:10:2"
+                              }
+                            ]
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "balance",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 599,
+                                  "type": "contract Immigrant",
+                                  "value": "this"
+                                },
+                                "id": 463,
+                                "name": "Identifier",
+                                "src": "1660:4:2"
+                              }
+                            ],
+                            "id": 464,
+                            "name": "MemberAccess",
+                            "src": "1660:12:2"
+                          }
+                        ],
+                        "id": 465,
+                        "name": "FunctionCall",
+                        "src": "1640:33:2"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "contract ERC20",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 63,
+                              "type": "type(contract ERC20)",
+                              "value": "ERC20"
+                            },
+                            "id": 476,
+                            "name": "Identifier",
+                            "src": "1747:5:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 467,
+                              "type": "address",
+                              "value": "tokenAddress"
+                            },
+                            "id": 477,
+                            "name": "Identifier",
+                            "src": "1753:12:2"
+                          }
+                        ],
+                        "id": 478,
+                        "name": "FunctionCall",
+                        "src": "1747:19:2"
+                      }
+                    ],
+                    "id": 466,
+                    "name": "ExpressionStatement",
+                    "src": "1640:33:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false,
+                          "hexvalue": "74727565",
+                          "subdenomination": null,
+                          "token": "bool",
+                          "value": "true"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "transfer",
+                              "referencedDeclaration": 17,
+                              "type": "function (address,uint256) external returns (bool)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 475,
+                                  "type": "contract ERC20",
+                                  "value": "token"
+                                },
+                                "id": 480,
+                                "name": "Identifier",
+                                "src": "1776:5:2"
+                              }
+                            ],
+                            "id": 482,
+                            "name": "MemberAccess",
+                            "src": "1776:14:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 317,
+                              "type": "address",
+                              "value": "government"
+                            },
+                            "id": 483,
+                            "name": "Identifier",
+                            "src": "1791:10:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_contract$_Immigrant_$494",
+                                      "typeString": "contract Immigrant"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "balanceOf",
+                                  "referencedDeclaration": 8,
+                                  "type": "function (address) view external returns (uint256)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 475,
+                                      "type": "contract ERC20",
+                                      "value": "token"
+                                    },
+                                    "id": 484,
+                                    "name": "Identifier",
+                                    "src": "1803:5:2"
+                                  }
+                                ],
+                                "id": 485,
+                                "name": "MemberAccess",
+                                "src": "1803:15:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 652,
+                                  "type": "contract Immigrant",
+                                  "value": "this"
+                                },
+                                "id": 486,
+                                "name": "Identifier",
+                                "src": "1819:4:2"
+                              }
+                            ],
+                            "id": 487,
+                            "name": "FunctionCall",
+                            "src": "1803:21:2"
+                          }
+                        ],
+                        "id": 467,
+                        "name": "Literal",
+                        "src": "1689:4:2"
+                      }
+                    ],
+                    "id": 468,
+                    "name": "Return",
+                    "src": "1682:11:2",
+                    "attributes": {
+                      "functionReturnParameters": 459
+                    }
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 473
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "74727565",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "bool",
+                          "type": "bool",
+                          "value": "true"
+                        },
+                        "id": 490,
+                        "name": "Literal",
+                        "src": "1842:4:2"
+                      }
+                    ],
+                    "id": 491,
+                    "name": "Return",
+                    "src": "1835:11:2"
+                  }
+                ],
+                "id": 469,
+                "name": "Block",
+                "src": "1634:63:2"
+              }
+            ],
+            "id": 470,
+            "name": "FunctionDefinition",
+            "src": "1576:121:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "name": "emptyAccountToken",
+              "payable": false,
+              "scope": 498,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "tokenAddress",
+                      "scope": 497,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 471,
+                        "name": "ElementaryTypeName",
+                        "src": "1730:7:2"
+                      }
+                    ],
+                    "id": 472,
+                    "name": "VariableDeclaration",
+                    "src": "1730:20:2"
+                  }
+                ],
+                "id": 473,
+                "name": "ParameterList",
+                "src": "1729:22:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 497,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 476,
+                        "name": "ElementaryTypeName",
+                        "src": "1777:4:2"
+                      }
+                    ],
+                    "id": 477,
+                    "name": "VariableDeclaration",
+                    "src": "1777:4:2"
+                  }
+                ],
+                "id": 478,
+                "name": "ParameterList",
+                "src": "1776:6:2"
+              },
+              {
+                "attributes": {
+                  "arguments": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 396,
+                      "type": "modifier ()",
+                      "value": "onlyGov"
+                    },
+                    "id": 474,
+                    "name": "Identifier",
+                    "src": "1760:7:2"
+                  }
+                ],
+                "id": 475,
+                "name": "ModifierInvocation",
+                "src": "1760:7:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        480
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "token",
+                          "scope": 497,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "contract ERC20",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "ERC20",
+                              "referencedDeclaration": 63,
+                              "type": "contract ERC20"
+                            },
+                            "id": 479,
+                            "name": "UserDefinedTypeName",
+                            "src": "1793:5:2"
+                          }
+                        ],
+                        "id": 480,
+                        "name": "VariableDeclaration",
+                        "src": "1793:11:2"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "contract ERC20",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 63,
+                              "type": "type(contract ERC20)",
+                              "value": "ERC20"
+                            },
+                            "id": 481,
+                            "name": "Identifier",
+                            "src": "1807:5:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 472,
+                              "type": "address",
+                              "value": "tokenAddress"
+                            },
+                            "id": 482,
+                            "name": "Identifier",
+                            "src": "1813:12:2"
+                          }
+                        ],
+                        "id": 483,
+                        "name": "FunctionCall",
+                        "src": "1807:19:2"
+                      }
+                    ],
+                    "id": 484,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1793:33:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "transfer",
+                              "referencedDeclaration": null,
+                              "type": "function (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 317,
+                                  "type": "address",
+                                  "value": "government"
+                                },
+                                "id": 485,
+                                "name": "Identifier",
+                                "src": "1836:10:2"
+                              }
+                            ],
+                            "id": 487,
+                            "name": "MemberAccess",
+                            "src": "1836:19:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_contract$_Immigrant_$498",
+                                      "typeString": "contract Immigrant"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "balanceOf",
+                                  "referencedDeclaration": 8,
+                                  "type": "function (address) view external returns (uint256)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 480,
+                                      "type": "contract ERC20",
+                                      "value": "token"
+                                    },
+                                    "id": 488,
+                                    "name": "Identifier",
+                                    "src": "1856:5:2"
+                                  }
+                                ],
+                                "id": 489,
+                                "name": "MemberAccess",
+                                "src": "1856:15:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 599,
+                                  "type": "contract Immigrant",
+                                  "value": "this"
+                                },
+                                "id": 490,
+                                "name": "Identifier",
+                                "src": "1872:4:2"
+                              }
+                            ],
+                            "id": 491,
+                            "name": "FunctionCall",
+                            "src": "1856:21:2"
+                          }
+                        ],
+                        "id": 492,
+                        "name": "FunctionCall",
+                        "src": "1836:42:2"
+                      }
+                    ],
+                    "id": 493,
+                    "name": "ExpressionStatement",
+                    "src": "1836:42:2"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 478
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "74727565",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "bool",
+                          "type": "bool",
+                          "value": "true"
+                        },
+                        "id": 494,
+                        "name": "Literal",
+                        "src": "1895:4:2"
+                      }
+                    ],
+                    "id": 495,
+                    "name": "Return",
+                    "src": "1888:11:2"
+                  }
+                ],
+                "id": 496,
+                "name": "Block",
+                "src": "1783:120:2"
+              }
+            ],
+            "id": 497,
+            "name": "FunctionDefinition",
+            "src": "1703:200:2"
+          }
+        ],
+        "id": 498,
+        "name": "ContractDefinition",
+        "src": "99:1807:2"
+      }
+    ],
+    "id": 499,
+    "name": "SourceUnit",
+    "src": "0:1907:2"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2017-10-14T19:02:03.827Z"
+}

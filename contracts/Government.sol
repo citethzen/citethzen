@@ -8,29 +8,54 @@ contract Government {
 	address[] public acceptedTokens;
 	mapping (address => Immigrant) public immigrantRegistry;
 
-
-    function Government(address[] _acceptedTokens) {
+    function Government(address[] _acceptedTokens) public {
         owner = msg.sender;
 
         //limit spending gas when withdrawing
         require(_acceptedTokens.length < 5);
         acceptedTokens = _acceptedTokens;
     }
+
 	// register/create new immigrant contract
-	function register (string _occupation, uint _age, uint _income, bytes32 _dataHash) returns (address) {
+	function register (uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) public returns (address) {
         require(immigrantRegistry[msg.sender] == address(0));
 
-        immigrantRegistry[msg.sender] = new Immigrant(msg.sender, _occupation, _age, _income, _dataHash);
-		return immigrantRegistry[msg.sender];
+        Immigrant newImmigrant = new Immigrant(msg.sender, _occupation, _age, _income, _dataHash);
+
+        immigrantRegistry[msg.sender] = newImmigrant;
+
+        LogImmigrantRegistration(_occupation, _age, _income, _dataHash);
+
+		return address(newImmigrant);
+	}
+
+    function invite(address immigrantWallet) public onlyOwner returns (bool ){
+        require(immigrantRegistry[immigrantWallet].invite());
+        LogInvitation(immigrantWallet);
+    }
+
+
+	modifier onlyOwner {
+	    require(msg.sender == owner);
+	    _;
+	}
+
+	//write a function for government to empty it's contract
+	function withdraw(address deliverTo) onlyOwner public returns (bool) {
+			deliverTo.transfer(this.balance);
+			return true;
 	}
 
 	//EVENTS
+    event LogImmigrantRegistration(uint indexed occupation, uint indexed age, uint indexed income, bytes32 dataHash);
+
+    event LogInvitation(address indexed immigrantWallet);
 
 	// Log government decisions (accept/decline citizenship for the immigrant)
-	event LogGovernmentDecision(address immigrant, bool wasAccepted);
+	event LogGovernmentDecision(address indexed immigrant, bool indexed wasAccepted);
 
 	// Log :moneybag: :moneybag: :moneybag:
-	event LogGovernmentCollection(address immigrant, uint totalContributed);
+	event LogGovernmentCollection(address indexed immigrant, uint indexed amountCollected);
 
 	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string pin) public returns (uint _contribution) {
 		// SHA3 MAGIC AND COMPARE WITH IMMIGRANT.DATAHASH
@@ -40,7 +65,6 @@ contract Government {
 
         uint contribution = immigrantRegistry[_address].balance;
 		if (storedDataHash == immigrantDataHash) {
-
             //call emptyAccount instead
 			immigrantRegistry[_address].emptyAccountEth();
 		    for (uint token = 0; token < acceptedTokens.length; token++) {
