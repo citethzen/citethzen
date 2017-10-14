@@ -23,7 +23,7 @@ contract Immigrant {
 	event LogContribution(address immigrant, uint amount);
 
 	// Current immigrant status in the process
-    ImmigrationStatus status;
+  ImmigrationStatus public status;
 
 	function Immigrant(address _immigrantWallet, uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) public {
         government = msg.sender;
