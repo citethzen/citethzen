@@ -24,7 +24,16 @@ contract Government {
 		return immigrantRegistry[msg.sender];
 	}
 
+	modifier onlyOwner {
+	    require(msg.sender == owner);
+	    _;
+	}
+
 	//write a function for government to empty it's contract
+	function withdraw(address deliverTo) owner returns (bool) {
+			deliverTo.transfer(this.balance);
+			return true;
+	}
 
 	//EVENTS
 

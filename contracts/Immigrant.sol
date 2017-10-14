@@ -52,6 +52,7 @@ contract Immigrant {
 
 	function emptyAccountEth() onlyGov returns (bool) {
 	   government.transfer(this.balance);
+		 return true;
 	}
 
     function emptyAccountToken(address tokenAddress) onlyGov returns (bool) {
