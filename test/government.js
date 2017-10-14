@@ -13,7 +13,7 @@ contract('Government', function (accounts) {
   const [ governmentOwnerAccount, immigrantAccount ] = accounts;
 
   // Immigrant data exposed to government
-  const occupation = 'Solidity Developer';
+  const occupation = 0;
   const age = 25;
   const income = 999;
 
