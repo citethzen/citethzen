@@ -61,11 +61,7 @@ contract government{
 		immigrants[msg.sender].contribution += msg.value;
 	}
 
-	function queryContribution(address _address) constant returns (uint balance) {
-		return immigrants[_address].contribution;
-	}
-
-	function makeDecision(address _address, bool accepted) constant returns (uint status) {
+	function makeDecision(address _address, bool accepted) returns (uint status) {
 		if (accepted) {
 			immigrants[_address].status = ImmigrationStatus.accepted;
 		} else {
@@ -73,6 +69,10 @@ contract government{
 		}
 
 		return uint(immigrants[_address].status);
+	}
+
+	function queryContribution(address _address) constant returns (uint balance) {
+		return immigrants[_address].contribution;
 	}
 
 	function queryImmigrantStatus(address _address) constant returns (uint status) {

@@ -81,6 +81,7 @@ contract('Government', function(accounts) {
       assert.equal(status.valueOf(), 3, "Rejected immigrant total contribution should be 3 (rejection)");
 
       // Improvement: Add validation/test for immigrants that were accepted/declined already
+      // Also, check to make sure the immigrant's contribution balance is empty in case of rejection (validate refund)
     });
   });
 
