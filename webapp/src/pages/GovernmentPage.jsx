@@ -42,7 +42,7 @@ export default class GovernmentPage extends Component {
             <td>$4,500</td>
             <td>Accepted</td>
             <td>
-              <button bsStyle="primary">Collect</button>
+              <button>Collect</button>
             </td>
           </tr>
           <tr>
@@ -54,10 +54,10 @@ export default class GovernmentPage extends Component {
             <td>$1,000</td>
             <td>$4,500</td>
             <td>
-              <button bsStyle="primary">Accpet</button>
+              <button>Accpet</button>
             </td>
             <td>
-              <button bsStyle="primary">Collect</button>
+              <button>Collect</button>
             </td>
           </tr>
           <tr>
@@ -69,10 +69,10 @@ export default class GovernmentPage extends Component {
             <td>$1,000</td>
             <td>$4,500</td>
             <td>
-              <button bsStyle="primary">Accpet</button>
+              <button>Accpet</button>
             </td>
             <td>
-              <button bsStyle="primary">Collect</button>
+              <button>Collect</button>
             </td>
           </tr>
           </tbody>
