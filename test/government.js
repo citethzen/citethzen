@@ -1,4 +1,4 @@
-const sha1 = require("sha1");
+const sha3 = require("sha3");
 const Government = artifacts.require("./Government.sol");
 
 contract('Government', function(accounts) {
@@ -15,8 +15,7 @@ contract('Government', function(accounts) {
     const age = 25;
     const income = 999;
 
-    // Not sure if SHA1 is a proper hashing algorithm for this case
-    let hash = sha1(firstName + lastName + dateOfBirth + pin);
+    let hash = sha3_256(firstName + lastName + dateOfBirth + pin);
 
     // Contract instance reference
     let contractInstance = null;

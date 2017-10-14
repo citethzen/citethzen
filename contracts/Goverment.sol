@@ -71,6 +71,10 @@ contract government{
 		return uint(immigrants[_address].status);
 	}
 
+	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string pin) returns (uint contribution) {
+		// SHA3 MAGIC AND COMPARE WITH IMMIGRANT.DATAHASH
+	}
+
 	function queryContribution(address _address) constant returns (uint balance) {
 		return immigrants[_address].contribution;
 	}
