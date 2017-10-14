@@ -1,19 +1,39 @@
 const keccak256 = require('js-sha3').keccak256;
 const Government = artifacts.require('./Government.sol');
+const Immigrant = artifacts.require('./Immigrant.sol');
+
+const Web3 = require('web3');
+const web3 = new Web3(
+  new Web3.providers.HttpProvider("http://localhost:8545")
+);
 
 contract('Government', function (accounts) {
   let government;
+
+  const [ governmentOwnerAccount, immigrantAccount ] = accounts;
 
   // Immigrant data exposed to government
   const occupation = 'Solidity Developer';
   const age = 25;
   const income = 999;
 
+  async function getBalance (address) {
+    return new Promise((resolve, reject) => {
+      web3.eth.getBalance(address, (error, result) => {
+        if (error) {
+          return reject(error);
+        }
+
+        return resolve(result);
+      });
+    });
+  }
+
   before('get the government instance', async () => {
     government = await Government.deployed();
   });
 
-  it('Registers a new immigrant', async function () {
+  it('Registers a new immigrant', async () => {
     // Immigrant sensitive data
     const firstName = 'John';
     const lastName = 'Doe';
@@ -23,32 +43,30 @@ contract('Government', function (accounts) {
     // Immigrant data bytes32 hash
     let hash = '0x' + keccak256(firstName + lastName + dateOfBirth + pin);
 
-    const registerTx = await government.register(occupation, age, income, hash, { from: accounts[ 0 ] });
-    const immigrantStatus = await government.immigrantRegistry(accounts[ 0 ]);
-    assert.isAbove(immigrantStatus.valueOf(), 0, 'Could not register immigrant in the contract');
+    const registerTx = await government.register(occupation, age, income, hash, { from: immigrantAccount });
+    const immigrant = await government.immigrantRegistry(immigrantAccount);
+
+    assert.isAbove(immigrant.valueOf(), 0, 'Could not register immigrant in the contract');
   });
 
-  it('Makes a contribution', function () {
+  it('Makes a contribution', async () => {
     // Immigrant's first contribution (in ETH)
     const contribution = 10;
 
     // Contract instance reference
     let contractInstance = null;
-    let account_one = accounts[ 0 ];
 
-    return Government.deployed().then(function (instance) {
-      contractInstance = instance;
+    const immigrant = await government.immigrantRegistry(immigrantAccount);
+    const immigrantContract = Immigrant.at(immigrant);
 
-      return contractInstance.contribute({ from: account_one, value: 10 });
-    }).then(function () {
-      return contractInstance.queryContribution.call(account_one);
-    }).then(function (balance) {
-      assert.equal(balance.valueOf(), 10, 'Immigrant\'s total contribution should be 10');
-
-      // Improvement: Add validation/test for immigrants that were accepted/declined already.
-      // And it would be nice to find a way to make a contribution on accounts[1] and accounts[2],
-      // since they will be useful later on to test denials and refunds.
+    const contributionTx = await immigrantContract.sendTransaction({
+      from: immigrantAccount,
+      value: contribution
     });
+
+    const balance = await getBalance(immigrantAccount);
+
+    assert.equal(balance, 10, 'Immigrant\'s total contribution should be 10');
   });
 
   it('Government final decision', function () {

@@ -20,6 +20,8 @@ contract Immigrant {
 	// Current immigrant status in the process
 	ImmigrationStatus status;
 
+	event LogContribution(address immigrant, uint amount);
+
 	function Immigrant(address _address, string _occupation, uint _age, uint _income, bytes32 _dataHash) {
 		immigrantWallet = _address;
 		occupation = _occupation;
@@ -27,19 +29,19 @@ contract Immigrant {
 		income = _income;
 		dataHash = _dataHash;
 		government = msg.sender;
-    
-        status = ImmigrationStatus.registered;
+		status = ImmigrationStatus.registered;
 	}
 
 	function() payable {
 		// Make a contribution for msg.sender
+		LogContribution(msg.sender, msg.value);
 	}
-	
+
 	modifier onlyGov {
 	    require(msg.sender == government);
 	    _;
 	}
-	
+
 	function makeDecision(address _address, bool accepted) onlyGov returns (uint _status) {
 		if (accepted) {
 			status = ImmigrationStatus.accepted;
@@ -48,11 +50,11 @@ contract Immigrant {
 		}
 		return uint(status);
 	}
-	
+
 	function emptyAccountEth() onlyGov returns (bool) {
 	   government.transfer(this.balance);
 	}
-	    
+
     function emptyAccountToken(address tokenAddress) onlyGov returns (bool) {
         ERC20 token = ERC20(tokenAddress);
         token.transfer(government, token.balanceOf(this));

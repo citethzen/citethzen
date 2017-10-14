@@ -32,7 +32,6 @@ contract Government {
 	// Log :moneybag: :moneybag: :moneybag:
 	event LogGovernmentCollection(address immigrant, uint totalContributed);
 
-
 	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string pin) public returns (uint _contribution) {
 		// SHA3 MAGIC AND COMPARE WITH IMMIGRANT.DATAHASH
 		// keccak256 == sha3
