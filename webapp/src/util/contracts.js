@@ -1,5 +1,5 @@
-import GovernmentJSON from 'citethzen-contracts/build/contracts/government.json';
-import ImmigrantJSON from 'citethzen-contracts/build/contracts/Immigrant.json';
+import GovernmentJSON from '../contracts/Government.json';
+import ImmigrantJSON from  '../contracts/Immigrant.json';
 import TruffleContract from 'truffle-contract';
 
 export const Government = TruffleContract(GovernmentJSON);
