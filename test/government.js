@@ -69,7 +69,20 @@ contract('Government', function (accounts) {
     const immigrantContract = Immigrant.at(immigrantContractAddress);
     const status = await immigrantContract.status();
 
-    assert.equal(status.toNumber(), 1, 'Invited, immigration status should be 1 (invited)');
+    assert.equal(status.toNumber(), 1, 'Immigrant\'s status should be 1 (invited)');
+  });
+
+  it('Accepts the invited immigrant', async () => {
+    const immigrantContractAddress = await government.immigrantRegistry(immigrantAccount);
+    const immigrantContract = Immigrant.at(immigrantContractAddress);
+
+    const acceptTx = await immigrantContract.makeDecision(immigrantAccount, true, {
+      from: governmentOwnerAccount
+    });
+
+    const status = await immigrantContract.status();
+
+    assert.equal(status.toNumber(), 2, 'Immigrant\'s status should be 2 (accepted)');
   });
 
   it('Collect an accepted immigrant contribution', async () => {
