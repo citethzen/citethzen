@@ -60,8 +60,9 @@ contract government{
 		return immigrants[_address].status;
 	}
 
-	function contribute(uint amount) payable returns (uint) {
-		// Make a contribution for msg.sender, returns the updated balance (totalContributed)
+	function contribute() payable returns (uint) {
+		// Make a contribution for msg.sender
+		immigrants[msg.sender].contribution += msg.value;
 	}
 
 	function queryContribution(address _address) constant returns (uint256 balance) {

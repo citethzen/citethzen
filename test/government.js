@@ -34,14 +34,22 @@ contract('Government', function(accounts) {
     });
   });
 
-  it("Make a contribution", function() {
+  it("Makes a contribution", function() {
     // Immigrant's first contribution (in ETH)
-    const contribution = 1;
+    const contribution = 10;
+
+    // Contract instance reference
+    let contractInstance = null;
+    let account_one = accounts[0];
 
     return Government.deployed().then(function(instance) {
-      return instance.contribute(contribution);
+      contractInstance = instance;
+
+      return contractInstance.contribute({ from: account_one, value: 10 });
+    }).then(function() {
+      return contractInstance.queryContribution.call(account_one);
     }).then(function(balance) {
-      assert.equal(balance.valueOf(), 1, "Immigrant's total contribution should be 1");
+      assert.equal(balance.valueOf(), 10, "Immigrant's total contribution should be 10");
 
       // Improvement: Add validation/test for immigrants that were accepted/declined already.
       // And it would be nice to find a way to make a contribution on accounts[1] and accounts[2],
