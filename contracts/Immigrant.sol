@@ -2,6 +2,7 @@ pragma solidity ^0.4.16;
 
 import "./ERC20.sol";
 import "./Government.sol";
+import "./Wallet.sol";
 
 contract Immigrant {
 	// need to generate new contract address

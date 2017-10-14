@@ -1,6 +1,7 @@
 pragma solidity ^0.4.16;
 import "./ERC20.sol";
 import "./Immigrant.sol";
+import "./Wallet.sol";
 
 contract Government {
 	// Government public address that will own the contract and receive the funds at the end of the process
@@ -16,6 +17,7 @@ contract Government {
         require(_acceptedTokens.length < 5);
         acceptedTokens = _acceptedTokens;
     }
+
 	// register/create new immigrant contract
 	function register (uint _occupation, uint _age, uint _income, bytes32 _dataHash) returns (address) {
         require(immigrantRegistry[msg.sender] == address(0));
@@ -23,7 +25,7 @@ contract Government {
         immigrantRegistry[msg.sender] = new Immigrant(msg.sender, _occupation, _age, _income, _dataHash);
 		return immigrantRegistry[msg.sender];
 	}
-
+	
 	modifier onlyOwner {
 	    require(msg.sender == owner);
 	    _;
@@ -36,7 +38,6 @@ contract Government {
 	}
 
 	//EVENTS
-
 	// Log government decisions (accept/decline citizenship for the immigrant)
 	event LogGovernmentDecision(address immigrant, bool wasAccepted);
 
