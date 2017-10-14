@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Government } from '../util/contracts';
 import _ from 'underscore';
 import Balance from '../components/Balance';
+import { OCCUPATION_CODES } from '../util/constants';
 
 export default class GovernmentPage extends Component {
   static propTypes = {
@@ -58,7 +59,7 @@ export default class GovernmentPage extends Component {
 							//log.args.transactionHash.toString()+ log.args.transactionIndex.toString()
 							<tr key={log.args.transactionHash + log.args.transactionIndex}>  
 								<td>{log.args.age.toString()}</td>
-								<td>{log.args.occupation.toString()}</td>
+								<td>{OCCUPATION_CODES[log.args.occupation.valueOf()]}</td>
 								<td>{log.args.income.toString()}</td>
 								<td><Balance address={log.args.immigrantContractAddress}/></td>
 								<td></td>
