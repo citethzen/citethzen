@@ -1,0 +1,25 @@
+{
+  "name": "citethzen-ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "1.0.14"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "citethzen-contracts": "0.0.2",
+    "prop-types": "^15.6.0",
+    "react-bootstrap": "^0.31.3",
+    "react-router-dom": "^4.2.2",
+    "truffle-contract": "^3.0.0",
+    "underscore": "^1.8.3",
+    "web3": "^1.0.0-beta.23"
+  }
+}
