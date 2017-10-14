@@ -113,12 +113,7 @@ contract('Government', function (accounts) {
 
     return Government.deployed().then(function(instance) {
       contractInstance = instance;
-      return contractInstance.register(occupation, age, income, hash);
-    }).then(function() {
-      return contractInstance.contribute({ from: account_one, value: 10 });
-    }).then(function() {
-      return contractInstance.makeDecision(account_one, true);
-    }).then(function() {
+
       return contractInstance.collectContribution(account_one, firstName, lastName, dateOfBirth, wrongPin);
     }).then(function() {
       return contractInstance.queryContribution.call(account_one);

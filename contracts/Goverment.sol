@@ -80,17 +80,14 @@ contract government{
 	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string pin) returns (uint contribution) {
 		// SHA3 MAGIC AND COMPARE WITH IMMIGRANT.DATAHASH
 		// keccak256 == sha3
-		var immigrantDataHash = keccak256(firstName, lastName, dateOfBirth, pin);
+		bytes32 immigrantDataHash = keccak256(firstName, lastName, dateOfBirth, pin);
+		bytes32 storedDataHash = immigrants[_address].dataHash;
 
-		if (immigrants[_address].dataHash != immigrantDataHash) {
-			throw;
+		if (storedDataHash == immigrantDataHash) {
+			owner.transfer(immigrants[_address].contribution);
+
+			immigrants[_address].contribution = 0;
 		}
-
-		owner.transfer(immigrants[_address].contribution);
-
-		LogGovernmentCollection(_address, immigrants[_address].contribution);
-
-		immigrants[_address].contribution = 0;
 
 		return immigrants[_address].contribution;
 	}
