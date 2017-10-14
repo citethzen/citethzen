@@ -166,10 +166,10 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.16;\n\n\n// https://github.com/ethereum/EIPs/issues/20\ncontract ERC20 {\n    function balanceOf(address _owner) constant public returns (uint balance);\n\n    function transfer(address _to, uint _value) public returns (bool success);\n\n    function transferFrom(address _from, address _to, uint _value) public returns (bool success);\n\n    function approve(address _spender, uint _value) public returns (bool success);\n\n    function allowance(address _owner, address _spender) public constant returns (uint remaining);\n\n    event Transfer(address indexed _from, address indexed _to, uint _value);\n\n    event Approval(address indexed _owner, address indexed _spender, uint _value);\n}",
-  "sourcePath": "/Users/salmahmo/projects/citethzen/contracts/ERC20.sol",
+  "sourcePath": "/Users/gillianchu/Desktop/ethWaterloo/contracts/contracts/ERC20.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/Users/salmahmo/projects/citethzen/contracts/ERC20.sol",
+      "absolutePath": "/Users/gillianchu/Desktop/ethWaterloo/contracts/contracts/ERC20.sol",
       "exportedSymbols": {
         "ERC20": [
           63
@@ -988,5 +988,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.0",
-  "updatedAt": "2017-10-14T22:03:12.931Z"
+  "updatedAt": "2017-10-14T22:37:32.098Z"
 }
