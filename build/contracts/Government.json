@@ -3821,7 +3821,13 @@
     "name": "SourceUnit",
     "src": "0:2846:1"
   },
-  "networks": {},
+  "networks": {
+    "1508018577057": {
+      "events": {},
+      "links": {},
+      "address": "0xeff0a1e0e63bf9c384f656dff21f75bb101ff93b"
+    }
+  },
   "schemaVersion": "1.0.0",
-  "updatedAt": "2017-10-14T20:41:22.901Z"
+  "updatedAt": "2017-10-14T22:03:14.088Z"
 }

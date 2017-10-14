@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "truffle test",
-    "migrate": "truffle migrate --network testrpc",
+    "migrate": "truffle migrate --network testrpc --reset",
     "prerelease": "truffle compile",
     "release": "npm-release patch"
   },
