@@ -2,12 +2,10 @@ pragma solidity ^0.4.4;
 
 contract government{
 
-	enum ImmigrationStatus {registered, paying, accepted, rejected}
+	enum ImmigrationStatus { registered, paying, accepted, rejected }
 	/*CheckoutState public currentState;*/
 
-	mapping (address => uint256) public structs;
-
-	struct immigrantStruct{
+	struct immigrantStruct {
 		// Immigrant's wallet address
 		address publicKey;
 
@@ -23,9 +21,12 @@ contract government{
 		// Immigrant's contributions since registration
 		/*mapping (address => uint) contributions;*/
 		uint contribution;
+
+		// Current immigrant status in the process
+		ImmigrationStatus status;
 	}
 
-	immigrantStruct newStruct;
+	mapping (address => immigrantStruct) public immigrants;
 
 	// Log new immigrant registration
 	event LogImmigrantRegistration(address immigrant, uint age, string occupation, uint income);
@@ -42,19 +43,21 @@ contract government{
 	// Log :moneybag: :moneybag: :moneybag:
 	event LogGovernmentCollection(address immigrant, uint totalContributed);
 
-	function Struct(){
-		newStruct.contribution = 0;
-	}
-
 	function register (string occupation, uint age, uint income, string dataHash) returns (bool success) {
 		// New immigrantStruct, saving msg.sender as the publicKey and all the info in the struct instance
+		immigrants[msg.sender].occupation = occupation;
+		immigrants[msg.sender].age = age;
+		immigrants[msg.sender].income = income;
+		immigrants[msg.sender].dataHash = dataHash;
+		immigrants[msg.sender].status = ImmigrationStatus.registered;
+
 		LogImmigrantRegistration(msg.sender, age, occupation, income);
 
 		return true;
 	}
 
-	function balance() returns (uint) {
-		return newStruct.contribution;
+	function queryImmigrantStatus(address _address) constant returns (ImmigrationStatus status) {
+		return immigrants[_address].status;
 	}
 
 	function contribute(uint amount) payable returns (uint) {
@@ -62,6 +65,6 @@ contract government{
 	}
 
 	function queryContribution(address _address) constant returns (uint256 balance) {
-		/*return structs[_address].contribution;*/
+		return immigrants[_address].contribution;
 	}
 }

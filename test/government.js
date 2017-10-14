@@ -3,7 +3,7 @@ const Government = artifacts.require("./Government.sol");
 
 contract('Government', function(accounts) {
 
-  it("Register a new immigrant", function() {
+  it("Registers a new immigrant", function() {
     // Immigrant sensitive data
     const firstName = "John";
     const lastName = "Doe";
@@ -18,10 +18,17 @@ contract('Government', function(accounts) {
     // Not sure if SHA1 is a proper hashing algorithm for this case
     let hash = sha1(firstName + lastName + dateOfBirth + pin);
 
+    // Contract instance reference
+    let contractInstance = null;
+
     return Government.deployed().then(function(instance) {
-      return instance.register(occupation, age, income, hash);
-    }).then(function(success) {
-      assert.equal(success, true, "Could not register immigrant in the contract");
+      contractInstance = instance;
+
+      return contractInstance.register(occupation, age, income, hash);
+    }).then(function() {
+      return contractInstance.queryImmigrantStatus.call(accounts[0]);
+    }).then(function(immigrantStatus) {
+      assert.equal(immigrantStatus.valueOf(), 0, "Could not register immigrant in the contract");
 
       // Improvement: Add validation/test in case the same publicKey tries to register multiple times.
     });
