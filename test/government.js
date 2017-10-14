@@ -11,7 +11,7 @@ contract('Government', function(accounts) {
     const pin = "9999";
 
     // Data exposed to government
-    const ocupation = 'Solidity Developer';
+    const occupation = 'Solidity Developer';
     const age = 25;
     const income = 999;
 
@@ -19,7 +19,7 @@ contract('Government', function(accounts) {
     let hash = sha1(firstName + lastName + dateOfBirth + pin);
 
     return Government.deployed().then(function(instance) {
-      return instance.register(ocupation, age, income, hash);
+      return instance.register(occupation, age, income, hash);
     }).then(function(success) {
       assert.equal(success, true, "Could not register immigrant in the contract");
 

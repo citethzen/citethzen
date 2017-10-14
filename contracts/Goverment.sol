@@ -14,7 +14,7 @@ contract government{
 		// Additional demographic info
 		uint age;
 		uint income;
-		string ocupation;
+		string occupation;
 
 		// Hash string from immigrant's first and last name, date of birth and PIN
 		// !! NOT SURE IF IT'S EASIER TO MANIPULATE string OR hash IN THIS CASE !!
@@ -46,8 +46,11 @@ contract government{
 		newStruct.contribution = 0;
 	}
 
-	function register (string ocupation, uint age, uint income, string dataHash) returns (bool success) {
+	function register (string occupation, uint age, uint income, string dataHash) returns (bool success) {
 		// New immigrantStruct, saving msg.sender as the publicKey and all the info in the struct instance
+		LogImmigrantRegistration(msg.sender, age, occupation, income);
+
+		return true;
 	}
 
 	function balance() returns (uint) {
