@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from './Icon';
+import { OCCUPATION_CODES } from '../util/constants';
+import _ from 'underscore';
 
 export default class RegistrationForm extends Component {
   static propTypes = {
@@ -29,12 +31,19 @@ export default class RegistrationForm extends Component {
             </div>
             <div className="form-group">
               <label>Occupation</label>
-              <input type="number" className="form-control"
-                     required
-                     placeholder="Doctor"
-                     value={value.occupation || ''}
-                     onChange={e => changed({ occupation: e.target.value })}
-              />
+              <select className="form-control"
+                      required
+                      placeholder="Doctor"
+                      value={value.occupation || ''}
+                      onChange={e => changed({ occupation: e.target.value })}>
+                <option value="">Select Occupation...</option>
+                {
+                  _.map(
+                    OCCUPATION_CODES,
+                    (occupation, ix) => <option value={`${ix}`}>{occupation}</option>
+                  )
+                }
+              </select>
             </div>
             <div className="form-group">
               <label>Income</label>
