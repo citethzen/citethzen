@@ -13,8 +13,6 @@ export default class RegistrationForm extends Component {
 
     const changed = more => onChange({ ...value, ...more });
 
-    console.log(value);
-
     return (
       <form {...rest}>
         <h2>Public Information</h2>

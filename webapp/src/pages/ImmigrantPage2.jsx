@@ -20,10 +20,6 @@ export default class ImmigrantPage2 extends Component {
 
     const government = await Government.deployed();
 
-    // debug print the logs
-    const filter = government.LogImmigrantRegistration();
-    const logs = filter.get((error, logs) => console.log(error, logs));
-
     const immigrantContractAddress = await government.immigrantRegistry(firstAccount);
 
     this.setState({ immigrantContractAddress });
@@ -38,12 +34,20 @@ export default class ImmigrantPage2 extends Component {
 
     const dataHash = await government.createHash(firstName, lastName, dateOfBirth, password);
 
-    const registerTx = await government.register(occupation, age, income, dataHash, {
-      from: this.state.accounts[ 1 ],
-      gas: 3000000
-    });
+    try {
+      const registerTx = await government.register(occupation, age, income, dataHash, {
+        from: this.state.accounts[ 0 ],
+        gas: 3000000
+      });
+      window.alert({ message: 'successfully registered!', type: 'success' });
 
-    console.log(registerTx);
+      const { immigrantContractAddress } = registerTx.logs[ 0 ].args;
+
+      this.setState({ immigrantContractAddress });
+    } catch (error) {
+      console.error(error);
+      window.alert({ message: `failed to register! ${error.message}`, type: 'danger' });
+    }
   };
 
   handleChange = formValue => {

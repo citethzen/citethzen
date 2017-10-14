@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import GovernmentPage from './pages/GovernmentPage';
 import ImmigrantPage from './pages/ImmigrantPage';
 import ImmigrantPage2 from './pages/ImmigrantPage2';
+import Notifier from './pages/Notifier';
 
 export default class App extends Component {
   render() {
@@ -19,6 +20,8 @@ export default class App extends Component {
             <Route path="/immigrant" exact component={ImmigrantPage}/>
             <Route path="/immigrant2" exact component={ImmigrantPage2}/>
           </Switch>
+
+          <Notifier/>
         </div>
       </BrowserRouter>
     );
