@@ -1,6 +1,6 @@
-pragma solidity ^0.4.4;
-import "ERC20.sol";
-import "Immigrant.sol";
+pragma solidity ^0.4.16;
+import "./ERC20.sol";
+import "./Immigrant.sol";
 
 contract Government {
 	// Government public address that will own the contract and receive the funds at the end of the process

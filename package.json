@@ -1,5 +1,5 @@
 {
-  "name": "citethzen-contracts",
+  "name": "citethzen",
   "version": "0.0.2",
   "description": "",
   "main": "truffle.js",
@@ -19,14 +19,15 @@
   },
   "scripts": {
     "test": "truffle test",
+    "migrate": "truffle migrate",
     "prerelease": "truffle compile",
     "release": "npm-release patch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/citethzen/contracts.git"
+    "url": "git+https://github.com/citethzen/citethzen.git"
   },
-  "author": "",
+  "author": "CitEthZen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/citethzen/contracts/issues"

@@ -1,5 +1,7 @@
-import "ERC20.sol";
-import "Government.sol";
+pragma solidity ^0.4.16;
+
+import "./ERC20.sol";
+import "./Government.sol";
 
 contract Immigrant {
 	// need to generate new contract address
