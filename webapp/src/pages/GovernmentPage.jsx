@@ -56,11 +56,12 @@ export default class GovernmentPage extends Component {
 						logs,
 						log => (
 							//log.args.transactionHash.toString()+ log.args.transactionIndex.toString()
-							<tr key={log.args.transactionHash.toString() + log.args.transactionIndex.toString()}>  
+							<tr key={log.args.transactionHash + log.args.transactionIndex}>  
 								<td>{log.args.age.toString()}</td>
 								<td>{log.args.occupation.toString()}</td>
 								<td>{log.args.income.toString()}</td>
 								<td><Balance address={log.args.immigrantContractAddress}/></td>
+								<td></td>
 							</tr>
 							)
 						)
