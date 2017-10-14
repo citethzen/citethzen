@@ -30,7 +30,7 @@ contract Government {
 	}
 
     function invite(address immigrantWallet) public onlyOwner returns (bool ){
-        /*require(immigrantRegistry[immigrantWallet].invite());*/
+        require(immigrantRegistry[immigrantWallet].invite());
         LogInvitation(immigrantWallet);
     }
 

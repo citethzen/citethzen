@@ -46,6 +46,12 @@ contract Immigrant {
 	    _;
 	}
 
+	function invite() public onlyGov returns (bool success) {
+		require(status == ImmigrationStatus.registered);
+		status = ImmigrationStatus.invited;
+		return true;
+	}
+
 	function makeDecision(address _address, bool accepted) onlyGov returns (uint _status) {
 		if (accepted) {
 			status = ImmigrationStatus.accepted;
