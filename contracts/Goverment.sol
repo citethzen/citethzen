@@ -18,7 +18,7 @@ contract government{
 
 		// Hash string from immigrant's first and last name, date of birth and PIN
 		// !! NOT SURE IF IT'S EASIER TO MANIPULATE string OR hash IN THIS CASE !!
-		string infoHash;
+		string dataHash;
 
 		// Immigrant's contributions since registration
 		/*mapping (address => uint) contributions;*/
@@ -46,12 +46,16 @@ contract government{
 		newStruct.contribution = 0;
 	}
 
+	function register (string ocupation, uint age, uint income, string dataHash) returns (bool success) {
+		// New immigrantStruct, saving msg.sender as the publicKey and all the info in the struct instance
+	}
+
 	function balance() returns (uint) {
 		return newStruct.contribution;
 	}
 
-	payable function contribute() returns (bool) {
-
+	payable function contribute(uint amount) returns (uint) {
+		// Make a contribution for msg.sender, returns the updated balance (totalContributed)
 	}
 
 	function queryContribution(address _address) constant returns (uint256 balance) {
