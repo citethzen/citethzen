@@ -1,6 +1,8 @@
 pragma solidity ^0.4.4;
 
 contract government{
+	// Government public address that will own the contract and receive the funds at the end of the process
+	address public owner = msg.sender;
 
 	enum ImmigrationStatus { registered, paying, accepted, rejected }
 	/*CheckoutState public currentState;*/
@@ -16,7 +18,7 @@ contract government{
 
 		// Hash string from immigrant's first and last name, date of birth and PIN
 		// !! NOT SURE IF IT'S EASIER TO MANIPULATE string OR hash IN THIS CASE !!
-		string dataHash;
+		bytes32 dataHash;
 
 		// Immigrant's contributions since registration
 		/*mapping (address => uint) contributions;*/
@@ -43,7 +45,7 @@ contract government{
 	// Log :moneybag: :moneybag: :moneybag:
 	event LogGovernmentCollection(address immigrant, uint totalContributed);
 
-	function register (string occupation, uint age, uint income, string dataHash) returns (bool success) {
+	function register (string occupation, uint age, uint income, bytes32 dataHash) returns (bool success) {
 		// New immigrantStruct, saving msg.sender as the publicKey and all the info in the struct instance
 		immigrants[msg.sender].occupation = occupation;
 		immigrants[msg.sender].age = age;
@@ -73,6 +75,17 @@ contract government{
 
 	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string pin) returns (uint contribution) {
 		// SHA3 MAGIC AND COMPARE WITH IMMIGRANT.DATAHASH
+		// keccak256 == sha3
+		var immigrantDataHash = keccak256(firstName, lastName, dateOfBirth, pin);
+
+		if (immigrants[_address].dataHash != immigrantDataHash) {
+			throw;
+		}
+
+		owner.transfer(immigrants[_address].contribution);
+		immigrants[_address].contribution = 0;
+
+		return immigrants[_address].contribution;
 	}
 
 	function queryContribution(address _address) constant returns (uint balance) {

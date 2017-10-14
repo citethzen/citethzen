@@ -1,4 +1,4 @@
-const sha3 = require("sha3");
+const keccak256 = require('js-sha3').keccak256;
 const Government = artifacts.require("./Government.sol");
 
 contract('Government', function(accounts) {
@@ -15,7 +15,8 @@ contract('Government', function(accounts) {
     const age = 25;
     const income = 999;
 
-    let hash = sha3_256(firstName + lastName + dateOfBirth + pin);
+    // Generate bytes32 hash
+    let hash = "0x" + keccak256(firstName + lastName + dateOfBirth + pin);
 
     // Contract instance reference
     let contractInstance = null;
@@ -92,14 +93,28 @@ contract('Government', function(accounts) {
     const correctPin = "9999";
     const wrongPin = "1234";
 
-    return Government.deployed().then(function(instance) {
-      return instance.collectContribution(accounts[2], firstName, lastName, dateOfBirth, wrongPin);
-    }).then(function(success) {
-      assert.equal(success, false, "collectContribution should fail when sending a wrong PIN or immigrant info");
+    // Contract instance reference
+    let contractInstance = null;
+    let account_one = accounts[0];
 
-      return instance.collectContribution(accounts[2], firstName, lastName, dateOfBirth, correctPin);
-    }).then(function(success) {
-      assert.equal(success, true, "collectContribution should succeed when passing the correct info");
+    return Government.deployed().then(function(instance) {
+      contractInstance = instance;
+
+      return contractInstance.contribute({ from: account_one, value: 10 });
+    }).then(function() {
+      return contractInstance.makeDecision(account_one, true);
+    }).then(function() {
+      return contractInstance.collectContribution(account_one, firstName, lastName, dateOfBirth, wrongPin);
+    }).then(function() {
+      return contractInstance.queryContribution.call(account_one);
+    }).then(function(balance) {
+      assert.equal(balance.valueOf(), 10, "collectContribution should fail when sending a wrong PIN or immigrant info");
+
+      return instance.collectContribution(account_one, firstName, lastName, dateOfBirth, correctPin);
+    }).then(function() {
+      return contractInstance.queryContribution.call(account_one);
+    }).then(function(balance) {
+      assert.equal(balance.valueOf(), 0, "collectContribution should succeed when passing the correct info");
 
       // Improvement: Add validation/test for immigrants that were accepted/declined already
     });
