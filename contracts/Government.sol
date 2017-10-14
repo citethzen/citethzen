@@ -41,7 +41,7 @@ contract Government {
 	}
 
 	//write a function for government to empty it's contract
-	function withdraw(address deliverTo) onlyOwner returns (bool) {
+	function withdraw(address deliverTo) onlyOwner public returns (bool) {
 			deliverTo.transfer(this.balance);
 			return true;
 	}
