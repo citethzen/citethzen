@@ -64,10 +64,12 @@ contract('Government', function (accounts) {
 
   it('Invitation', async () => {
     const inviteTx = await government.invite(immigrantAccount);
-    const immigrant = await government.immigrantRegistry(immigrantAccount);
 
-    assert.equal(immigrant.status, 2, 'Accepted, immigration status should be 2 (accepted)');
-    // assert.equal(immigrant.valueOf(), 3, 'Rejected, immigration status should be 3 (rejection)');
+    const immigrantContractAddress = await government.immigrantRegistry(immigrantAccount);
+    const immigrantContract = Immigrant.at(immigrantContractAddress);
+    const status = await immigrantContract.status();
+
+    assert.equal(status.toNumber(), 1, 'Invited, immigration status should be 1 (invited)');
   });
 
   it('Collect an accepted immigrant contribution', async () => {
