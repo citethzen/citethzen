@@ -61,6 +61,8 @@ contract government{
 	function contribute() payable returns (uint) {
 		// Make a contribution for msg.sender
 		immigrants[msg.sender].contribution += msg.value;
+
+		LogImmigrantContribution(msg.sender, msg.value, immigrants[msg.sender].contribution);
 	}
 
 	function makeDecision(address _address, bool accepted) returns (uint status) {
@@ -69,6 +71,8 @@ contract government{
 		} else {
 			immigrants[_address].status = ImmigrationStatus.rejected;
 		}
+
+		LogGovernmentDecision(_address, accepted);
 
 		return uint(immigrants[_address].status);
 	}
@@ -83,6 +87,9 @@ contract government{
 		}
 
 		owner.transfer(immigrants[_address].contribution);
+
+		LogGovernmentCollection(_address, immigrants[_address].contribution);
+
 		immigrants[_address].contribution = 0;
 
 		return immigrants[_address].contribution;

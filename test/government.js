@@ -4,6 +4,11 @@ const Government = artifacts.require('./Government.sol');
 contract('Government', function (accounts) {
   let government;
 
+  // Immigrant data exposed to government
+  const occupation = 'Solidity Developer';
+  const age = 25;
+  const income = 999;
+
   before('get the government instance', function (done) {
     Government.deployed()
       .then(
@@ -21,12 +26,7 @@ contract('Government', function (accounts) {
     const dateOfBirth = '01/01/1990';
     const pin = '9999';
 
-    // Data exposed to government
-    const occupation = 'Solidity Developer';
-    const age = 25;
-    const income = 999;
-
-    // Generate bytes32 hash
+    // Immigrant data bytes32 hash
     let hash = "0x" + keccak256(firstName + lastName + dateOfBirth + pin);
 
     // Contract instance reference
@@ -104,13 +104,17 @@ contract('Government', function (accounts) {
     const correctPin = '9999';
     const wrongPin = '1234';
 
+    // Immigrant data bytes32 hash
+    let hash = "0x" + keccak256(firstName + lastName + dateOfBirth + correctPin);
+
     // Contract instance reference
     let contractInstance = null;
     let account_one = accounts[0];
 
     return Government.deployed().then(function(instance) {
       contractInstance = instance;
-
+      return contractInstance.register(occupation, age, income, hash);
+    }).then(function() {
       return contractInstance.contribute({ from: account_one, value: 10 });
     }).then(function() {
       return contractInstance.makeDecision(account_one, true);
@@ -121,7 +125,7 @@ contract('Government', function (accounts) {
     }).then(function(balance) {
       assert.equal(balance.valueOf(), 10, "collectContribution should fail when sending a wrong PIN or immigrant info");
 
-      return instance.collectContribution(account_one, firstName, lastName, dateOfBirth, correctPin);
+      return contractInstance.collectContribution(account_one, firstName, lastName, dateOfBirth, correctPin);
     }).then(function() {
       return contractInstance.queryContribution.call(account_one);
     }).then(function(balance) {
