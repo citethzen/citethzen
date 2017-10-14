@@ -24,8 +24,8 @@ contract('Government', function (accounts) {
     let hash = '0x' + keccak256(firstName + lastName + dateOfBirth + pin);
 
     const registerTx = await government.register(occupation, age, income, hash, { from: accounts[ 0 ] });
-    const immigrantStatus = await government.queryImmigrantStatus(accounts[ 0 ]);
-    assert.equal(immigrantStatus.valueOf(), 0, 'Could not register immigrant in the contract');
+    const immigrantStatus = await government.immigrantRegistry(accounts[ 0 ]);
+    assert.isAbove(immigrantStatus.valueOf(), 0, 'Could not register immigrant in the contract');
   });
 
   it('Makes a contribution', function () {
