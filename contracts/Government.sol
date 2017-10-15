@@ -53,7 +53,7 @@ contract Government is Wallet {
         LogGovernmentDecision(immigrantWallet, accepted);
     }
 
-    function() payable {
+    function() payable public {
 
     }
 
