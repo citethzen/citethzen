@@ -24,8 +24,8 @@ contract Immigrant is Wallet {
     enum ImmigrationStatus {registered, invited, accepted, rejected}
 
     event LogContribution(address _immigrant, uint amount);
-
-    event LogDecision(address _government, bool accepted);
+		event LogDecision(address _government, bool accepted);
+    event LogFailedCollection(address _immigrant, address _government, uint balance);
 
     // Current immigrant status in the process
     ImmigrationStatus public status;

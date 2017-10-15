@@ -98,8 +98,32 @@ contract('Government', function (accounts) {
     assert.equal(balance.toNumber(), 0, 'collectContribution should succeed when passing the correct info');
   });
 
-  it('Let the immigrant withdraw his/her funds if they were not invited nor accepted', function () {
-    assert.equal(true, true);
+  it('Let the immigrant withdraw his/her funds if they were not invited nor accepted', async () => {
+    // Do a contribution
+    let contributionTx = await immigrantContract.sendTransaction({
+      from: immigrantAccount,
+      value: 9999
+    });
+
+    // Another one
+    contributionTx = await immigrantContract.sendTransaction({
+      from: immigrantAccount,
+      value: 345654
+    });
+
+    const balanceAfterContributions = await getBalance(immigrantAccount);
+
+    // Withdraw ether
+    const withdrawTx = immigrantContract.withdrawETH(immigrantAccount, {
+      from: immigrantAccount
+    });
+
+    // Updated balances
+    const immigrantBalance = await getBalance(immigrantAccount);
+    const contractBalance = await getBalance(immigrantContractAddress);
+
+    assert.equal(contractBalance.toNumber(), 0, 'withdrawETH should move all funds away from immigrant\'s contract');
+    assert.notEqual(immigrantBalance.toNumber(), balanceAfterContributions.toNumber(), 'the withdrawer should have their wallet balance increased');
   });
 
 });
