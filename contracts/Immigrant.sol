@@ -20,7 +20,8 @@ contract Immigrant is Wallet {
 
 	enum ImmigrationStatus { registered, invited, accepted, rejected }
 
-	event LogContribution(address immigrant, uint amount);
+	event LogContribution(address _immigrant, uint amount);
+	event LogDecision(address _government, bool accepted);
 
 	// Current immigrant status in the process
   ImmigrationStatus public status;
@@ -52,25 +53,27 @@ contract Immigrant is Wallet {
 		return true;
 	}
 
-	function makeDecision(bool accepted) onlyGov public returns (uint _status) {
+	function receiveDecision(bool accepted) public onlyGov returns (bool) {
 		if (accepted) {
 			status = ImmigrationStatus.accepted;
 		} else {
 			status = ImmigrationStatus.rejected;
 		}
 
-		return uint(status);
+		return accepted;
 	}
 
-	function emptyAccountEth()  public onlyGov returns (bool) {
-	   government.transfer(this.balance);
-       return true;
+	function emptyAccountEth() public returns (bool) {
+		LogContribution(government, this.balance);
+
+	   /*government.transfer(this.balance);*/
+     return true;
 	}
 
-    function emptyAccountToken(address tokenAddress)  public onlyGov returns (bool) {
-        ERC20 token = ERC20(tokenAddress);
-        government.transfer(token.balanceOf(this));
-        return true;
+  function emptyAccountToken(address tokenAddress)  public onlyGov returns (bool) {
+    ERC20 token = ERC20(tokenAddress);
+    government.transfer(token.balanceOf(this));
+    return true;
 	}
 
 }

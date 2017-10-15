@@ -1,0 +1,13 @@
+{
+  "authors": [],
+  "license": "MIT",
+  "description": "citethzen",
+  "sources": [
+  ],
+  "dependencies": {
+    "tokens": "0.0.3"
+  },
+  "manifest_version": 1,
+  "package_name": "citethzen",
+  "version": "0.1.0"
+}

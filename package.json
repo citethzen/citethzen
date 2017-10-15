@@ -18,7 +18,9 @@
     "truffle": "^4.0.0-beta.2"
   },
   "scripts": {
+    "postinstall": "truffle install",
     "test": "truffle test",
+    "testrpc:seeded": "testrpc -m \"clump voice pigeon battle velvet eye inmate shy cash throw cage royal\"",
     "migrate": "truffle migrate --network testrpc --reset",
     "prerelease": "truffle compile",
     "release": "npm-release patch"

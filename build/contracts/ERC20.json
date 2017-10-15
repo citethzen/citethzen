@@ -988,5 +988,9 @@
   },
   "networks": {},
   "schemaVersion": "1.0.0",
+<<<<<<< HEAD
   "updatedAt": "2017-10-15T00:44:16.437Z"
+=======
+  "updatedAt": "2017-10-15T01:46:09.208Z"
+>>>>>>> cc15f3c65532e6db085f32f365c12bb9bccefc12
 }

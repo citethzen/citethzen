@@ -4,74 +4,131 @@ import { Government } from '../util/contracts';
 import _ from 'underscore';
 import Balance from '../components/Balance';
 import { OCCUPATION_CODES } from '../util/constants';
+import Icon from '../components/Icon';
 
 export default class GovernmentPage extends Component {
   static propTypes = {
-  	value: PropTypes.object,
+    value: PropTypes.object,
   };
 
   state = {
-  	accounts: [],
-  	logs: []
+    registrationLogs: [],
+    invitationLogs: {}
   };
 
+  registrationFilter = null;
+  invitationLogs = null;
+
   async componentDidMount() {
-  	const accounts = await window.web3.eth.getAccountsPromise();
-  	this.setState({ accounts });
+    const government = await Government.deployed();
 
-  	const government = await Government.deployed();
+    this.registrationFilter = government.LogImmigrantRegistration(null, { fromBlock: 0 });
+    this.registrationFilter.watch(
+      (error, log) =>
+        this.setState(
+          state => ({
+            registrationLogs: [ log ].concat(state.registrationLogs)
+          })
+        )
+    );
 
-  	const filter = government.LogImmigrantRegistration();
-  	filter.get((error, logs) => this.setState({logs}));
-
+    this.invitationFilter = government.LogInvitation(null, { fromBlock: 0 });
+    this.invitationFilter.watch(
+      (error, log) =>
+        this.setState(
+          state => ({
+            invitationLogs: {
+              ...state.invitationLogs,
+              [log.args.immigrantWallet]: true
+            }
+          })
+        )
+    );
   }
 
-// need handleAccept button/stuff
+  sendInvitation = async immigrantWallet => {
+    const government = await Government.deployed();
+    const govOwner = await government.owner();
 
-  render(){
-  	const {value, ...rest } = this.props;
-  	const { logs, accounts } = this.state;
-  	console.log(logs);
-  	//console.log(value, " in value");
+    try {
+      const inviteTx = await government.invite(immigrantWallet, { gas: 3000000, from: govOwner });
+      window.alert({
+        type: 'success',
+        headline: 'Success!',
+        message: `Invited immigrant ${immigrantWallet} to join the process`
+      });
+    } catch (error) {
+      console.error(error);
+      window.alert({
+        type: 'danger',
+        headline: 'Error!',
+        message: `Failed to invite ${immigrantWallet} to join the process: ${error.message}`
+      });
+    }
+  };
 
-  	return(
-  		<div className="container">
+  startDecision = () => {
+
+  };
+
+  render() {
+    const { registrationLogs, invitationLogs } = this.state;
+
+    return (
+      <div className="container">
         <h2>Candidates for Citizenship</h2>
         <p>The following individuals have paid funds in accordance with US tax law into our escrow contract.
           These funds will be released to the US Government upon naturalization.</p>
-          	<table className="table">
-				<thead>
-					<tr>
-						<th>Age</th>
-			            <th>Occupation</th>
-			            <th>Income</th>
-			            <th>Total Contribution</th>
-			            <th>Invitation</th>
-			            <th>Acceptance</th>
-			            <th>Collection</th>
-					</tr>
-				</thead>
-				<tbody>
-				{	//put in headers for the table here
-					_.map(
-						logs,
-						log => (
-							//log.args.transactionHash.toString()+ log.args.transactionIndex.toString()
-							<tr key={log.args.transactionHash + log.args.transactionIndex}>  
-								<td>{log.args.age.toString()}</td>
-								<td>{OCCUPATION_CODES[log.args.occupation.valueOf()]}</td>
-								<td>{log.args.income.toString()}</td>
-								<td><Balance address={log.args.immigrantContractAddress}/></td>
-								<td></td>
-							</tr>
-							)
-						)
-				}
-				</tbody>
-			</table>
-		</div>
 
-  	);
+        <table className="table">
+          <thead>
+          <tr>
+            <th>Age</th>
+            <th>Occupation</th>
+            <th>Income</th>
+            <th>Total Contribution</th>
+            <th>Invitation</th>
+            <th>Acceptance</th>
+          </tr>
+          </thead>
+          <tbody>
+          {	//put in headers for the table here
+            _.map(
+              registrationLogs,
+              (log, ix) => (
+                //log.args.transactionHash.toString()+ log.args.transactionIndex.toString()
+                <tr key={ix}>
+                  <td>{log.args.age.toString()}</td>
+                  <td>{OCCUPATION_CODES[ log.args.occupation.valueOf() ]}</td>
+                  <td>{log.args.income.toString()}</td>
+                  <td><Balance address={log.args.immigrantContractAddress}/></td>
+                  <td>
+                    {
+                      invitationLogs[ log.args.immigrantAddress ] ?
+                        <Icon name="check" className="text-success"/> : (
+                          <button type="button" className="btn btn-primary btn-sm"
+                                  onClick={() => this.sendInvitation(log.args.immigrantAddress)}>
+                            <Icon name="envelope"/> Send
+                          </button>
+                        )
+                    }
+                  </td>
+                  <td>
+                    <button type="button" className="btn btn-warning btn-sm"
+                            disabled={!invitationLogs[ log.args.immigrantAddress ]}
+                            onClick={() => this.startDecision(log.args.immigrantAddress)}>
+                      <Icon name="thumbs-up"/> Decision <Icon name="thumbs-down"/>
+                    </button>
+                  </td>
+                </tr>
+              )
+            )
+          }
+          </tbody>
+        </table>
+      </div>
+
+    );
 
   }
 }

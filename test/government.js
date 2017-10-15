@@ -63,7 +63,18 @@ contract('Government', function (accounts) {
 
     const status = await immigrantContract.status();
 
-    assert.equal(status.toNumber(), 1, 'Invited, immigration status should be 1 (invited)');
+    assert.equal(status.toNumber(), 1, 'Immigrant\'s status should be 1 (invited)');
+  });
+
+  it('Accepts the invited immigrant', async () => {
+    const inviteTx = await government.invite(immigrantAccount);
+    const acceptTx = await government.makeDecision(immigrantAccount, true, {
+      from: governmentOwnerAccount
+    });
+
+    const status = await immigrantContract.status();
+
+    assert.equal(status.toNumber(), 2, 'Immigrant\'s status should be 2 (accepted)');
   });
 
   it('Collect an accepted immigrant contribution', async () => {
@@ -71,13 +82,14 @@ contract('Government', function (accounts) {
     const firstName = 'John';
     const lastName = 'Doe';
     const dateOfBirth = '01/01/1990';
-    const correctPin = '9999';
-    const wrongPin = '1234';
+    const correctPassword = '9999';
+    const wrongPassword = '1234';
 
-    const collectTx = await government.collectContribution(immigrantAccount, firstName, lastName, dateOfBirth, correctPin);
+    const collectTx = await government.collectContribution(immigrantAccount, firstName, lastName, dateOfBirth, correctPassword);
     const balance = await getBalance(immigrantAccount);
 
-    assert.equal(balance, 0, 'collectContribution should succeed when passing the correct info');
+    // assert.equal(balance.toNumber(), 0, 'collectContribution should succeed when passing the correct info');
+    assert.equal(1, 0, 'collectContribution should succeed when passing the correct info');
   });
 
   it('Let the immigrant withdraw his/her application', function () {
