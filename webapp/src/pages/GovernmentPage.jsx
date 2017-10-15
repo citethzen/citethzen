@@ -5,6 +5,7 @@ import _ from 'underscore';
 import Balance from '../components/Balance';
 import { OCCUPATION_CODES } from '../util/constants';
 import Icon from '../components/Icon';
+import { Button, Modal } from 'react-bootstrap';
 
 export default class GovernmentPage extends Component {
   static propTypes = {
@@ -13,7 +14,8 @@ export default class GovernmentPage extends Component {
 
   state = {
     registrationLogs: [],
-    invitationLogs: {}
+    invitationLogs: {},
+    decisionForm: null
   };
 
   registrationFilter = null;
@@ -67,12 +69,14 @@ export default class GovernmentPage extends Component {
     }
   };
 
-  startDecision = () => {
-
+  startDecision = immigrantAddress => {
+    this.setState({ decisionForm: { immigrantAddress, accepted: null } });
   };
 
+  cancelDecision = () => this.setState({ decisionForm: null });
+
   render() {
-    const { registrationLogs, invitationLogs } = this.state;
+    const { registrationLogs, invitationLogs, decisionForm } = this.state;
 
     return (
       <div className="container">
@@ -126,8 +130,19 @@ export default class GovernmentPage extends Component {
           }
           </tbody>
         </table>
-      </div>
 
+        <Modal show={decisionForm !== null} onHide={this.cancelDecision}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.cancelDecision}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
+      </div>
     );
 
   }

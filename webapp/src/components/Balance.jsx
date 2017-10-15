@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { SAI } from '../util/contracts';
 
 export default class Balance extends Component {
   state = {
-    balance: ''
+    balance: '',
+    saiBalance: ''
   };
 
   static propTypes = {
@@ -12,6 +14,7 @@ export default class Balance extends Component {
 
   async componentDidMount() {
     this.getBalance(this.props.address);
+    this.getSaiBalance(this.props.address);
   }
 
   async getBalance(address) {
@@ -20,13 +23,22 @@ export default class Balance extends Component {
     });
   }
 
+  async getSaiBalance(address) {
+    const sai = await SAI.deployed();
+    this.setState({
+      saiBalance: await sai.balanceOf(address)
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.address !== this.props.address) {
       this.getBalance(nextProps.address);
+      this.getSaiBalance(nextProps.address);
     }
   }
 
   render() {
-    return `${this.state.balance} wei`;
+    const { balance, saiBalance } = this.state;
+    return `${balance} wei, ${saiBalance} sai`;
   }
 } 

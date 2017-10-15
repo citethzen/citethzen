@@ -8,12 +8,8 @@
     "react-scripts": "1.0.14"
   },
   "scripts": {
-    "link-contracts": "ln -sfn ../../build/contracts ./src/contracts",
-    "prestart": "npm run link-contracts",
     "start": "react-scripts start",
-    "prebuild": "npm run link-contracts",
     "build": "react-scripts build",
-    "pretest": "npm run link-contracts",
     "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {

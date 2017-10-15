@@ -4,12 +4,16 @@ import { ZERO_ADDRESS } from '../util/constants';
 import RegistrationForm from '../components/RegistrationForm';
 import { Alert, PageHeader } from 'react-bootstrap';
 import Balance from '../components/Balance';
+import Contribution from '../components/Contribution';
+import ContributionForm from '../components/ContributionForm';
+
 
 export default class ImmigrantPage extends Component {
   state = {
     accounts: [],
     immigrantContractAddress: null,
-    formValue: {}
+    formValue: {},
+    formValue2: {}
   };
 
   async componentDidMount() {
@@ -50,6 +54,20 @@ export default class ImmigrantPage extends Component {
     }
   };
 
+  handleSubmitContribution = async e => {
+    e.preventDefault();
+
+    const { formValue2: { tokenAmount, escrowAddress } } = this.state;
+    
+    try{
+      escrowAddress.call.gas(30000).value(tokenAmount)();
+      window.alert({message: 'successfully sent a contribution!', type: 'success'});
+    } catch (error) {
+      console.error(error);
+      window.alert({message: `failed to register! #{error.message}`, type: 'danger'});
+    }
+  }
+
   handleChange = formValue => {
     this.setState({ formValue });
   };
@@ -80,8 +98,19 @@ export default class ImmigrantPage extends Component {
           <div>
             <label>Contract Balance: </label> <Balance address={immigrantContractAddress}/>
           </div>
+          <ContributionForm onChange={this.handleChange} value={formValue} onSubmit={this.handleSubmit}/>
         </div>
       </div>
     );
+
+          //generate table: history of contributions
+          // return(
+          //   <div className="container">
+          //   </div>
+          // );
+
+          //generate form: allows user to send contributions
+
+
   }
 }
