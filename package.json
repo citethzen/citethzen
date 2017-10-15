@@ -19,6 +19,7 @@
   },
   "scripts": {
     "test": "truffle test",
+    "testrpc:seeded": "testrpc -m \"clump voice pigeon battle velvet eye inmate shy cash throw cage royal\"",
     "migrate": "truffle migrate --network testrpc --reset",
     "prerelease": "truffle compile",
     "release": "npm-release patch"

@@ -62,15 +62,13 @@ export default class GovernmentPage extends Component {
       window.alert({
         type: 'danger',
         headline: 'Error!',
-        message: `Failed to invite ${immigrantWallet} to join the process`
+        message: `Failed to invite ${immigrantWallet} to join the process: ${error.message}`
       });
     }
   };
 
   render() {
     const { registrationLogs, invitationLogs } = this.state;
-
-    console.log(invitationLogs);
 
     return (
       <div className="container">
@@ -92,9 +90,9 @@ export default class GovernmentPage extends Component {
           {	//put in headers for the table here
             _.map(
               registrationLogs,
-              log => (
+              (log, ix) => (
                 //log.args.transactionHash.toString()+ log.args.transactionIndex.toString()
-                <tr key={log.args.transactionHash + log.args.transactionIndex}>
+                <tr key={ix}>
                   <td>{log.args.age.toString()}</td>
                   <td>{OCCUPATION_CODES[ log.args.occupation.valueOf() ]}</td>
                   <td>{log.args.income.toString()}</td>
