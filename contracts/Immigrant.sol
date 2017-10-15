@@ -1,16 +1,19 @@
 pragma solidity ^0.4.16;
 
+
 import "./ERC20.sol";
 import "./Government.sol";
 import "./Wallet.sol";
 
-contract Immigrant is Wallet {
-	// need to generate new contract address
-	// Immigrant's wallet address
-	address public immigrantAddress;
 
-	address public government;
-	bytes32 public dataHash;
+contract Immigrant is Wallet {
+    // need to generate new contract address
+    // Immigrant's wallet address
+    address public immigrantAddress;
+
+    address public government;
+
+    bytes32 public dataHash;
 
 	enum Occupation { doctor, lawyer, migrantWorker, laborer }
   // Additional demographic info
@@ -18,14 +21,14 @@ contract Immigrant is Wallet {
   uint64 public occupation;
   uint128 public income;
 
-	enum ImmigrationStatus { registered, invited, accepted, rejected }
+    enum ImmigrationStatus {registered, invited, accepted, rejected}
 
-	event LogContribution(address _immigrant, uint amount);
-	event LogDecision(address _government, bool accepted);
-	event LogFailedCollection(address _immigrant, address _government, uint balance);
+    event LogContribution(address _immigrant, uint amount);
 
-	// Current immigrant status in the process
-  ImmigrationStatus public status;
+    event LogDecision(address _government, bool accepted);
+
+    // Current immigrant status in the process
+    ImmigrationStatus public status;
 
 	function Immigrant(address _immigrantAddress, uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) Wallet(_immigrantAddress) public {
     government = msg.sender;

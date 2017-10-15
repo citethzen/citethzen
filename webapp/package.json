@@ -17,6 +17,7 @@
     "prop-types": "^15.6.0",
     "react-bootstrap": "^0.31.3",
     "react-bs-notifier": "4.4.2",
+    "react-overlays": "^0.7.3",
     "react-router-dom": "^4.2.2",
     "truffle-contract": "^3.0.0",
     "underscore": "^1.8.3",

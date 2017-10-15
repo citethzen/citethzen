@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from './Icon';
-import { OCCUPATION_CODES } from '../util/constants';
-import _ from 'underscore';
 
 export default class ContributionForm extends Component {
   static propTypes = {
@@ -33,8 +31,8 @@ export default class ContributionForm extends Component {
 
         <hr/>
 
-        <button type="submit" className="btn btn-primary btn-block">
-          <Icon name="plane"/> Register
+        <button type="submit" className="form btn btn-primary">
+          <Icon name="money"/> Contribute
         </button>
       </form>
     );
