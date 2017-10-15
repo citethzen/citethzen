@@ -44,8 +44,8 @@ export default class GovernmentPage extends Component {
 						<th>Age</th>
 			            <th>Occupation</th>
 			            <th>Income</th>
-			            
 			            <th>Total Contribution</th>
+			            <th>Invitation</th>
 			            <th>Acceptance</th>
 			            <th>Collection</th>
 					</tr>
