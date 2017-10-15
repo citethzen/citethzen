@@ -33,8 +33,8 @@ export default class ContributionForm extends Component {
 
         <hr/>
 
-        <button type="submit" className="btn btn-primary btn-block">
-          <Icon name="plane"/> Register
+        <button type="submit" className="form btn btn-primary">
+          <Icon name="money"/> Contribute
         </button>
       </form>
     );

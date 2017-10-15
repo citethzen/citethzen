@@ -57,10 +57,14 @@ export default class ImmigrantPage extends Component {
   handleSubmitContribution = async e => {
     e.preventDefault();
 
-    const { formValue2: { tokenAmount, escrowAddress } } = this.state;
+    console.log(this.state);
     
     try{
-      escrowAddress.call.gas(30000).value(tokenAmount)();
+      await window.web3.eth.sendTransactionPromise({
+        to: this.state.immigrantContractAddress, 
+        from: this.state.accounts[ 0 ],
+        value: this.state.formValue2.tokenAmount
+      });
       window.alert({message: 'successfully sent a contribution!', type: 'success'});
     } catch (error) {
       console.error(error);
@@ -70,6 +74,10 @@ export default class ImmigrantPage extends Component {
 
   handleChange = formValue => {
     this.setState({ formValue });
+  };
+
+  handleChange2 = formValue2 => {
+    this.setState({ formValue2 });
   };
 
   render() {
@@ -87,6 +95,7 @@ export default class ImmigrantPage extends Component {
         </div>
       );
     }
+    const { formValue2 } = this.state;
 
     return (
       <div className="container">
@@ -98,7 +107,7 @@ export default class ImmigrantPage extends Component {
           <div>
             <label>Contract Balance: </label> <Balance address={immigrantContractAddress}/>
           </div>
-          <ContributionForm onChange={this.handleChange} value={formValue} onSubmit={this.handleSubmit}/>
+          <ContributionForm onChange={this.handleChange2} value={formValue2} onSubmit={this.handleSubmitContribution}/>
         </div>
       </div>
     );
