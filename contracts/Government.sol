@@ -79,7 +79,7 @@ contract Government is Wallet {
 		if (storedDataHash == immigrantDataHash) {
       // empty the immigrants wallet
 			immigrantRegistry[_address].emptyAccountEth();
-      /*LogGovernmentCollection(_address, contribution);*/
+      LogGovernmentCollection(_address, contribution);
 
       /*for (uint token = 0; token < acceptedTokens.length; token++) {
           immigrantRegistry[_address].emptyAccountToken(acceptedTokens[token]);

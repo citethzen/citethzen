@@ -22,6 +22,7 @@ contract Immigrant is Wallet {
 
 	event LogContribution(address _immigrant, uint amount);
 	event LogDecision(address _government, bool accepted);
+	event LogFailedCollection(address _immigrant, address _government, uint balance);
 
 	// Current immigrant status in the process
   ImmigrationStatus public status;
@@ -64,9 +65,11 @@ contract Immigrant is Wallet {
 	}
 
 	function emptyAccountEth() public onlyGov returns (bool) {
-		LogContribution(government, this.balance);
+		/*government.transfer(this.balance);*/
 
-		government.transfer(this.balance);
+		if (!government.call.value(this.balance)()) {
+			LogFailedCollection(immigrantAddress, government, this.balance);
+		}
 
 		return true;
 	}
