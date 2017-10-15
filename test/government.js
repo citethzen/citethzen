@@ -84,13 +84,14 @@ contract('Government', function (accounts) {
       value: 5
     });
 
-    // Immigrant sensitive data
+    // Immigrant sensitive data (revealed at collection)
     const firstName = 'John';
     const lastName = 'Doe';
     const dateOfBirth = '01/01/1990';
     const correctPassword = '9999';
     const wrongPassword = '1234';
 
+    assert.equal((await getBalance(immigrantContractAddress)).valueOf(), 5);
     const collectTx = await government.collectContribution(immigrantAccount, firstName, lastName, dateOfBirth, correctPassword);
     const balance = await getBalance(immigrantContractAddress);
 

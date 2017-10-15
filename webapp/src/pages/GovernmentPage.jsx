@@ -36,7 +36,8 @@ export default class GovernmentPage extends Component {
 
     this.invitationFilter = government.LogInvitation(null, { fromBlock: 0 });
     this.invitationFilter.watch(
-      (error, log) =>
+      (error, log) => {
+        console.log('invitation', log);
         this.setState(
           state => ({
             invitationLogs: {
@@ -44,7 +45,8 @@ export default class GovernmentPage extends Component {
               [log.args.immigrantWallet]: true
             }
           })
-        )
+        );
+      }
     );
   }
 
@@ -53,7 +55,7 @@ export default class GovernmentPage extends Component {
     const govOwner = await government.owner();
 
     try {
-      const inviteTx = await government.invite(immigrantWallet, { gas: 3000000, from: govOwner });
+      await government.invite(immigrantWallet, { gas: 3000000, from: govOwner });
       window.alert({
         type: 'success',
         headline: 'Success!',
