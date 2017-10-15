@@ -7,6 +7,8 @@ import "./Government.sol";
 contract Wallet {
     address public owner;
 
+    event LogWithdraw(address receiver, uint amount);
+
     function Wallet(address _owner) public {
         owner = _owner;
     }
@@ -17,7 +19,12 @@ contract Wallet {
     }
 
     function withdrawETH(address withdrawTo) public onlyOwner returns (bool) {
+        LogWithdraw(withdrawTo, this.balance);
+
         withdrawTo.transfer(this.balance);
+
+        LogWithdraw(withdrawTo, this.balance);
+
         return true;
     }
 

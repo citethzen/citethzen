@@ -114,16 +114,18 @@ contract('Government', function (accounts) {
     const balanceAfterContributions = await getBalance(immigrantAccount);
 
     // Withdraw ether
-    const withdrawTx = immigrantContract.withdrawETH(immigrantAccount, {
+    const withdrawTx = await immigrantContract.withdrawETH(immigrantAccount, {
       from: immigrantAccount
     });
 
-    // Updated balances
+    // Updated balance
     const immigrantBalance = await getBalance(immigrantAccount);
+
+    assert.notEqual(balanceAfterContributions.toNumber(), immigrantBalance.toNumber(), 'the withdrawer should have their wallet balance increased');
+
     const contractBalance = await getBalance(immigrantContractAddress);
 
     assert.equal(contractBalance.toNumber(), 0, 'withdrawETH should move all funds away from immigrant\'s contract');
-    assert.notEqual(immigrantBalance.toNumber(), balanceAfterContributions.toNumber(), 'the withdrawer should have their wallet balance increased');
   });
 
 });
