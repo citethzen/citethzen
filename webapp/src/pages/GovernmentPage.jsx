@@ -27,12 +27,14 @@ export default class GovernmentPage extends Component {
 
     this.registrationFilter = government.LogImmigrantRegistration(null, { fromBlock: 0 });
     this.registrationFilter.watch(
-      (error, log) =>
+      (error, log) => {
+        console.log('registration', log);
         this.setState(
           state => ({
             registrationLogs: [ log ].concat(state.registrationLogs)
           })
-        )
+        );
+      }
     );
 
     this.invitationFilter = government.LogInvitation(null, { fromBlock: 0 });
