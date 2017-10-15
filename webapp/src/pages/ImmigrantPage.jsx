@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Government, Immigrant } from '../util/contracts';
-import { ZERO_ADDRESS } from '../util/constants';
+import { STATUS_NAMES, ZERO_ADDRESS } from '../util/constants';
 import RegistrationForm from '../components/RegistrationForm';
 import { Alert, PageHeader } from 'react-bootstrap';
 import Balance from '../components/Balance';
@@ -14,6 +14,7 @@ export default class ImmigrantPage extends Component {
     immigrantContractAddress: null,
     formValue: {},
     formValue2: {},
+    immigrantStatus: 0,
     contributionLogs: []
   };
 
@@ -39,9 +40,10 @@ export default class ImmigrantPage extends Component {
           })
         )
     );
-    console.log(this.state.contributionLogs);
 
-    this.setState({ immigrantContractAddress });
+    const immigrantStatus = await immigrantContract.status();
+
+    this.setState({ immigrantContractAddress, immigrantStatus: immigrantStatus.valueOf() });
   }
 
   handleSubmit = async e => {
@@ -62,7 +64,17 @@ export default class ImmigrantPage extends Component {
 
       const { immigrantContractAddress } = registerTx.logs[ 0 ].args;
 
-      this.setState({ immigrantContractAddress });
+      this.setState({ immigrantContractAddress }, () => {
+        this.contributionFilter = Immigrant.at(immigrantContractAddress).LogContribution(null, { fromBlock: 0 });
+        this.contributionFilter.watch(
+          (error, log) =>
+            this.setState(
+              state => ({
+                contributionLogs: [ log ].concat(state.contributionLogs)
+              })
+            )
+        );
+      });
     } catch (error) {
       console.error(error);
       window.alert({ message: `failed to register! ${error.message}`, type: 'danger' });
@@ -96,7 +108,7 @@ export default class ImmigrantPage extends Component {
   };
 
   render() {
-    const { immigrantContractAddress, formValue } = this.state;
+    const { immigrantContractAddress, immigrantStatus, formValue, formValue2, contributionLogs } = this.state;
 
     if (immigrantContractAddress === null) {
       return (<div className="container"><Alert> please wait ... </Alert></div>);
@@ -111,13 +123,17 @@ export default class ImmigrantPage extends Component {
       );
     }
 
-    const { formValue2, contributionLogs } = this.state;
     console.log(this.state);
     console.log(contributionLogs);
 
+    console.log('immigrant status', immigrantStatus);
+
     return (
       <div className="container">
-        <PageHeader>Your Registration Info</PageHeader>
+        <PageHeader>
+          Your Registration Info&nbsp;
+          <small><strong>Status:</strong> {STATUS_NAMES[ immigrantStatus ]}</small>
+        </PageHeader>
         <div>
           <div>
             <label>Your Escrow Address: </label> {immigrantContractAddress}
@@ -125,7 +141,13 @@ export default class ImmigrantPage extends Component {
           <div>
             <label>Contract Balance: </label> <Balance address={immigrantContractAddress}/>
           </div>
-          <ContributionForm onChange={this.handleChange2} value={formValue2} onSubmit={this.handleSubmitContribution}/>
+          {
+            immigrantStatus < 1 ?
+              <ContributionForm
+                onChange={this.handleChange2} value={formValue2}
+                onSubmit={this.handleSubmitContribution}/> :
+              null
+          }
 
           <h2>Your Contributions</h2>
           <div>
