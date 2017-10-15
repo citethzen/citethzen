@@ -70,7 +70,7 @@ contract Immigrant is Wallet {
             status = ImmigrationStatus.rejected;
         }
 
-        return accepted;
+        return true;
     }
 
     function emptyAccountEth() public onlyGov returns (bool) {

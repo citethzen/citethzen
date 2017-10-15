@@ -97,6 +97,24 @@ contract('Government', function (accounts) {
     assert.equal(balance.toNumber(), 0, 'collectContribution should succeed when passing the correct info');
   });
 
+  it('reject immigrant', async () => {
+    // Do a contribution
+    const contributionTx = await immigrantContract.sendTransaction({
+      from: immigrantAccount,
+      value: 5
+    });
+
+    // invite the immigrant
+    const inviteTx = await government.invite(immigrantAccount, { from: governmentOwnerAccount });
+
+    assert.equal((await getBalance(immigrantContractAddress)).valueOf(), 5);
+    // reject the immigrant
+    const rejectTx = await government.makeDecision(immigrantAccount, false, firstName, lastName, dateOfBirth, correctPassword);
+
+    // balance still 5
+    assert.equal((await getBalance(immigrantContractAddress)).valueOf(), 5);
+  });
+
   it('Let the immigrant withdraw his/her funds if they were not invited nor accepted', async () => {
     // Do a contribution
     let contributionTx = await immigrantContract.sendTransaction({
