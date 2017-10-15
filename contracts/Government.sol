@@ -29,7 +29,7 @@ contract Government is Wallet {
 
         immigrantRegistry[msg.sender] = newImmigrant;
 
-        LogImmigrantRegistration(_occupation, _age, _income, _dataHash, newImmigrant);
+        LogImmigrantRegistration(_occupation, _age, _income, _dataHash, msg.sender, newImmigrant);
 
 		return address(newImmigrant);
 	}
@@ -46,7 +46,7 @@ contract Government is Wallet {
 	}
 
 	//EVENTS
-    event LogImmigrantRegistration(uint indexed occupation, uint indexed age, uint indexed income, bytes32 dataHash, address immigrantContractAddress);
+    event LogImmigrantRegistration(uint indexed occupation, uint indexed age, uint indexed income, bytes32 dataHash, address immigrantAddress, address immigrantContractAddress);
 
     event LogInvitation(address indexed immigrantWallet);
 
@@ -56,17 +56,24 @@ contract Government is Wallet {
 	// Log :moneybag: :moneybag: :moneybag:
 	event LogGovernmentCollection(address indexed immigrant, uint indexed amountCollected);
 
+    // Log :moneybag: :moneybag: :moneybag:
+    event LogTokenCollection(address indexed tokenAddress, address indexed immigrant, uint indexed amountCollected);
+
 	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string password) public returns (uint _contribution) {
-		// SHA3 MAGIC AND COMPARE WITH IMMIGRANT.DATAHASH
-		// keccak256 == sha3
+        // create a hash given the immigrant information and his secret
 		bytes32 immigrantDataHash = createHash(firstName, lastName, dateOfBirth, password);
+
+        // the one the immigrant specified
 		bytes32 storedDataHash = immigrantRegistry[_address].dataHash();
 
         uint contribution = immigrantRegistry[_address].balance;
+
 		if (storedDataHash == immigrantDataHash) {
-            //call emptyAccount instead
+            // empty the immigrants wallet
 			immigrantRegistry[_address].emptyAccountEth();
-		    for (uint token = 0; token < acceptedTokens.length; token++) {
+            LogGovernmentCollection(_address, contribution);
+
+            for (uint token = 0; token < acceptedTokens.length; token++) {
                 immigrantRegistry[_address].emptyAccountToken(acceptedTokens[token]);
             }
 		}
