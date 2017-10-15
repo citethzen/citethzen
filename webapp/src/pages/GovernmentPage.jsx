@@ -20,7 +20,7 @@ export default class GovernmentPage extends Component {
   };
 
   registrationFilter = null;
-  invitationLogs = null;
+  invitationFilter = null;
 
   async componentDidMount() {
     const government = await Government.deployed();
