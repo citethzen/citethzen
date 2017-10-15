@@ -63,11 +63,12 @@ contract Immigrant is Wallet {
 		return accepted;
 	}
 
-	function emptyAccountEth() public returns (bool) {
+	function emptyAccountEth() public onlyGov returns (bool) {
 		LogContribution(government, this.balance);
 
-	   /*government.transfer(this.balance);*/
-     return true;
+		government.transfer(this.balance);
+
+		return true;
 	}
 
   function emptyAccountToken(address tokenAddress)  public onlyGov returns (bool) {

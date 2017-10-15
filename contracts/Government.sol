@@ -38,12 +38,12 @@ contract Government is Wallet {
 		return address(newImmigrant);
 	}
 
-  function invite(address immigrantWallet) public onlyOwner returns (bool ){
+  function invite(address immigrantWallet) public onlyOwner returns (bool) {
       require(immigrantRegistry[immigrantWallet].receiveGovernmentInvitation());
 			LogInvitation(immigrantWallet);
   }
 
-	function makeDecision(address immigrantWallet, bool accepted) {
+	function makeDecision(address immigrantWallet, bool accepted) public returns (bool) {
 			require(immigrantRegistry[immigrantWallet].receiveDecision(accepted));
 			LogGovernmentDecision(immigrantWallet, accepted);
 	}
