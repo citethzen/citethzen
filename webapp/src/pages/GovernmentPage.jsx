@@ -93,7 +93,8 @@ export default class GovernmentPage extends Component {
         {
           gas: 3000000,
           from: govOwner
-        });
+        }
+      );
 
       window.alert({
         type: 'success',
@@ -182,13 +183,13 @@ export default class GovernmentPage extends Component {
             <div className="row">
               <div className="col-xs-6">
                 <button className="btn btn-danger btn-block"
-                        onClick={() => this.handleDecision(true)}>
+                        onClick={() => this.handleDecision(false)}>
                   <Icon name="thumbs-down"/> Nay!
                 </button>
               </div>
               <div className="col-xs-6">
                 <button className="btn btn-success btn-block"
-                        onClick={() => this.handleDecision(false)}>
+                        onClick={() => this.handleDecision(true)}>
                   <Icon name="thumbs-up"/> Yay!
                 </button>
               </div>
