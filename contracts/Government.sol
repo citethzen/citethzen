@@ -29,7 +29,8 @@ contract Government is Wallet {
     // register/create new immigrant contract
     function register(uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) public returns (address) {
         // msg sender cannot be the government contract owner
-        require(msg.sender != owner);
+        // disable requirement for testing
+//        require(msg.sender != owner);
 
         // msg sender cannot already be registered
         require(immigrantRegistry[msg.sender] == address(0));
