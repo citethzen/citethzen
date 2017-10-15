@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from './Icon';
 
-export default class ContributionForm extends Component {
+export default class SaiContributionForm extends Component {
   static propTypes = {
     value: PropTypes.object,
     onChange: PropTypes.func.isRequired
@@ -15,7 +15,7 @@ export default class ContributionForm extends Component {
     return (
       <form {...rest} className="form">
         <div className="form-group">
-          <label>Amount of Wei</label>
+          <label>Amount of SAI</label>
           <input type="number" className="form-control"
                  placeholder="100"
                  required
@@ -24,8 +24,8 @@ export default class ContributionForm extends Component {
           />
         </div>
 
-        <button type="submit" className="form btn btn-primary">
-          <Icon name="money"/> Contribute
+        <button type="submit" className="btn btn-primary">
+          <Icon name="money"/> Send SAI
         </button>
       </form>
     );

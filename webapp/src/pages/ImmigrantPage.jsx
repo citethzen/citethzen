@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Government, Immigrant } from '../util/contracts';
+import { Government, Immigrant, SAI } from '../util/contracts';
 import { STATUS_NAMES, ZERO_ADDRESS } from '../util/constants';
 import RegistrationForm from '../components/RegistrationForm';
 import { Alert, PageHeader } from 'react-bootstrap';
 import Balance from '../components/Balance';
 import ContributionForm from '../components/ContributionForm';
 import _ from 'underscore';
+import SaiContributionForm from '../components/SaiContributionForm';
 
 
 export default class ImmigrantPage extends Component {
@@ -14,6 +15,7 @@ export default class ImmigrantPage extends Component {
     immigrantContractAddress: null,
     formValue: {},
     formValue2: {},
+    formValue4: {},
     immigrantStatus: 0,
     contributionLogs: []
   };
@@ -87,15 +89,37 @@ export default class ImmigrantPage extends Component {
     console.log(this.state);
 
     try {
+      const { immigrantContractAddress, formValue2: { tokenAmount }, accounts: [ fromAccount ] } = this.state;
+
       await window.web3.eth.sendTransactionPromise({
-        to: this.state.immigrantContractAddress,
-        from: this.state.accounts[ 0 ],
-        value: this.state.formValue2.tokenAmount
+        to: immigrantContractAddress,
+        from: fromAccount,
+        value: tokenAmount
       });
-      window.alert({ message: 'successfully sent a contribution!', type: 'success' });
+      window.alert({
+        message: `successfully sent a contribution for ${this.state.formValue2.tokenAmount} wei`,
+        type: 'success'
+      });
     } catch (error) {
       console.error(error);
-      window.alert({ message: `failed to register! #{error.message}`, type: 'danger' });
+      window.alert({ message: `failed to register! ${error.message}`, type: 'danger' });
+    }
+  };
+
+  handleSubmitSAIContribution = async e => {
+    e.preventDefault();
+
+    const sai = await SAI.deployed();
+
+    try {
+      const { immigrantContractAddress, formValue4: { tokenAmount } } = this.state;
+
+      await sai.transfer(immigrantContractAddress, tokenAmount, { from: this.state.accounts[ 0 ] });
+
+      window.alert({ message: `successfully sent a contribution for ${tokenAmount} SAI`, type: 'success' });
+    } catch (error) {
+      console.error(error);
+      window.alert({ message: `failed to register! ${error.message}`, type: 'danger' });
     }
   };
 
@@ -106,9 +130,12 @@ export default class ImmigrantPage extends Component {
   handleChange2 = formValue2 => {
     this.setState({ formValue2 });
   };
+  handleChange4 = formValue4 => {
+    this.setState({ formValue4 });
+  };
 
   render() {
-    const { immigrantContractAddress, immigrantStatus, formValue, formValue2, contributionLogs } = this.state;
+    const { immigrantContractAddress, immigrantStatus, formValue, formValue2, formValue4, contributionLogs } = this.state;
 
     if (immigrantContractAddress === null) {
       return (<div className="container"><Alert> please wait ... </Alert></div>);
@@ -143,9 +170,21 @@ export default class ImmigrantPage extends Component {
           </div>
           {
             immigrantStatus < 1 ?
-              <ContributionForm
-                onChange={this.handleChange2} value={formValue2}
-                onSubmit={this.handleSubmitContribution}/> :
+              <div>
+                <h2>Send Contributions</h2>
+                <div className="row">
+                  <div className="col-sm-6">
+                    <ContributionForm
+                      onChange={this.handleChange2} value={formValue2}
+                      onSubmit={this.handleSubmitContribution}/>
+                  </div>
+
+                  <div className="col-sm-6">
+                    <SaiContributionForm onChange={this.handleChange4} value={formValue4}
+                                         onSubmit={this.handleSubmitSAIContribution}/>
+                  </div>
+                </div>
+              </div> :
               null
           }
 

@@ -24,11 +24,16 @@ export default class Menu extends Component {
 
 
   componentDidMount() {
+    this.getAccounts();
+    setInterval(this.getAccounts, 1000);
+  }
+
+  getAccounts = () => {
     window.web3.eth.getAccountsPromise()
       .then(accounts => {
         this.setState({ accounts });
       });
-  }
+  };
 
   render() {
     const { accounts } = this.state;
@@ -54,7 +59,8 @@ export default class Menu extends Component {
             {
               accounts !== null && accounts.length > 0 ? (
                 <span>
-                  <strong>My Balance: </strong> <Balance address={accounts[ 0 ]}/>
+                  <em style={{ opacity: 0.3 }}>{accounts[ 0 ]}</em> <strong>My Balance: </strong> <Balance
+                  address={accounts[ 0 ]}/>
                 </span>
               ) : null
             }
