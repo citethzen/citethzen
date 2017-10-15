@@ -79,6 +79,34 @@ export default class GovernmentPage extends Component {
   };
 
   cancelDecision = () => this.setState({ decisionForm: null });
+  handleDecision = async accepted => {
+    const { decisionForm } = this.state;
+
+    const government = await Government.deployed();
+    const govOwner = await government.owner();
+
+    try {
+      const transactionObject = await government.makeDecision(decisionForm.immigrantAddress, accepted, {
+        gas: 3000000,
+        from: govOwner
+      });
+
+      window.alert({
+        type: 'success',
+        headline: 'Success!',
+        message: `Immigrant ${decisionForm.immigrantAddress} ${accepted ? 'has been accepted!' : 'has been denied!'}`
+      });
+
+      this.setState({ decisionForm: null });
+    } catch (error) {
+      console.error(error);
+      window.alert({
+        type: 'danger',
+        headline: 'Error!',
+        message: `Failed to make decision on ${decisionForm.immigrantAddress}: ${error.message}`
+      });
+    }
+  };
 
   render() {
     const { registrationLogs, invitationLogs, decisionForm } = this.state;
@@ -149,10 +177,16 @@ export default class GovernmentPage extends Component {
             <hr/>
             <div className="row">
               <div className="col-xs-6">
-                <button className="btn btn-danger btn-block"><Icon name="thumbs-down"/> Nay!</button>
+                <button className="btn btn-danger btn-block"
+                        onClick={() => this.handleDecision(true)}>
+                  <Icon name="thumbs-down"/> Nay!
+                </button>
               </div>
               <div className="col-xs-6">
-                <button className="btn btn-success btn-block"><Icon name="thumbs-up"/> Yay!</button>
+                <button className="btn btn-success btn-block"
+                        onClick={() => this.handleDecision(false)}>
+                  <Icon name="thumbs-up"/> Yay!
+                </button>
               </div>
             </div>
           </Modal.Body>

@@ -15,72 +15,78 @@ contract Immigrant is Wallet {
 
     bytes32 public dataHash;
 
-	enum Occupation { doctor, lawyer, migrantWorker, laborer }
-  // Additional demographic info
-  uint64 public age;
-  uint64 public occupation;
-  uint128 public income;
+    enum Occupation {doctor, lawyer, migrantWorker, laborer}
+    // Additional demographic info
+    uint64 public age;
+
+    uint64 public occupation;
+
+    uint128 public income;
 
     enum ImmigrationStatus {registered, invited, accepted, rejected}
 
     event LogContribution(address _immigrant, uint amount);
-		event LogDecision(address _government, bool accepted);
+
+    event LogDecision(address _government, bool accepted);
+
     event LogFailedCollection(address _immigrant, address _government, uint balance);
 
     // Current immigrant status in the process
     ImmigrationStatus public status;
 
-	function Immigrant(address _immigrantAddress, uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) Wallet(_immigrantAddress) public {
-    government = msg.sender;
-    immigrantAddress = _immigrantAddress;
+    function Immigrant(address _immigrantAddress, uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) Wallet(_immigrantAddress) public {
+        government = msg.sender;
+        immigrantAddress = _immigrantAddress;
 
-    occupation = _occupation;
-		age = _age;
-		income = _income;
-		dataHash = _dataHash;
-    status = ImmigrationStatus.registered;
-	}
+        occupation = _occupation;
+        age = _age;
+        income = _income;
+        dataHash = _dataHash;
+        status = ImmigrationStatus.registered;
+    }
 
-	function() public payable {
-		// Make a contribution to the income tax fund for msg.sender
-		LogContribution(msg.sender, msg.value);
-	}
+    function() public payable {
+        // Make a contribution to the income tax fund for msg.sender
+        LogContribution(msg.sender, msg.value);
+    }
 
-	modifier onlyGov {
-	    require(msg.sender == government);
-	    _;
-	}
+    modifier onlyGov {
+        require(msg.sender == government);
+        _;
+    }
 
-	function receiveGovernmentInvitation() public onlyGov returns (bool success) {
-		require(status == ImmigrationStatus.registered);
-		status = ImmigrationStatus.invited;
-		return true;
-	}
+    function receiveGovernmentInvitation() public onlyGov returns (bool success) {
+        require(status == ImmigrationStatus.registered);
+        status = ImmigrationStatus.invited;
+        return true;
+    }
 
-	function receiveDecision(bool accepted) public onlyGov returns (bool) {
-		if (accepted) {
-			status = ImmigrationStatus.accepted;
-		} else {
-			status = ImmigrationStatus.rejected;
-		}
+    function receiveDecision(bool accepted) public onlyGov returns (bool) {
+        require(status == ImmigrationStatus.invited);
 
-		return accepted;
-	}
+        if (accepted) {
+            status = ImmigrationStatus.accepted;
+        } else {
+            status = ImmigrationStatus.rejected;
+        }
 
-	function emptyAccountEth() public onlyGov returns (bool) {
-		/*government.transfer(this.balance);*/
+        return accepted;
+    }
 
-		if (!government.call.value(this.balance)()) {
-			LogFailedCollection(immigrantAddress, government, this.balance);
-		}
+    function emptyAccountEth() public onlyGov returns (bool) {
+        /*government.transfer(this.balance);*/
 
-		return true;
-	}
+        if (!government.call.value(this.balance)()) {
+            LogFailedCollection(immigrantAddress, government, this.balance);
+        }
 
-  function emptyAccountToken(address tokenAddress)  public onlyGov returns (bool) {
-    ERC20 token = ERC20(tokenAddress);
-    government.transfer(token.balanceOf(this));
-    return true;
-	}
+        return true;
+    }
+
+    function emptyAccountToken(address tokenAddress) public onlyGov returns (bool) {
+        ERC20 token = ERC20(tokenAddress);
+        government.transfer(token.balanceOf(this));
+        return true;
+    }
 
 }

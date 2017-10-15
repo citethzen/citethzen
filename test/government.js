@@ -12,6 +12,12 @@ contract('Government', function (accounts) {
   const age = 25;
   const income = 999;
 
+  // Immigrant sensitive data (revealed at collection)
+  const firstName = 'John';
+  const lastName = 'Doe';
+  const dateOfBirth = '01/01/1990';
+  const correctPassword = '9999';
+
   function getBalance(address) {
     return new Promise((resolve, reject) => {
       web3.eth.getBalance(address, (error, result) => {
@@ -31,7 +37,7 @@ contract('Government', function (accounts) {
   beforeEach('create the bootstrapping test objects', async () => {
     government = await Government.new({ from: governmentOwnerAccount });
 
-    const hashData = await getHash('John', 'Doe', '01/01/1990', '9999');
+    const hashData = await getHash(firstName, lastName, dateOfBirth, correctPassword);
 
     const registerImmigrantTx = await government.register(occupation, age, income, hashData, { from: immigrantAccount });
 
@@ -66,17 +72,6 @@ contract('Government', function (accounts) {
     assert.equal(status.toNumber(), 1, 'Immigrant\'s status should be 1 (invited)');
   });
 
-  it('Accepts the invited immigrant', async () => {
-    const inviteTx = await government.invite(immigrantAccount);
-    const acceptTx = await government.makeDecision(immigrantAccount, true, {
-      from: governmentOwnerAccount
-    });
-
-    const status = await immigrantContract.status();
-
-    assert.equal(status.toNumber(), 2, 'Immigrant\'s status should be 2 (accepted)');
-  });
-
   it('Collect an accepted immigrant contribution', async () => {
     // Do a contribution
     const contributionTx = await immigrantContract.sendTransaction({
@@ -84,15 +79,19 @@ contract('Government', function (accounts) {
       value: 5
     });
 
-    // Immigrant sensitive data (revealed at collection)
-    const firstName = 'John';
-    const lastName = 'Doe';
-    const dateOfBirth = '01/01/1990';
-    const correctPassword = '9999';
-    const wrongPassword = '1234';
+    // invite the immigrant
+    const inviteTx = await government.invite(immigrantAccount, { from: governmentOwnerAccount });
+
+    let error = false;
+    try {
+      console.log(await government.makeDecision(immigrantAccount, true, firstName, lastName, dateOfBirth, 'abc123'));
+    } catch (err) {
+      error = true;
+    }
+    assert.equal(error, true);
 
     assert.equal((await getBalance(immigrantContractAddress)).valueOf(), 5);
-    const collectTx = await government.collectContribution(immigrantAccount, firstName, lastName, dateOfBirth, correctPassword);
+    const collectTx = await government.makeDecision(immigrantAccount, true, firstName, lastName, dateOfBirth, correctPassword);
     const balance = await getBalance(immigrantContractAddress);
 
     assert.equal(balance.toNumber(), 0, 'collectContribution should succeed when passing the correct info');

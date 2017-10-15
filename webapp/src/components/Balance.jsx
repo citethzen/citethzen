@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SAI } from '../util/contracts';
 
@@ -39,6 +39,6 @@ export default class Balance extends Component {
 
   render() {
     const { balance, saiBalance } = this.state;
-    return `${balance} wei, ${saiBalance} sai`;
+    return <span>{balance.toString()} <strong>wei</strong>, {saiBalance.toString()} <strong>sai</strong></span>;
   }
 } 
