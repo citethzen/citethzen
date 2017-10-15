@@ -12,10 +12,18 @@ export default class Balance extends Component {
     address: PropTypes.string.isRequired
   };
 
+  timer = null;
+
   async componentDidMount() {
+    this.fetchBalances();
+
+    this.timer = setInterval(this.fetchBalances, 1000);
+  }
+
+  fetchBalances = () => {
     this.getBalance(this.props.address);
     this.getSaiBalance(this.props.address);
-  }
+  };
 
   async getBalance(address) {
     this.setState({
@@ -28,13 +36,6 @@ export default class Balance extends Component {
     this.setState({
       saiBalance: await sai.balanceOf(address)
     });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.address !== this.props.address) {
-      this.getBalance(nextProps.address);
-      this.getSaiBalance(nextProps.address);
-    }
   }
 
   render() {
