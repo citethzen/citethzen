@@ -29,7 +29,7 @@ contract Government is Wallet {
 
         immigrantRegistry[msg.sender] = newImmigrant;
 
-        LogImmigrantRegistration(_occupation, _age, _income, _dataHash);
+        LogImmigrantRegistration(_occupation, _age, _income, _dataHash, newImmigrant);
 
 		return address(newImmigrant);
 	}
@@ -46,7 +46,7 @@ contract Government is Wallet {
 	}
 
 	//EVENTS
-    event LogImmigrantRegistration(uint indexed occupation, uint indexed age, uint indexed income, bytes32 dataHash);
+    event LogImmigrantRegistration(uint indexed occupation, uint indexed age, uint indexed income, bytes32 dataHash, address immigrantContractAddress);
 
     event LogInvitation(address indexed immigrantWallet);
 

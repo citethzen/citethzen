@@ -4,12 +4,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import GovernmentPage from './pages/GovernmentPage';
 import ImmigrantPage from './pages/ImmigrantPage';
+import Notifier from './pages/Notifier';
 
 export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div style={{ marginBottom: 20 }}>
+          <Notifier/>
+
           <Menu/>
 
           <Switch>
