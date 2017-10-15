@@ -75,10 +75,10 @@ export default class ImmigrantPage extends Component {
         <PageHeader>Your Registration Info</PageHeader>
         <div>
           <div>
-            <label>Your Address: </label> {immigrantContractAddress}
+            <label>Your Escrow Address: </label> {immigrantContractAddress}
           </div>
           <div>
-            <label>Balance: </label> <Balance address={immigrantContractAddress}/>
+            <label>Contract Balance: </label> <Balance address={immigrantContractAddress}/>
           </div>
         </div>
       </div>
