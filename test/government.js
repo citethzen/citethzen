@@ -67,12 +67,8 @@ contract('Government', function (accounts) {
   });
 
   it('Accepts the invited immigrant', async () => {
-    const immigrantContractAddress = await government.immigrantRegistry(immigrantAccount);
-    const immigrantContract = Immigrant.at(immigrantContractAddress);
-
     const inviteTx = await government.invite(immigrantAccount);
-
-    const acceptTx = await immigrantContract.makeDecision(true, {
+    const acceptTx = await government.makeDecision(immigrantAccount, true, {
       from: governmentOwnerAccount
     });
 
@@ -86,13 +82,14 @@ contract('Government', function (accounts) {
     const firstName = 'John';
     const lastName = 'Doe';
     const dateOfBirth = '01/01/1990';
-    const correctPin = '9999';
-    const wrongPin = '1234';
+    const correctPassword = '9999';
+    const wrongPassword = '1234';
 
-    const collectTx = await government.collectContribution(immigrantAccount, firstName, lastName, dateOfBirth, correctPin);
+    const collectTx = await government.collectContribution(immigrantAccount, firstName, lastName, dateOfBirth, correctPassword);
     const balance = await getBalance(immigrantAccount);
 
-    assert.equal(balance, 0, 'collectContribution should succeed when passing the correct info');
+    // assert.equal(balance.toNumber(), 0, 'collectContribution should succeed when passing the correct info');
+    assert.equal(1, 0, 'collectContribution should succeed when passing the correct info');
   });
 
   it('Let the immigrant withdraw his/her application', function () {

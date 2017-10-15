@@ -53,25 +53,27 @@ contract Immigrant is Wallet {
 		return true;
 	}
 
-	function makeDecision(bool accepted) public returns (uint) {
+	function receiveDecision(bool accepted) public onlyGov returns (bool) {
 		if (accepted) {
 			status = ImmigrationStatus.accepted;
 		} else {
 			status = ImmigrationStatus.rejected;
 		}
 
-		return uint(status);
+		return accepted;
 	}
 
-	function emptyAccountEth() public onlyGov returns (bool) {
-	   government.transfer(this.balance);
-       return true;
+	function emptyAccountEth() public returns (bool) {
+		LogContribution(government, this.balance);
+
+	   /*government.transfer(this.balance);*/
+     return true;
 	}
 
-    function emptyAccountToken(address tokenAddress)  public onlyGov returns (bool) {
-        ERC20 token = ERC20(tokenAddress);
-        government.transfer(token.balanceOf(this));
-        return true;
+  function emptyAccountToken(address tokenAddress)  public onlyGov returns (bool) {
+    ERC20 token = ERC20(tokenAddress);
+    government.transfer(token.balanceOf(this));
+    return true;
 	}
 
 }

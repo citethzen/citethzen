@@ -34,11 +34,15 @@ contract Government is Wallet {
 		return address(newImmigrant);
 	}
 
-    function invite(address immigrantWallet) public onlyOwner returns (bool ){
-        require(immigrantRegistry[immigrantWallet].receiveGovernmentInvitation());
-        LogInvitation(immigrantWallet);
-    }
+  function invite(address immigrantWallet) public onlyOwner returns (bool ){
+      require(immigrantRegistry[immigrantWallet].receiveGovernmentInvitation());
+			LogInvitation(immigrantWallet);
+  }
 
+	function makeDecision(address immigrantWallet, bool accepted) {
+			require(immigrantRegistry[immigrantWallet].receiveDecision(accepted));
+			LogGovernmentDecision(immigrantWallet, accepted);
+	}
 
 	modifier onlyOwner {
 	    require(msg.sender == owner);
@@ -46,9 +50,9 @@ contract Government is Wallet {
 	}
 
 	//EVENTS
-    event LogImmigrantRegistration(uint indexed occupation, uint indexed age, uint indexed income, bytes32 dataHash, address immigrantAddress, address immigrantContractAddress);
+  event LogImmigrantRegistration(uint indexed occupation, uint indexed age, uint indexed income, bytes32 dataHash, address immigrantAddress, address immigrantContractAddress);
 
-    event LogInvitation(address indexed immigrantWallet);
+  event LogInvitation(address indexed immigrantWallet);
 
 	// Log government decisions (accept/decline citizenship for the immigrant)
 	event LogGovernmentDecision(address indexed immigrant, bool indexed wasAccepted);
@@ -56,26 +60,26 @@ contract Government is Wallet {
 	// Log :moneybag: :moneybag: :moneybag:
 	event LogGovernmentCollection(address indexed immigrant, uint indexed amountCollected);
 
-    // Log :moneybag: :moneybag: :moneybag:
-    event LogTokenCollection(address indexed tokenAddress, address indexed immigrant, uint indexed amountCollected);
+  // Log :moneybag: :moneybag: :moneybag:
+  event LogTokenCollection(address indexed tokenAddress, address indexed immigrant, uint indexed amountCollected);
 
 	function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string password) public returns (uint _contribution) {
-        // create a hash given the immigrant information and his secret
+    // create a hash given the immigrant information and his secret
 		bytes32 immigrantDataHash = createHash(firstName, lastName, dateOfBirth, password);
 
-        // the one the immigrant specified
+    // the one the immigrant specified
 		bytes32 storedDataHash = immigrantRegistry[_address].dataHash();
 
-        uint contribution = immigrantRegistry[_address].balance;
+    uint contribution = immigrantRegistry[_address].balance;
 
 		if (storedDataHash == immigrantDataHash) {
-            // empty the immigrants wallet
+      // empty the immigrants wallet
 			immigrantRegistry[_address].emptyAccountEth();
-            LogGovernmentCollection(_address, contribution);
+      /*LogGovernmentCollection(_address, contribution);*/
 
-            for (uint token = 0; token < acceptedTokens.length; token++) {
-                immigrantRegistry[_address].emptyAccountToken(acceptedTokens[token]);
-            }
+      /*for (uint token = 0; token < acceptedTokens.length; token++) {
+          immigrantRegistry[_address].emptyAccountToken(acceptedTokens[token]);
+      }*/
 		}
 
 		return contribution;
