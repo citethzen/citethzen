@@ -32,13 +32,13 @@ export default class ImmigrantPage extends Component {
 
     this.contributionFilter = immigrantContract.LogContribution(null, { fromBlock: 0 });
     this.contributionFilter.watch(
-          (error, log) =>
-            this.setState(
-              state => ({
-                contributionLogs: [ log ].concat(state.contributionLogs)
-              })
-            )
-        );
+      (error, log) =>
+        this.setState(
+          state => ({
+            contributionLogs: [ log ].concat(state.contributionLogs)
+          })
+        )
+    );
     console.log(this.state.contributionLogs);
 
     this.setState({ immigrantContractAddress });
@@ -73,19 +73,19 @@ export default class ImmigrantPage extends Component {
     e.preventDefault();
 
     console.log(this.state);
-    
-    try{
+
+    try {
       await window.web3.eth.sendTransactionPromise({
-        to: this.state.immigrantContractAddress, 
+        to: this.state.immigrantContractAddress,
         from: this.state.accounts[ 0 ],
         value: this.state.formValue2.tokenAmount
       });
-      window.alert({message: 'successfully sent a contribution!', type: 'success'});
+      window.alert({ message: 'successfully sent a contribution!', type: 'success' });
     } catch (error) {
       console.error(error);
-      window.alert({message: `failed to register! #{error.message}`, type: 'danger'});
+      window.alert({ message: `failed to register! #{error.message}`, type: 'danger' });
     }
-  }
+  };
 
   handleChange = formValue => {
     this.setState({ formValue });
@@ -126,40 +126,38 @@ export default class ImmigrantPage extends Component {
             <label>Contract Balance: </label> <Balance address={immigrantContractAddress}/>
           </div>
           <ContributionForm onChange={this.handleChange2} value={formValue2} onSubmit={this.handleSubmitContribution}/>
-          <h2> Your Contributions </h2>
-          <div className = "container">
+
+          <h2>Your Contributions</h2>
+          <div>
             <table className="table">
               <thead>
-                <tr>
-                  <th>Contribution Amount</th>
-                </tr>
+              <tr>
+                <th>Contribution Amount</th>
+                <th>Transaction Hash</th>
+                <th>Block Number</th>
+              </tr>
               </thead>
-            <tbody>
+              <tbody>
               { //put in headers for the table here
                 _.map(
                   contributionLogs,
-                  (log, ix) => (
-                    <tr key={ix}>
-                      <td> {log.args.amount.toString()} </td>
-                    </tr>
-                  )
+                  (log, ix) => {
+                    console.log('contribution log', log);
+                    return (
+                      <tr key={ix}>
+                        <td> {log.args.amount.toString()} </td>
+                        <td> {log.transactionHash} </td>
+                        <td> {log.blockNumber} </td>
+                      </tr>
+                    );
+                  }
                 )
               }
-            </tbody>
+              </tbody>
             </table>
           </div>
         </div>
       </div>
     );
-
-          //generate table: history of contributions
-          // return(
-          //   <div className="container">
-          //   </div>
-          // );
-
-          //generate form: allows user to send contributions
-
-
   }
 }
