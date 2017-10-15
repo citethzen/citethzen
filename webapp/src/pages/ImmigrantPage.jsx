@@ -4,9 +4,7 @@ import { ZERO_ADDRESS } from '../util/constants';
 import RegistrationForm from '../components/RegistrationForm';
 import { Alert, PageHeader } from 'react-bootstrap';
 import Balance from '../components/Balance';
-import Contribution from '../components/Contribution';
 import ContributionForm from '../components/ContributionForm';
-
 
 export default class ImmigrantPage extends Component {
   state = {

@@ -55,7 +55,7 @@ contract('Government', function (accounts) {
 
     const balance = await getBalance(immigrantContractAddress);
 
-    assert.equal(balance, 10, 'Immigrant\'s total contribution should be 10');
+    assert.equal(balance, contribution, 'Immigrant\'s total contribution should be 10');
   });
 
   it('Invitation', async () => {
@@ -78,18 +78,24 @@ contract('Government', function (accounts) {
   });
 
   it('Collect an accepted immigrant contribution', async () => {
-    // Immigrant sensitive data
+    // Do a contribution
+    const contributionTx = await immigrantContract.sendTransaction({
+      from: immigrantAccount,
+      value: 5
+    });
+
+    // Immigrant sensitive data (revealed at collection)
     const firstName = 'John';
     const lastName = 'Doe';
     const dateOfBirth = '01/01/1990';
     const correctPassword = '9999';
     const wrongPassword = '1234';
 
+    assert.equal((await getBalance(immigrantContractAddress)).valueOf(), 5);
     const collectTx = await government.collectContribution(immigrantAccount, firstName, lastName, dateOfBirth, correctPassword);
-    const balance = await getBalance(immigrantAccount);
+    const balance = await getBalance(immigrantContractAddress);
 
-    // assert.equal(balance.toNumber(), 0, 'collectContribution should succeed when passing the correct info');
-    assert.equal(1, 0, 'collectContribution should succeed when passing the correct info');
+    assert.equal(balance.toNumber(), 0, 'collectContribution should succeed when passing the correct info');
   });
 
   it('Let the immigrant withdraw his/her application', function () {

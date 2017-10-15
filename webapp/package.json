@@ -8,12 +8,8 @@
     "react-scripts": "1.0.14"
   },
   "scripts": {
-    "link-contracts": "ln -sfn ../../build/contracts ./src/contracts",
-    "prestart": "npm run link-contracts",
     "start": "react-scripts start",
-    "prebuild": "npm run link-contracts",
     "build": "react-scripts build",
-    "pretest": "npm run link-contracts",
     "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
@@ -21,6 +17,7 @@
     "prop-types": "^15.6.0",
     "react-bootstrap": "^0.31.3",
     "react-bs-notifier": "4.4.2",
+    "react-overlays": "^0.7.3",
     "react-router-dom": "^4.2.2",
     "truffle-contract": "^3.0.0",
     "underscore": "^1.8.3",

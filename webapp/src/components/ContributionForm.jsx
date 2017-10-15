@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from './Icon';
-import { OCCUPATION_CODES } from '../util/constants';
-import _ from 'underscore';
 
 export default class ContributionForm extends Component {
   static propTypes = {
