@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Government } from '../util/contracts';
+import { Government, Immigrant } from '../util/contracts';
 import { ZERO_ADDRESS } from '../util/constants';
 import RegistrationForm from '../components/RegistrationForm';
 import { Alert, PageHeader } from 'react-bootstrap';
 import Balance from '../components/Balance';
 import ContributionForm from '../components/ContributionForm';
+import _ from 'underscore';
+
 
 export default class ImmigrantPage extends Component {
   state = {
@@ -26,8 +28,9 @@ export default class ImmigrantPage extends Component {
     const government = await Government.deployed();
 
     const immigrantContractAddress = await government.immigrantRegistry(firstAccount);
+    const immigrantContract = Immigrant.at(immigrantContractAddress);
 
-    this.contributionFilter = await government.LogContribution(null, { fromBlock: 0 });
+    this.contributionFilter = immigrantContract.LogContribution(null, { fromBlock: 0 });
     this.contributionFilter.watch(
           (error, log) =>
             this.setState(
@@ -36,16 +39,7 @@ export default class ImmigrantPage extends Component {
               })
             )
         );
-
-
-    this.registrationFilter.watch(
-      (error, log) =>
-        this.setState(
-          state => ({
-            registrationLogs: [ log ].concat(state.registrationLogs)
-          })
-        )
-    );
+    console.log(this.state.contributionLogs);
 
     this.setState({ immigrantContractAddress });
   }
@@ -116,7 +110,10 @@ export default class ImmigrantPage extends Component {
         </div>
       );
     }
-    const { formValue2 } = this.state;
+
+    const { formValue2, contributionLogs } = this.state;
+    console.log(this.state);
+    console.log(contributionLogs);
 
     return (
       <div className="container">
@@ -138,6 +135,18 @@ export default class ImmigrantPage extends Component {
                 </tr>
               </thead>
             <tbody>
+              { //put in headers for the table here
+                _.map(
+                  contributionLogs,
+                  (log, ix) => (
+                    <tr key={ix}>
+                      <td>
+                        log
+                      </td>
+                    </tr>
+                  )
+                )
+              }
             </tbody>
             </table>
           </div>
