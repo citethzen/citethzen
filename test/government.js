@@ -107,6 +107,14 @@ contract('Government', function (accounts) {
     // invite the immigrant
     const inviteTx = await government.invite(immigrantAccount, { from: governmentOwnerAccount });
 
+    let error = false;
+    try {
+      const rejectTx = await government.makeDecision(immigrantAccount, false, firstName, lastName, dateOfBirth, 'wrongpass');
+    } catch (e) {
+      error = true;
+    }
+    assert.equal(error, true);
+
     assert.equal((await getBalance(immigrantContractAddress)).valueOf(), 5);
     // reject the immigrant
     const rejectTx = await government.makeDecision(immigrantAccount, false, firstName, lastName, dateOfBirth, correctPassword);

@@ -53,12 +53,26 @@ contract Government is Wallet {
         address immigrantWallet, bool accepted,
         string firstName, string lastName, string dateOfBirth, string password
     ) public onlyOwner returns (bool) {
-        require(immigrantRegistry[immigrantWallet].receiveDecision(accepted));
+        Immigrant immigrant = immigrantRegistry[immigrantWallet];
 
+        // must be registered
+        require(immigrant != address(0));
+
+        // require that the hash of the credentials match the stored hashed secret
+        bytes32 hash = createHash(firstName, lastName, dateOfBirth, password);
+        bytes32 expectedHash = immigrant.dataHash();
+
+        require(hash == expectedHash);
+
+        // require that the immigrant receives the update
+        require(immigrant.receiveDecision(accepted));
+
+        // log the new decision
         LogGovernmentDecision(immigrantWallet, accepted);
 
+        // pull the funds if accepted
         if (accepted) {
-            require(collectContribution(immigrantWallet, firstName, lastName, dateOfBirth, password));
+            require(collectContribution(immigrantWallet));
         }
     }
 
@@ -85,16 +99,7 @@ contract Government is Wallet {
     // Log :moneybag: :moneybag: :moneybag:
     event LogTokenCollection(address indexed tokenAddress, address indexed immigrant, uint indexed amountCollected);
 
-    function collectContribution(address _address, string firstName, string lastName, string dateOfBirth, string password) internal returns (bool success) {
-        // must be registered
-        require(immigrantRegistry[_address] != address(0));
-
-        // require that the hash of the credentials match the stored hashed secret
-        bytes32 hash = createHash(firstName, lastName, dateOfBirth, password);
-        bytes32 expectedHash = immigrantRegistry[_address].dataHash();
-
-        require(hash == expectedHash);
-
+    function collectContribution(address _address) internal returns (bool success) {
         uint contribution = immigrantRegistry[_address].balance;
 
         // empty the immigrants wallet
