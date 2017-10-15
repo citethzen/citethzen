@@ -67,6 +67,10 @@ export default class GovernmentPage extends Component {
     }
   };
 
+  startDecision = () => {
+
+  };
+
   render() {
     const { registrationLogs, invitationLogs } = this.state;
 
@@ -75,6 +79,7 @@ export default class GovernmentPage extends Component {
         <h2>Candidates for Citizenship</h2>
         <p>The following individuals have paid funds in accordance with US tax law into our escrow contract.
           These funds will be released to the US Government upon naturalization.</p>
+
         <table className="table">
           <thead>
           <tr>
@@ -109,11 +114,10 @@ export default class GovernmentPage extends Component {
                     }
                   </td>
                   <td>
-                    <button type="button" className="btn btn-success btn-sm">
-                      <Icon name="thumbs-up"/> Accept
-                    </button>
-                    <button type="button" className="btn btn-danger btn-sm">
-                      <Icon name="times-circle"/> Reject
+                    <button type="button" className="btn btn-warning btn-sm"
+                            disabled={!invitationLogs[ log.args.immigrantAddress ]}
+                            onClick={() => this.startDecision(log.args.immigrantAddress)}>
+                      <Icon name="thumbs-up"/> Decision <Icon name="thumbs-down"/>
                     </button>
                   </td>
                 </tr>

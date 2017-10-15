@@ -9,7 +9,7 @@ contract Government is Wallet {
 	address[] public acceptedTokens;
 	mapping(address => Immigrant) public immigrantRegistry;
 
-    function createHash(string firstName, string lastName, string dateOfBirth, string password) public constant returns (bytes32 hash) {
+    function createHash(string firstName, string lastName, string dateOfBirth, string password) public pure returns (bytes32 hash) {
         return keccak256(firstName, lastName, dateOfBirth, password);
     }
 
@@ -23,6 +23,10 @@ contract Government is Wallet {
 
 	// register/create new immigrant contract
 	function register (uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) public returns (address) {
+        // msg sender cannot be the government contract owner
+        require(msg.sender != owner);
+
+        // msg sender cannot already be registered
         require(immigrantRegistry[msg.sender] == address(0));
 
         Immigrant newImmigrant = new Immigrant(msg.sender, _occupation, _age, _income, _dataHash);
