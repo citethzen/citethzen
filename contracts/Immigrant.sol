@@ -21,6 +21,7 @@ contract Immigrant is Wallet {
 	enum ImmigrationStatus { registered, invited, accepted, rejected }
 
 	event LogContribution(address immigrant, uint amount);
+	event LogDecision(address government, bool accepted);
 
 	// Current immigrant status in the process
   ImmigrationStatus public status;
@@ -52,7 +53,7 @@ contract Immigrant is Wallet {
 		return true;
 	}
 
-	function makeDecision(bool accepted) onlyGov public returns (uint _status) {
+	function makeDecision(bool accepted) public returns (uint) {
 		if (accepted) {
 			status = ImmigrationStatus.accepted;
 		} else {
@@ -62,7 +63,7 @@ contract Immigrant is Wallet {
 		return uint(status);
 	}
 
-	function emptyAccountEth()  public onlyGov returns (bool) {
+	function emptyAccountEth() public onlyGov returns (bool) {
 	   government.transfer(this.balance);
        return true;
 	}

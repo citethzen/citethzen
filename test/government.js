@@ -70,7 +70,9 @@ contract('Government', function (accounts) {
     const immigrantContractAddress = await government.immigrantRegistry(immigrantAccount);
     const immigrantContract = Immigrant.at(immigrantContractAddress);
 
-    const acceptTx = await immigrantContract.makeDecision(immigrantAccount, true, {
+    const inviteTx = await government.invite(immigrantAccount);
+
+    const acceptTx = await immigrantContract.makeDecision(true, {
       from: governmentOwnerAccount
     });
 
