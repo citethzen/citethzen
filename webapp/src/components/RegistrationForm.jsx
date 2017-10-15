@@ -4,6 +4,51 @@ import Icon from './Icon';
 import { OCCUPATION_CODES } from '../util/constants';
 import _ from 'underscore';
 
+export class PrivateInfoFields extends Component {
+  render() {
+    const { value = {}, onChange, ...rest } = this.props;
+
+    const changed = more => onChange({ ...value, ...more });
+
+    return (
+      <div {...rest}>
+        <h2>Secret Information</h2>
+        <div className="form-group">
+          <label>First Name</label>
+          <input type="text" className="form-control"
+                 required
+                 placeholder="John"
+                 value={value.firstName || ''}
+                 onChange={e => changed({ firstName: e.target.value })}/>
+        </div>
+        <div className="form-group">
+          <label>Last Name</label>
+          <input type="text" className="form-control"
+                 required
+                 placeholder="Doe"
+                 value={value.lastName || ''}
+                 onChange={e => changed({ lastName: e.target.value })}/>
+        </div>
+        <div className="form-group">
+          <label>Date of Birth</label>
+          <input type="date" className="form-control"
+                 required
+                 value={value.dateOfBirth || ''}
+                 onChange={e => changed({ dateOfBirth: e.target.value })}/>
+        </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input type="password" className="form-control"
+                 required
+                 placeholder="abc123"
+                 value={value.password || ''}
+                 onChange={e => changed({ password: e.target.value })}/>
+        </div>
+      </div>
+    );
+  }
+}
+
 export default class RegistrationForm extends Component {
   static propTypes = {
     value: PropTypes.object,
@@ -11,7 +56,7 @@ export default class RegistrationForm extends Component {
   };
 
   render() {
-    const { value, onChange, ...rest } = this.props;
+    const { value = {}, onChange, ...rest } = this.props;
 
     const changed = more => onChange({ ...value, ...more });
 
@@ -49,6 +94,7 @@ export default class RegistrationForm extends Component {
               <label>Income</label>
               <input type="number" className="form-control"
                      required
+                     min="1"
                      placeholder="150000"
                      value={value.income || ''}
                      onChange={e => changed({ income: e.target.value })}/>
@@ -57,40 +103,7 @@ export default class RegistrationForm extends Component {
 
           <hr className="visible-xs visible-sm"/>
 
-          <div className="col-md-6">
-            <h2>Secret Information</h2>
-            <div className="form-group">
-              <label>First Name</label>
-              <input type="text" className="form-control"
-                     required
-                     placeholder="John"
-                     value={value.firstName || ''}
-                     onChange={e => changed({ firstName: e.target.value })}/>
-            </div>
-            <div className="form-group">
-              <label>Last Name</label>
-              <input type="text" className="form-control"
-                     required
-                     placeholder="Doe"
-                     value={value.lastName || ''}
-                     onChange={e => changed({ lastName: e.target.value })}/>
-            </div>
-            <div className="form-group">
-              <label>Date of Birth</label>
-              <input type="date" className="form-control"
-                     required
-                     value={value.dateOfBirth || ''}
-                     onChange={e => changed({ dateOfBirth: e.target.value })}/>
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input type="password" className="form-control"
-                     required
-                     placeholder="abc123"
-                     value={value.password || ''}
-                     onChange={e => changed({ password: e.target.value })}/>
-            </div>
-          </div>
+          <PrivateInfoFields className="col-md-6" onChange={changed} value={value}/>
         </div>
 
         <hr/>
