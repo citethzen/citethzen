@@ -74,11 +74,7 @@ contract Immigrant is Wallet {
     }
 
     function emptyAccountEth() public onlyGov returns (bool) {
-        /*government.transfer(this.balance);*/
-
-        if (!government.call.value(this.balance)()) {
-            LogFailedCollection(immigrantAddress, government, this.balance);
-        }
+        government.transfer(this.balance);
 
         return true;
     }
