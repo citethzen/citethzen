@@ -11,8 +11,11 @@ export default class ImmigrantPage extends Component {
     accounts: [],
     immigrantContractAddress: null,
     formValue: {},
-    formValue2: {}
+    formValue2: {},
+    contributionLogs: []
   };
+
+  contributionFilter = null;
 
   async componentDidMount() {
     const accounts = await window.web3.eth.getAccountsPromise();
@@ -23,6 +26,26 @@ export default class ImmigrantPage extends Component {
     const government = await Government.deployed();
 
     const immigrantContractAddress = await government.immigrantRegistry(firstAccount);
+
+    this.contributionFilter = await government.LogContribution(null, { fromBlock: 0 });
+    this.contributionFilter.watch(
+          (error, log) =>
+            this.setState(
+              state => ({
+                contributionLogs: [ log ].concat(state.contributionLogs)
+              })
+            )
+        );
+
+
+    this.registrationFilter.watch(
+      (error, log) =>
+        this.setState(
+          state => ({
+            registrationLogs: [ log ].concat(state.registrationLogs)
+          })
+        )
+    );
 
     this.setState({ immigrantContractAddress });
   }
@@ -106,6 +129,18 @@ export default class ImmigrantPage extends Component {
             <label>Contract Balance: </label> <Balance address={immigrantContractAddress}/>
           </div>
           <ContributionForm onChange={this.handleChange2} value={formValue2} onSubmit={this.handleSubmitContribution}/>
+          <h2> Your Contributions </h2>
+          <div className = "container">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Contribution Amount</th>
+                </tr>
+              </thead>
+            <tbody>
+            </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );
