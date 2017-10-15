@@ -97,7 +97,7 @@ contract('Government', function (accounts) {
     assert.equal(balance.toNumber(), 0, 'collectContribution should succeed when passing the correct info');
   });
 
-  it('Let the immigrant withdraw his/her application', function () {
+  it('Let the immigrant withdraw his/her funds if they were not invited nor accepted', function () {
     assert.equal(true, true);
   });
 

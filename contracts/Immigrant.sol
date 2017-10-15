@@ -13,10 +13,10 @@ contract Immigrant is Wallet {
 	bytes32 public dataHash;
 
 	enum Occupation { doctor, lawyer, migrantWorker, laborer }
-    // Additional demographic info
-    uint64 public age;
-    uint64 public occupation;
-    uint128 public income;
+  // Additional demographic info
+  uint64 public age;
+  uint64 public occupation;
+  uint128 public income;
 
 	enum ImmigrationStatus { registered, invited, accepted, rejected }
 
@@ -28,14 +28,14 @@ contract Immigrant is Wallet {
   ImmigrationStatus public status;
 
 	function Immigrant(address _immigrantAddress, uint64 _occupation, uint64 _age, uint128 _income, bytes32 _dataHash) Wallet(_immigrantAddress) public {
-        government = msg.sender;
-        immigrantAddress = _immigrantAddress;
+    government = msg.sender;
+    immigrantAddress = _immigrantAddress;
 
-        occupation = _occupation;
+    occupation = _occupation;
 		age = _age;
 		income = _income;
 		dataHash = _dataHash;
-        status = ImmigrationStatus.registered;
+    status = ImmigrationStatus.registered;
 	}
 
 	function() public payable {
