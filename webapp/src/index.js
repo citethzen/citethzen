@@ -12,8 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     () => {
       // initialize web3
       if (typeof window.web3 !== 'undefined') {
+        console.log('web3 was defined');
         window.web3 = new Web3(window.web3.currentProvider);
       } else {
+        console.log('polyfill web3 provider');
         window.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
       }
 

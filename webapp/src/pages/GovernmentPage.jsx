@@ -81,15 +81,19 @@ export default class GovernmentPage extends Component {
   cancelDecision = () => this.setState({ decisionForm: null });
   handleDecision = async accepted => {
     const { decisionForm } = this.state;
+    const { firstName, lastName, dateOfBirth, password } = decisionForm;
 
     const government = await Government.deployed();
     const govOwner = await government.owner();
 
     try {
-      const transactionObject = await government.makeDecision(decisionForm.immigrantAddress, accepted, {
-        gas: 3000000,
-        from: govOwner
-      });
+      const transactionObject = await government.makeDecision(
+        decisionForm.immigrantAddress, accepted,
+        firstName, lastName, dateOfBirth, password,
+        {
+          gas: 3000000,
+          from: govOwner
+        });
 
       window.alert({
         type: 'success',
