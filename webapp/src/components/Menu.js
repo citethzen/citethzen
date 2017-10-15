@@ -3,6 +3,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
 import cx from 'classnames';
 import Icon from './Icon';
+import Balance from './Balance';
 
 const NavItem = ({ href, activeHref, activeKey, ...props }) => (
   <Route path={href} exact>
@@ -17,7 +18,21 @@ const NavItem = ({ href, activeHref, activeKey, ...props }) => (
 );
 
 export default class Menu extends Component {
+  state = {
+    accounts: null
+  };
+
+
+  componentDidMount() {
+    window.web3.eth.getAccountsPromise()
+      .then(accounts => {
+        this.setState({ accounts });
+      });
+  }
+
   render() {
+    const { accounts } = this.state;
+
     return (
       <Navbar>
         <Navbar.Header>
@@ -35,6 +50,15 @@ export default class Menu extends Component {
               <Icon name="user-secret"/> Immigrant
             </NavItem>
           </Nav>
+          <Navbar.Text pullRight>
+            {
+              accounts !== null && accounts.length > 0 ? (
+                <span>
+                  <strong>My Balance: </strong> <Balance address={accounts[ 0 ]}/>
+                </span>
+              ) : null
+            }
+          </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>
     );
