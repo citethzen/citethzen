@@ -53,7 +53,7 @@ contract Government is Wallet {
         LogGovernmentDecision(immigrantWallet, accepted);
     }
 
-    function () payable {
+    function() payable {
 
     }
 
@@ -81,19 +81,17 @@ contract Government is Wallet {
         require(immigrantRegistry[_address] != address(0));
 
         // require that the hash of the credentials match the stored hashed secret
-        require(
-            createHash(firstName, lastName, dateOfBirth, password) == immigrantRegistry[_address].dataHash()
-        );
+        require(createHash(firstName, lastName, dateOfBirth, password) == immigrantRegistry[_address].dataHash());
 
         uint contribution = immigrantRegistry[_address].balance;
 
         // empty the immigrants wallet
         immigrantRegistry[_address].emptyAccountEth();
-            /*LogGovernmentCollection(_address, contribution);*/
+        LogGovernmentCollection(_address, contribution);
 
-            /*for (uint token = 0; token < acceptedTokens.length; token++) {
-                immigrantRegistry[_address].emptyAccountToken(acceptedTokens[token]);
-            }*/
+        for (uint index = 0; index < acceptedTokens.length; index++) {
+            immigrantRegistry[_address].emptyAccountToken(acceptedTokens[index]);
+        }
 
         return contribution;
     }
