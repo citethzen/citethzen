@@ -140,9 +140,7 @@ export default class ImmigrantPage extends Component {
                   contributionLogs,
                   (log, ix) => (
                     <tr key={ix}>
-                      <td>
-                        log
-                      </td>
+                      <td> {log.args.amount.toString()} </td>
                     </tr>
                   )
                 )
